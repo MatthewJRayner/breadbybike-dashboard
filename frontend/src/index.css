@@ -12,7 +12,7 @@
     --color-bbb-blue-800: oklch(0.1895 0.0212 218.13);
     --color-bbb-blue-900: oklch(0.142 0.0139 214.07);
 
-    --color-text_black: oklch(0.1841 0.0179 230.66);
+    --color-black_text: oklch(0.1841 0.0179 230.66);
     --color-background_grey: oklch(0.9672 0 0);
 }
 
