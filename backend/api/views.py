@@ -9,7 +9,14 @@ def home(request):
 # Create your views here.
 class SquareStatsView(APIView):
     def get(self, request):
-        return Response({"message": "Square stats endpoint"})
+        # Mock data for now
+        stats = {
+            'total_sales': 1234.65,
+            'order_count': 45,
+            'average_order_value': 25.43
+        }
+        
+        return Response(stats)
 
 class ShopifyOrdersView(APIView):
     def get(self, request):
