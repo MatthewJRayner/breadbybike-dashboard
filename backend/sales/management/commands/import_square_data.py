@@ -5,13 +5,15 @@ from sales.models import OrderLine
 from datetime import datetime, UTC, timedelta
 from dateutil.relativedelta import relativedelta
 from sales.config import CONFIG
-from sales.services.fetch_orders import fetch_orders
+from sales.services.fetch_orders_all import fetch_orders_all
 
 class Command(BaseCommand):
     help = 'Loads Square order date into the datebase from first day of previous month last year (roughly 13 months)'
     
     def handle(self, *args, **options):
-        orders = fetch_orders()
+        orders = fetch_orders_all()
+        if orders:
+            self.stdout.write(self.style.SUCCESS('Successfully fetched order, import data now...'))
         counter = 0
         
         for order in orders:
