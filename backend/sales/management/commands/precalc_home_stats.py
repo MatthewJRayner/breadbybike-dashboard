@@ -90,6 +90,7 @@ class Command(BaseCommand):
                     dictionary['monthly_sales_grapgh']['graph'][days_ago - 1] += order.total_sale
                     if 1 <= days_ago <= 7:
                         helper['average_growth_graph']['previous_7_days'][f'{days_ago}'] += order.total_sale
+                        
                     if 8 <= days_ago <= 14:
                         helper['average_growth_graph']['previous_14_days'][f'{days_ago - 7}'] += order.total_sale  
                     if 15 <= days_ago <= 21:
@@ -134,6 +135,11 @@ class Command(BaseCommand):
             dictionary['monthly_sales_graph']['percentages']['previous_year'] = round(percent_increase(dictionary['monthly_sales_graph']['total_sales_month'], helper['monthly_sales_graph']['same_month_previous_year']))
             dictionary['monthly_stats_tiles']['net_sales_month'] = dictionary['monthly_stats_tiles']['total_sales_month'] - helper['monthly_stats_tiles']['total_lost']
             dictionary['monthly_stats_tiles']['average_sale_month'] = round(dictionary['monthly_stats_tiles']['total_sales_month'] / dictionary['monthly_stats_tiles']['items_sold'], 2)
+            
+            # Reversing lists to get oldests dates on the left
+            dictionary['average_growth_graph']['graph'].reverse()
+            dictionary['average_growth_graph']['labels'].reverse()
+            dictionary['monthly_sales_graph']['graph'].reverse()
             
         calc_home_stats(both_home_stats, OrderLine.objects.all().order_by('-date'))
         calc_home_stats(bakery_home_stats, OrderLine.objects.filter(location=CONFIG['BAKERY_ID']).order_by('-date'))
