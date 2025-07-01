@@ -1,18 +1,19 @@
 from django.core.management.base import BaseCommand
-from sales.models import OrderLine
+from sales.models import OrderLine, DailyOrderSnapshot
 from sales.services.fetch_orders_new import fetch_orders_new
 from datetime import datetime, UTC
 from dateutil.relativedelta import relativedelta
 
 class Command(BaseCommand):
-    help = "Fetches new Square orders and removes data older than the cutoff date (1st of the previous month last year)"
-    
+    help = "Fetch and update order lines from Square, clean up old entries, and updates daily snapshots."
+
     def handle(self, *args, **options):
-        cutoff_date = (datetime.now(UTC).date() - relativedelta(years=1, months=1)).replace(day=1)
+        cutoff_date_OrderLine = (datetime.now(UTC).date() - relativedelta(years=1, months=1)).replace(day=1)
         
-        old_entries = OrderLine.objects.filter(date__lt=cutoff_date)
-        count_deleted = old_entries.count()
-        old_entries.delete()
+        old_entries_OrderLine = OrderLine.objects.filter(date__lt=cutoff_date_OrderLine)
+        count_deleted = old_entries_OrderLine.count()
+        old_entries_OrderLine.delete()
+        OrderLine.objects.filter(date=datetime.now(UTC).date()).delete()  # Delete today's entries to avoid duplicates
         self.stdout.write(self.style.SUCCESS(f'Deleted {count_deleted} old order lines.'))
         
         orders = fetch_orders_new()
@@ -35,3 +36,34 @@ class Command(BaseCommand):
                 counter += 1
         
         self.stdout.write(self.style.SUCCESS(f'Successfully imported {counter} new order lines.'))
+        
+        # Add / delete orders for DailyOrderSnapshot
+        DailyOrderSnapshot.objects.all().delete()
+        
+        yesterday_orders = OrderLine.objects.filter(date=(datetime.now(UTC).date() - relativedelta(days=1)))
+        for order in yesterday_orders:
+            DailyOrderSnapshot.objects.create(
+                name=order.name,
+                date=order.date,
+                time=order.time,
+                location=order.location,
+                quantity=order.quantity,
+                total_sale=order.total_sale,
+                discount=order.discount,
+                service_charge=order.service_charge
+            )
+            
+        previous_week_orders = OrderLine.objects.filter(date=(datetime.now(UTC).date() - relativedelta(days=7)))
+        for order in previous_week_orders:
+            DailyOrderSnapshot.objects.create(
+                name=order.name,
+                date=order.date,
+                time=order.time,
+                location=order.location,
+                quantity=order.quantity,
+                total_sale=order.total_sale,
+                discount=order.discount,
+                service_charge=order.service_charge
+            )   
+            
+        self.stdout.write(self.style.SUCCESS(f'Successfully cleared and updated DailyOrderSnapshot'))

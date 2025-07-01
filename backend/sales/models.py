@@ -48,3 +48,27 @@ class OrderStats(models.Model):
     
     def __str__(self):
         return f"Stats for {self.location} - Last updated at {self.updated_at}"
+    
+class DailyOrderSnapshot(models.Model):
+    """
+    Only used to contain orders from the current day, previous day, and the same day previous week.
+    This model is designed for quick access to calculate daily stats to serve to the frontend.
+    """
+    name = models.CharField(max_length=255, default='Custom')
+    date = models.DateField()
+    time = models.TimeField()
+    location = models.CharField(max_length=50)
+    quantity = models.PositiveIntegerField()
+    total_sale = models.DecimalField(max_digits=10, decimal_places=2)
+    discount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    service_charge = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['time']),
+            models.Index(fields=['location']),
+            models.Index(fields=['name']),
+        ]
+    
+    def __str__(self):
+        return f"Order {self.name} x{self.quantity} at {self.time} {self.date} ({self.location})"

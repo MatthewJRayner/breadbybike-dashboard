@@ -40,11 +40,11 @@ home_stats = {
         'discounts': Decimal('0.00'),
         'average_sale': Decimal('0.00'),
         'net_sale': Decimal('0.00'),
-        'refunds': Decimal('0.00') ,
+        'service_charge': Decimal('0.00') ,
         'best_sellers': {
             'names': [],
-            'sales': [Decimal('0.00'), Decimal('0.00'), Decimal('0.00'), Decimal('0.00'), Decimal('0.00')],
-            'counts': [0, 0, 0, 0, 0],
+            'sales': [],
+            'counts': [],
             'percentages': [Decimal('0.00'), Decimal('0.00'), Decimal('0.00'), Decimal('0.00'), Decimal('0.00')]
         }
     },

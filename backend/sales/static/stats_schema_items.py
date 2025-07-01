@@ -1,4 +1,5 @@
 from decimal import Decimal
+from datetime import time
 
 items_stats = {
     'weekly_sales': {
@@ -64,11 +65,11 @@ items_stats = {
             },     
         },
     },
-    'daily_item_stats': {
+    'daily_items_stats': {
         'daily_sales': {
             'sales': Decimal('0.00'),
             'percentage': 0
         },
-        'recent_time': [],
+        'recent_time': time(8, 0),
     },
 }
