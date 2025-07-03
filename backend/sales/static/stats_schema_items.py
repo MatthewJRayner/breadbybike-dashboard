@@ -70,6 +70,6 @@ items_stats = {
             'sales': Decimal('0.00'),
             'percentage': 0
         },
-        'recent_time': time(8, 0),
+        'recent_time': time(8, 0, 0),
     },
 }

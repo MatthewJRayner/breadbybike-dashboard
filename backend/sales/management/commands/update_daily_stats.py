@@ -13,7 +13,7 @@ class Command(BaseCommand):
     
     def handle(self, *args, **options):
         # CONSTANTS / VARIABLES
-        item_name = 'Cinnamon' # Example item name, this will later be grabbed from the frontend
+        item_name = 'Wholemeal' # Example item name, this will later be grabbed from the frontend
         item_location = 'both' # Example location, this will later be grabbed from the frontend
         today = datetime.now(UTC).date()
         today_orders = fetch_orders_new()

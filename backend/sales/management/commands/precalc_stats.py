@@ -14,7 +14,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         # Time based constants and variables
         today = datetime.now(UTC).date()
-        item_name = 'Cinnamon' 
+        item_name = 'Wholemeal' 
         # Initializes dictionaries from stats schema
         both_home_stats = copy.deepcopy(home_stats)
         bakery_home_stats = copy.deepcopy(home_stats)
