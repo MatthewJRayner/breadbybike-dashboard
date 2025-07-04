@@ -40,6 +40,22 @@ class Command(BaseCommand):
         # Add / delete orders for DailyOrderSnapshot
         DailyOrderSnapshot.objects.all().delete()
         
+        # Check if any order's from today we're picked up
+        today_orders = OrderLine.objects.filter(date=(datetime.now(UTC).date()))
+        for order in today_orders:
+            DailyOrderSnapshot.objects.create(
+                name=order.name,
+                date=order.date,
+                time=order.time,
+                location=order.location,
+                quantity=order.quantity,
+                total_sale=order.total_sale,
+                discount=order.discount,
+                service_charge=order.service_charge,
+                tax=order.tax
+            )
+        
+        # Add yesterday and same day previous week's orders to the model
         yesterday_orders = OrderLine.objects.filter(date=(datetime.now(UTC).date() - relativedelta(days=1)))
         for order in yesterday_orders:
             DailyOrderSnapshot.objects.create(
@@ -50,7 +66,8 @@ class Command(BaseCommand):
                 quantity=order.quantity,
                 total_sale=order.total_sale,
                 discount=order.discount,
-                service_charge=order.service_charge
+                service_charge=order.service_charge,
+                tax=order.tax
             )
             
         previous_week_orders = OrderLine.objects.filter(date=(datetime.now(UTC).date() - relativedelta(days=7)))
@@ -63,7 +80,8 @@ class Command(BaseCommand):
                 quantity=order.quantity,
                 total_sale=order.total_sale,
                 discount=order.discount,
-                service_charge=order.service_charge
+                service_charge=order.service_charge,
+                tax=order.tax
             )   
             
         self.stdout.write(self.style.SUCCESS(f'Successfully cleared and updated DailyOrderSnapshot'))

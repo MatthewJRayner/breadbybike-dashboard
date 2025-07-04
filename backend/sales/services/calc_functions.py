@@ -244,7 +244,7 @@ def calc_items_stats(dictionary, querylist):
     dictionary['weekly_sales']['percentage'] = percent_increase(dictionary['weekly_sales']['sales'], helper['weekly_sales']['previous_week'])
     dictionary['monthly_sales']['percentage'] = percent_increase(dictionary['monthly_sales']['sales'], helper['monthly_sales']['previous_month'])
     dictionary['total_sales_last_week']['arrow_boolean'] = 1 if dictionary['total_sales_last_week']['count'] > helper['total_sales_last_week']['count'] else 0
-    dictionary['daily_average']['count'] = average(helper['daily_average']['count_list'])
+    dictionary['daily_average']['count'] = round(average(helper['daily_average']['count_list']))
     dictionary['daily_average']['percentage']['previous_week'] = percent_increase(dictionary['daily_average']['count'], average(helper['daily_average']['previous_week_count']))
     dictionary['daily_average']['percentage']['previous_month'] = percent_increase(dictionary['daily_average']['count'], average(helper['daily_average']['previous_month_count']))
     for i in range(16):
@@ -270,6 +270,7 @@ def calc_daily_stats_home(dictionary, querylist):
     """
     # Initialize the helper dictionary
     helper = {
+        'tax': Decimal('0.00'),
         'yesterday': {
             'sales': Decimal('0.00'),
             'count': 0,
@@ -283,6 +284,7 @@ def calc_daily_stats_home(dictionary, querylist):
     for order in querylist:
         if order.date == today:
             dictionary['daily_home_stats']['total_sales'] += order.total_sale
+            helper['tax'] += order.tax
             dictionary['daily_home_stats']['orders'] += order.quantity
             dictionary['daily_home_stats']['discounts'] += order.discount
             dictionary['daily_home_stats']['service_charge'] += order.service_charge
@@ -303,7 +305,7 @@ def calc_daily_stats_home(dictionary, querylist):
         dictionary['daily_home_stats']['best_sellers']['names'].append(k)
         dictionary['daily_home_stats']['best_sellers']['sales'].append(v['sales'])
         dictionary['daily_home_stats']['best_sellers']['counts'].append(v['count'])
-    dictionary['daily_home_stats']['net_sale'] = dictionary['daily_home_stats']['total_sales'] - (dictionary['daily_home_stats']['discounts'] + dictionary['daily_home_stats']['service_charge'])
+    dictionary['daily_home_stats']['net_sale'] = dictionary['daily_home_stats']['total_sales'] - (dictionary['daily_home_stats']['discounts'] + dictionary['daily_home_stats']['service_charge'] + helper['tax'])
     dictionary['daily_home_stats']['average_sale'] = round(dictionary['daily_home_stats']['total_sales'] / dictionary['daily_home_stats']['orders'], 2) if dictionary['daily_home_stats']['orders'] else Decimal('0.00')
     for i in range(5):
         dictionary['daily_home_stats']['best_sellers']['percentages'][i] = round((

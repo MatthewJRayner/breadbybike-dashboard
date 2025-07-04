@@ -62,6 +62,7 @@ class DailyOrderSnapshot(models.Model):
     total_sale = models.DecimalField(max_digits=10, decimal_places=2)
     discount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     service_charge = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    tax = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     
     class Meta:
         indexes = [

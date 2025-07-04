@@ -3,10 +3,11 @@ import DashboardDataProvider from '../components/DashboardDataProvider';
 import Selector from '../components/Selector';
 
 const HomeDashboard = () => {
-    const [location, setLocation] = useState('both');
+    const [location, setLocation] = useState('Both');
     const locations = [location];
     const [stats, setStats] = useState({});
 
+    // Sets the stats dictionary being displaying to change with the location selector
     const handleStatsLoaded = (data) => {
         console.log('Home stats:', data[location]);
         setStats(data)
@@ -19,7 +20,7 @@ const HomeDashboard = () => {
                 <Selector 
                     label="Location: "
                     value={location}
-                    options={['both', 'cafe', 'bakery']}
+                    options={['Both', 'Cafe', 'Bakery']}
                     onChange={setLocation}
                 />
             </div>

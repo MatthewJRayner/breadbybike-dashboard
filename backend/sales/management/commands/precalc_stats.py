@@ -14,7 +14,11 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         # Time based constants and variables
         today = datetime.now(UTC).date()
-        item_name = 'Wholemeal' 
+        item_name = 'Cinnamon' 
+        
+        # Delete old data to have a clean slate
+        OrderStats.objects.all().delete()
+        
         # Initializes dictionaries from stats schema
         both_home_stats = copy.deepcopy(home_stats)
         bakery_home_stats = copy.deepcopy(home_stats)
@@ -43,15 +47,15 @@ class Command(BaseCommand):
         
         # HOME PAGE STATS
         OrderStats.objects.update_or_create(
-            location='both',
+            location='Both',
             defaults={'stats_json': both_home_stats}
         )
         OrderStats.objects.update_or_create(
-            location='bakery',
+            location='Bakery',
             defaults={'stats_json': bakery_home_stats}
         )
         OrderStats.objects.update_or_create(
-            location='cafe',
+            location='Cafe',
             defaults={'stats_json': cafe_home_stats}
         )
         
@@ -59,15 +63,15 @@ class Command(BaseCommand):
         
         # ITEMS PAGE STATS
         OrderStats.objects.update_or_create(
-            location=f'both_items_{item_name}',
+            location=f'Both_items_{item_name}',
             defaults={'stats_json': both_items_stats}
         )
         OrderStats.objects.update_or_create(
-            location=f'bakery_items_{item_name}',
+            location=f'Bakery_items_{item_name}',
             defaults={'stats_json': bakery_items_stats}
         )
         OrderStats.objects.update_or_create(
-            location=f'cafe_items_{item_name}',
+            location=f'Cafe_items_{item_name}',
             defaults={'stats_json': cafe_items_stats}
         )
         

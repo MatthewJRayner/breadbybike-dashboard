@@ -1,0 +1,347 @@
+INFO 2025-07-04 17:43:52,150 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 17:44:05,613 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\views.py changed, reloading.
+INFO 2025-07-04 17:44:06,205 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 17:44:20,554 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\views.py changed, reloading.
+INFO 2025-07-04 17:44:21,175 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 17:45:37,671 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\views.py changed, reloading.
+INFO 2025-07-04 17:45:38,333 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 17:45:49,753 views TriggerCalculationsView POST request received
+DEBUG 2025-07-04 17:45:49,755 views Received location: Both, item_name: Wholemeal
+WARNING 2025-07-04 17:45:49,755 views Invalid location provided: Both
+INFO 2025-07-04 17:45:49,755 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1348
+WARNING 2025-07-04 17:45:49,756 log Bad Request: /api/trigger-calculation/
+WARNING 2025-07-04 17:45:49,758 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 400 28
+INFO 2025-07-04 17:45:49,758 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1348
+INFO 2025-07-04 17:45:58,589 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1348
+INFO 2025-07-04 17:45:58,592 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1348
+INFO 2025-07-04 17:46:17,682 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 9825
+WARNING 2025-07-04 17:46:18,438 log Not Found: /favicon.ico
+WARNING 2025-07-04 17:46:18,439 basehttp "GET /favicon.ico HTTP/1.1" 404 2496
+INFO 2025-07-04 17:47:16,902 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\views.py changed, reloading.
+INFO 2025-07-04 17:47:17,526 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 17:47:20,925 views TriggerCalculationsView POST request received
+DEBUG 2025-07-04 17:47:20,926 views Received location: Both, item_name: Wholemeal
+INFO 2025-07-04 17:47:20,926 views Processing calculation for: Both_items_Wholemeal
+DEBUG 2025-07-04 17:47:20,927 views Initialized stats dictionary
+INFO 2025-07-04 17:47:20,928 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1348
+INFO 2025-07-04 17:47:20,932 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1348
+DEBUG 2025-07-04 17:47:20,942 views Found 2978 order lines and 9 daily orders
+DEBUG 2025-07-04 17:47:20,950 views Calculating items stats from order lines
+ERROR 2025-07-04 17:47:21,043 views Error processing Wholemeal: list index out of range
+Traceback (most recent call last):
+  File "E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\views.py", line 104, in post
+    calc_items_stats(stats, order_lines)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py", line 202, in calc_items_stats
+    dictionary['period_graphs']['last_3_months']['daily_graph']['graph'][(days_ago - 1) if days_ago > 0 else 0] += order.quantity
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+ERROR 2025-07-04 17:47:21,045 log Internal Server Error: /api/trigger-calculation/
+ERROR 2025-07-04 17:47:21,046 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 500 63
+INFO 2025-07-04 17:47:54,972 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1348
+INFO 2025-07-04 17:47:54,976 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1348
+INFO 2025-07-04 17:49:47,171 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py changed, reloading.
+INFO 2025-07-04 17:49:47,813 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 17:49:51,247 views TriggerCalculationsView POST request received
+DEBUG 2025-07-04 17:49:51,248 views Received location: Both, item_name: Wholemeal
+INFO 2025-07-04 17:49:51,248 views Processing calculation for: Both_items_Wholemeal
+DEBUG 2025-07-04 17:49:51,248 views Initialized stats dictionary
+INFO 2025-07-04 17:49:51,249 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1348
+INFO 2025-07-04 17:49:51,253 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1348
+DEBUG 2025-07-04 17:49:51,261 views Found 2978 order lines and 9 daily orders
+DEBUG 2025-07-04 17:49:51,270 views Calculating items stats from order lines
+DEBUG 2025-07-04 17:49:51,362 calc_functions Starting calc_items_stats with 2978 records
+DEBUG 2025-07-04 17:49:51,362 calc_functions Initialized helper dictionary
+INFO 2025-07-04 17:49:51,365 calc_functions Successfully completed calc_items_stats
+DEBUG 2025-07-04 17:49:51,365 views Calculating daily stats from daily orders
+DEBUG 2025-07-04 17:49:51,366 views Validating stats structure
+ERROR 2025-07-04 17:49:51,366 views Error processing Wholemeal: 'TriggerCalculationsView' object has no attribute '_validate_stats_structure'
+Traceback (most recent call last):
+  File "E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\views.py", line 112, in post
+    self._validate_stats_structure(stats)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'TriggerCalculationsView' object has no attribute '_validate_stats_structure'
+ERROR 2025-07-04 17:49:51,368 log Internal Server Error: /api/trigger-calculation/
+ERROR 2025-07-04 17:49:51,368 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 500 117
+INFO 2025-07-04 17:50:16,650 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1348
+INFO 2025-07-04 17:50:16,652 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1348
+INFO 2025-07-04 17:51:42,853 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\views.py changed, reloading.
+INFO 2025-07-04 17:51:43,578 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 17:51:46,642 views TriggerCalculationsView POST request received
+DEBUG 2025-07-04 17:51:46,643 views Received location: Both, item_name: Wholemeal
+INFO 2025-07-04 17:51:46,643 views Processing calculation for: Both_items_Wholemeal
+DEBUG 2025-07-04 17:51:46,644 views Initialized stats dictionary
+INFO 2025-07-04 17:51:46,645 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1348
+INFO 2025-07-04 17:51:46,647 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1348
+DEBUG 2025-07-04 17:51:46,656 views Found 2978 order lines and 9 daily orders
+DEBUG 2025-07-04 17:51:46,665 views Calculating items stats from order lines
+DEBUG 2025-07-04 17:51:46,751 calc_functions Starting calc_items_stats with 2978 records
+DEBUG 2025-07-04 17:51:46,751 calc_functions Initialized helper dictionary
+INFO 2025-07-04 17:51:46,753 calc_functions Successfully completed calc_items_stats
+DEBUG 2025-07-04 17:51:46,754 views Calculating daily stats from daily orders
+DEBUG 2025-07-04 17:51:46,754 views Validating stats structure
+DEBUG 2025-07-04 17:51:46,755 views Stats serialized successfully
+INFO 2025-07-04 17:51:46,759 views Successfully saved stats for Both_items_Wholemeal
+INFO 2025-07-04 17:51:46,760 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 55
+INFO 2025-07-04 17:51:46,765 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 3435
+INFO 2025-07-04 17:51:46,778 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 3435
+INFO 2025-07-04 17:51:46,780 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 3435
+WARNING 2025-07-04 17:52:04,875 log Not Found: /api/order-stats/
+WARNING 2025-07-04 17:52:04,875 basehttp "GET /api/order-stats/?locations=both,both_items_Wholemeal HTTP/1.1" 404 87
+WARNING 2025-07-04 17:52:04,877 log Not Found: /api/order-stats/
+WARNING 2025-07-04 17:52:04,877 basehttp "GET /api/order-stats/?locations=both,both_items_Wholemeal HTTP/1.1" 404 87
+INFO 2025-07-04 17:52:07,855 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2758
+WARNING 2025-07-04 17:52:10,145 log Not Found: /api/order-stats/
+WARNING 2025-07-04 17:52:10,145 basehttp "GET /api/order-stats/?locations=both,both_items_Wholemeal HTTP/1.1" 404 87
+WARNING 2025-07-04 17:52:10,147 log Not Found: /api/order-stats/
+WARNING 2025-07-04 17:52:10,147 basehttp "GET /api/order-stats/?locations=both,both_items_Wholemeal HTTP/1.1" 404 87
+INFO 2025-07-04 17:52:10,149 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Wholemeal HTTP/1.1" 200 1208
+INFO 2025-07-04 17:52:10,700 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2758
+INFO 2025-07-04 17:52:24,991 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Wholemeal HTTP/1.1" 200 1208
+INFO 2025-07-04 17:52:24,993 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Wholemeal HTTP/1.1" 200 1208
+INFO 2025-07-04 17:52:24,997 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Baguette HTTP/1.1" 200 1208
+INFO 2025-07-04 17:52:25,822 views TriggerCalculationsView POST request received
+DEBUG 2025-07-04 17:52:25,823 views Received location: Cafe, item_name: Baguette
+INFO 2025-07-04 17:52:25,823 views Processing calculation for: Cafe_items_Baguette
+DEBUG 2025-07-04 17:52:25,823 views Initialized stats dictionary
+INFO 2025-07-04 17:52:25,827 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Baguette HTTP/1.1" 200 1208
+INFO 2025-07-04 17:52:25,829 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Baguette HTTP/1.1" 200 1208
+DEBUG 2025-07-04 17:52:25,834 views Found 7016 order lines and 24 daily orders
+DEBUG 2025-07-04 17:52:25,835 views Calculating items stats from order lines
+DEBUG 2025-07-04 17:52:25,901 calc_functions Starting calc_items_stats with 7016 records
+DEBUG 2025-07-04 17:52:25,901 calc_functions Initialized helper dictionary
+INFO 2025-07-04 17:52:25,906 calc_functions Successfully completed calc_items_stats
+DEBUG 2025-07-04 17:52:25,907 views Calculating daily stats from daily orders
+DEBUG 2025-07-04 17:52:25,907 views Validating stats structure
+DEBUG 2025-07-04 17:52:25,907 views Stats serialized successfully
+INFO 2025-07-04 17:52:25,912 views Successfully saved stats for Cafe_items_Baguette
+INFO 2025-07-04 17:52:25,914 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 54
+INFO 2025-07-04 17:52:25,920 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Baguette HTTP/1.1" 200 3425
+INFO 2025-07-04 17:52:25,932 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Baguette HTTP/1.1" 200 3425
+INFO 2025-07-04 17:52:25,934 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Baguette HTTP/1.1" 200 3425
+INFO 2025-07-04 17:52:32,436 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Baguette HTTP/1.1" 200 3425
+INFO 2025-07-04 17:52:32,437 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Baguette HTTP/1.1" 200 3425
+INFO 2025-07-04 17:52:32,440 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Baguette HTTP/1.1" 200 1242
+INFO 2025-07-04 17:52:34,289 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Baguette HTTP/1.1" 200 1242
+INFO 2025-07-04 17:52:34,290 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Baguette HTTP/1.1" 200 1242
+INFO 2025-07-04 17:52:34,292 basehttp "GET /api/order-stats/?locations=Both,Both_items_Baguette HTTP/1.1" 200 1348
+INFO 2025-07-04 17:53:57,078 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\views.py changed, reloading.
+INFO 2025-07-04 17:53:57,735 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 17:55:24,814 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\views.py changed, reloading.
+INFO 2025-07-04 17:55:25,232 autoreload Watching for file changes with StatReloader
+WARNING 2025-07-04 17:55:32,835 log Not Found: /api/order-stats/
+WARNING 2025-07-04 17:55:32,836 basehttp "GET /api/order-stats/?locations=both,both_items_Wholemeal HTTP/1.1" 404 87
+WARNING 2025-07-04 17:55:32,838 log Not Found: /api/order-stats/
+WARNING 2025-07-04 17:55:32,838 basehttp "GET /api/order-stats/?locations=both,both_items_Wholemeal HTTP/1.1" 404 87
+INFO 2025-07-04 17:55:35,652 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2758
+INFO 2025-07-04 17:55:38,388 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2758
+WARNING 2025-07-04 17:55:45,586 log Not Found: /api/order-stats/
+WARNING 2025-07-04 17:55:45,587 basehttp "GET /api/order-stats/?locations=both,both_items_Wholemeal HTTP/1.1" 404 87
+WARNING 2025-07-04 17:55:45,588 log Not Found: /api/order-stats/
+WARNING 2025-07-04 17:55:45,589 basehttp "GET /api/order-stats/?locations=both,both_items_Wholemeal HTTP/1.1" 404 87
+WARNING 2025-07-04 17:55:45,593 log Not Found: /api/order-stats/
+WARNING 2025-07-04 17:55:45,594 basehttp "GET /api/order-stats/?locations=both,both_items_Cortado HTTP/1.1" 404 85
+WARNING 2025-07-04 17:55:47,024 log Not Found: /api/order-stats/
+WARNING 2025-07-04 17:55:47,024 basehttp "GET /api/order-stats/?locations=both,both_items_Cortado HTTP/1.1" 404 85
+WARNING 2025-07-04 17:55:47,026 log Not Found: /api/order-stats/
+INFO 2025-07-04 17:55:47,027 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cortado HTTP/1.1" 200 1208
+WARNING 2025-07-04 17:55:47,027 basehttp "GET /api/order-stats/?locations=both,both_items_Cortado HTTP/1.1" 404 85
+INFO 2025-07-04 17:55:47,746 views TriggerCalculationsView POST request received
+DEBUG 2025-07-04 17:55:47,746 views Received location: Cafe, item_name: Cortado
+INFO 2025-07-04 17:55:47,746 views Processing calculation for: Cafe_items_Cortado
+DEBUG 2025-07-04 17:55:47,746 views Initialized stats dictionary
+INFO 2025-07-04 17:55:47,751 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cortado HTTP/1.1" 200 1208
+INFO 2025-07-04 17:55:47,753 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cortado HTTP/1.1" 200 1208
+DEBUG 2025-07-04 17:55:47,762 views Found 994 order lines and 2 daily orders
+DEBUG 2025-07-04 17:55:47,763 views Calculating items stats from order lines
+DEBUG 2025-07-04 17:55:47,790 calc_functions Starting calc_items_stats with 994 records
+DEBUG 2025-07-04 17:55:47,790 calc_functions Initialized helper dictionary
+INFO 2025-07-04 17:55:47,791 calc_functions Successfully completed calc_items_stats
+DEBUG 2025-07-04 17:55:47,792 views Calculating daily stats from daily orders
+DEBUG 2025-07-04 17:55:47,792 views Validating stats structure
+DEBUG 2025-07-04 17:55:47,793 views Stats serialized successfully
+INFO 2025-07-04 17:55:47,798 views Successfully saved stats for Cafe_items_Cortado
+INFO 2025-07-04 17:55:47,799 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 53
+INFO 2025-07-04 17:55:47,805 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cortado HTTP/1.1" 200 3285
+INFO 2025-07-04 17:55:47,815 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cortado HTTP/1.1" 200 3285
+INFO 2025-07-04 17:55:47,817 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cortado HTTP/1.1" 200 3285
+INFO 2025-07-04 17:56:08,412 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cortado HTTP/1.1" 200 3285
+INFO 2025-07-04 17:56:08,413 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Cortado HTTP/1.1" 200 1242
+INFO 2025-07-04 17:56:08,414 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cortado HTTP/1.1" 200 3285
+INFO 2025-07-04 18:00:37,377 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py changed, reloading.
+INFO 2025-07-04 18:00:38,020 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 18:02:57,073 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\views.py changed, reloading.
+INFO 2025-07-04 18:02:57,707 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 18:10:21,073 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\views.py changed, reloading.
+INFO 2025-07-04 18:10:21,674 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 18:10:24,376 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Cortado HTTP/1.1" 200 1242
+INFO 2025-07-04 18:10:24,376 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Chai%20Latte HTTP/1.1" 200 1242
+INFO 2025-07-04 18:10:24,378 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Cortado HTTP/1.1" 200 1242
+INFO 2025-07-04 18:10:24,819 views TriggerCalculationsView POST request received
+DEBUG 2025-07-04 18:10:24,820 views Received location: Bakery, item_name: Chai Latte
+INFO 2025-07-04 18:10:24,820 views Processing calculation for: Bakery_items_Chai Latte
+DEBUG 2025-07-04 18:10:24,820 views Initialized stats dictionary
+INFO 2025-07-04 18:10:24,824 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Chai%20Latte HTTP/1.1" 200 1242
+INFO 2025-07-04 18:10:24,826 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Chai%20Latte HTTP/1.1" 200 1242
+DEBUG 2025-07-04 18:10:24,857 views Calculating items stats from order lines
+DEBUG 2025-07-04 18:10:24,911 views Calculating daily stats from daily orders
+INFO 2025-07-04 18:10:24,924 views Successfully saved stats for Bakery_items_Chai Latte
+INFO 2025-07-04 18:10:24,925 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 58
+INFO 2025-07-04 18:10:24,930 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Chai%20Latte HTTP/1.1" 200 3309
+INFO 2025-07-04 18:10:24,941 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Chai%20Latte HTTP/1.1" 200 3309
+INFO 2025-07-04 18:10:24,943 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Chai%20Latte HTTP/1.1" 200 3309
+INFO 2025-07-04 18:10:26,724 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Chai%20Latte HTTP/1.1" 200 3309
+INFO 2025-07-04 18:10:26,724 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chai%20Latte HTTP/1.1" 200 3411
+INFO 2025-07-04 18:10:26,725 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Chai%20Latte HTTP/1.1" 200 3309
+INFO 2025-07-04 18:10:28,269 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chai%20Latte HTTP/1.1" 200 3411
+INFO 2025-07-04 18:10:28,271 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chai%20Latte HTTP/1.1" 200 3411
+INFO 2025-07-04 18:10:28,272 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Chai%20Latte HTTP/1.1" 200 3274
+INFO 2025-07-04 18:12:13,159 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Chai%20Latte HTTP/1.1" 200 3274
+INFO 2025-07-04 18:12:13,161 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Chai%20Latte HTTP/1.1" 200 3274
+INFO 2025-07-04 18:12:13,162 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Carrot%20Cake HTTP/1.1" 200 1208
+INFO 2025-07-04 18:12:15,402 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Carrot%20Cake HTTP/1.1" 200 1208
+INFO 2025-07-04 18:12:15,404 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Carrot%20Cake HTTP/1.1" 200 1208
+INFO 2025-07-04 18:12:15,410 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Chai%20Latte HTTP/1.1" 200 3274
+INFO 2025-07-04 18:12:25,608 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Chai%20Latte HTTP/1.1" 200 3274
+INFO 2025-07-04 18:12:25,610 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Chai%20Latte HTTP/1.1" 200 3274
+INFO 2025-07-04 18:12:25,616 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cinnamon HTTP/1.1" 200 3289
+INFO 2025-07-04 18:12:27,017 views TriggerCalculationsView POST request received
+DEBUG 2025-07-04 18:12:27,017 views Received location: Cafe, item_name: Cinnamon
+INFO 2025-07-04 18:12:27,017 views Processing calculation for: Cafe_items_Cinnamon
+DEBUG 2025-07-04 18:12:27,017 views Initialized stats dictionary
+INFO 2025-07-04 18:12:27,021 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cinnamon HTTP/1.1" 200 3289
+INFO 2025-07-04 18:12:27,022 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cinnamon HTTP/1.1" 200 3289
+DEBUG 2025-07-04 18:12:27,061 views Calculating items stats from order lines
+DEBUG 2025-07-04 18:12:27,175 views Calculating daily stats from daily orders
+INFO 2025-07-04 18:12:27,191 views Successfully saved stats for Cafe_items_Cinnamon
+INFO 2025-07-04 18:12:27,193 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 54
+INFO 2025-07-04 18:12:27,200 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cinnamon HTTP/1.1" 200 3294
+INFO 2025-07-04 18:12:27,210 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cinnamon HTTP/1.1" 200 3294
+INFO 2025-07-04 18:12:27,212 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cinnamon HTTP/1.1" 200 3294
+INFO 2025-07-04 18:12:29,273 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Cinnamon HTTP/1.1" 200 3475
+INFO 2025-07-04 18:12:29,273 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cinnamon HTTP/1.1" 200 3294
+INFO 2025-07-04 18:12:29,275 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cinnamon HTTP/1.1" 200 3294
+INFO 2025-07-04 18:12:30,719 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3584
+INFO 2025-07-04 18:12:30,720 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Cinnamon HTTP/1.1" 200 3475
+INFO 2025-07-04 18:12:30,722 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Cinnamon HTTP/1.1" 200 3475
+INFO 2025-07-04 18:14:49,180 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1348
+INFO 2025-07-04 18:14:49,183 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1348
+INFO 2025-07-04 18:23:05,560 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 18:23:15,374 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1208
+INFO 2025-07-04 18:23:33,537 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1242
+INFO 2025-07-04 18:34:05,041 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 18:34:08,799 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1312
+INFO 2025-07-04 18:34:24,900 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1350
+INFO 2025-07-04 18:36:07,820 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 18:36:13,455 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1348
+INFO 2025-07-04 18:36:13,457 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1348
+INFO 2025-07-04 18:43:38,084 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 18:43:41,867 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1323
+INFO 2025-07-04 18:44:01,707 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1355
+INFO 2025-07-04 18:45:55,369 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 18:45:59,311 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1314
+INFO 2025-07-04 18:46:24,479 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1352
+INFO 2025-07-04 18:47:53,557 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py changed, reloading.
+INFO 2025-07-04 18:47:54,169 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 18:49:41,815 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py changed, reloading.
+INFO 2025-07-04 18:49:42,425 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 18:58:22,567 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 18:58:26,482 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1360
+INFO 2025-07-04 18:58:26,485 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1360
+INFO 2025-07-04 18:59:57,772 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py changed, reloading.
+INFO 2025-07-04 18:59:58,398 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 19:00:14,912 autoreload Watching for file changes with StatReloader
+INFO 2025-07-04 19:00:18,788 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1472
+INFO 2025-07-04 19:00:18,790 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1472
+WARNING 2025-07-04 19:00:49,750 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:00:49,750 basehttp "GET /api/order-stats/?locations=both,both_items_Wholemeal HTTP/1.1" 404 87
+WARNING 2025-07-04 19:00:49,753 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:00:49,753 basehttp "GET /api/order-stats/?locations=both,both_items_Wholemeal HTTP/1.1" 404 87
+INFO 2025-07-04 19:00:52,585 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2758
+INFO 2025-07-04 19:00:55,505 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2758
+WARNING 2025-07-04 19:01:02,355 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:01:02,356 basehttp "GET /api/order-stats/?locations=both,both_items_Wholemeal HTTP/1.1" 404 87
+WARNING 2025-07-04 19:01:02,357 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:01:02,357 basehttp "GET /api/order-stats/?locations=both,both_items_Wholemeal HTTP/1.1" 404 87
+WARNING 2025-07-04 19:01:02,365 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:01:02,365 basehttp "GET /api/order-stats/?locations=both,both_items_Cinnamon HTTP/1.1" 404 86
+INFO 2025-07-04 19:01:03,183 views TriggerCalculationsView POST request received
+DEBUG 2025-07-04 19:01:03,184 views Received location: both, item_name: Cinnamon
+WARNING 2025-07-04 19:01:03,184 views Invalid location provided: both
+WARNING 2025-07-04 19:01:03,184 log Bad Request: /api/trigger-calculation/
+WARNING 2025-07-04 19:01:03,184 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 400 28
+WARNING 2025-07-04 19:01:03,188 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:01:03,188 basehttp "GET /api/order-stats/?locations=both,both_items_Cinnamon HTTP/1.1" 404 86
+WARNING 2025-07-04 19:01:03,190 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:01:03,190 basehttp "GET /api/order-stats/?locations=both,both_items_Cinnamon HTTP/1.1" 404 86
+WARNING 2025-07-04 19:01:04,496 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:01:04,496 basehttp "GET /api/order-stats/?locations=both,both_items_Cinnamon HTTP/1.1" 404 86
+WARNING 2025-07-04 19:01:04,497 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:01:04,498 basehttp "GET /api/order-stats/?locations=both,both_items_Cinnamon HTTP/1.1" 404 86
+INFO 2025-07-04 19:01:05,233 views TriggerCalculationsView POST request received
+DEBUG 2025-07-04 19:01:05,234 views Received location: both, item_name: Cinnamon
+WARNING 2025-07-04 19:01:05,234 views Invalid location provided: both
+WARNING 2025-07-04 19:01:05,234 log Bad Request: /api/trigger-calculation/
+WARNING 2025-07-04 19:01:05,234 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 400 28
+WARNING 2025-07-04 19:01:05,239 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:01:05,239 basehttp "GET /api/order-stats/?locations=both,both_items_Cinnamon HTTP/1.1" 404 86
+WARNING 2025-07-04 19:01:05,240 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:01:05,240 basehttp "GET /api/order-stats/?locations=both,both_items_Cinnamon HTTP/1.1" 404 86
+WARNING 2025-07-04 19:01:06,082 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:01:06,082 basehttp "GET /api/order-stats/?locations=both,both_items_Cinnamon HTTP/1.1" 404 86
+WARNING 2025-07-04 19:01:06,083 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:01:06,084 basehttp "GET /api/order-stats/?locations=both,both_items_Cinnamon HTTP/1.1" 404 86
+INFO 2025-07-04 19:01:48,434 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1472
+INFO 2025-07-04 19:01:48,436 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1472
+WARNING 2025-07-04 19:01:49,053 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:01:49,053 basehttp "GET /api/order-stats/?locations=both,both_items_Wholemeal HTTP/1.1" 404 87
+WARNING 2025-07-04 19:01:49,056 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:01:49,057 basehttp "GET /api/order-stats/?locations=both,both_items_Wholemeal HTTP/1.1" 404 87
+INFO 2025-07-04 19:01:52,169 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2758
+INFO 2025-07-04 19:01:55,333 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2758
+WARNING 2025-07-04 19:02:12,924 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:02:12,924 basehttp "GET /api/order-stats/?locations=both,both_items_Wholemeal HTTP/1.1" 404 87
+WARNING 2025-07-04 19:02:12,926 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:02:12,926 basehttp "GET /api/order-stats/?locations=both,both_items_Wholemeal HTTP/1.1" 404 87
+WARNING 2025-07-04 19:02:12,929 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:02:12,929 basehttp "GET /api/order-stats/?locations=both,both_items_Tom%20&%20Taleggio%20Danish HTTP/1.1" 404 81
+WARNING 2025-07-04 19:02:15,349 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:02:15,350 basehttp "GET /api/order-stats/?locations=both,both_items_Tom%20&%20Taleggio%20Danish HTTP/1.1" 404 81
+WARNING 2025-07-04 19:02:15,351 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:02:15,352 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:02:15,352 basehttp "GET /api/order-stats/?locations=both,both_items_Tea HTTP/1.1" 404 81
+WARNING 2025-07-04 19:02:15,352 basehttp "GET /api/order-stats/?locations=both,both_items_Tom%20&%20Taleggio%20Danish HTTP/1.1" 404 81
+INFO 2025-07-04 19:02:15,764 views TriggerCalculationsView POST request received
+DEBUG 2025-07-04 19:02:15,765 views Received location: both, item_name: Tea
+WARNING 2025-07-04 19:02:15,765 views Invalid location provided: both
+WARNING 2025-07-04 19:02:15,765 log Bad Request: /api/trigger-calculation/
+WARNING 2025-07-04 19:02:15,765 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 400 28
+WARNING 2025-07-04 19:02:15,772 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:02:15,773 basehttp "GET /api/order-stats/?locations=both,both_items_Tea HTTP/1.1" 404 81
+WARNING 2025-07-04 19:02:15,774 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:02:15,775 basehttp "GET /api/order-stats/?locations=both,both_items_Tea HTTP/1.1" 404 81
+WARNING 2025-07-04 19:02:19,124 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:02:19,124 basehttp "GET /api/order-stats/?locations=both,both_items_Tea HTTP/1.1" 404 81
+WARNING 2025-07-04 19:02:19,126 log Not Found: /api/order-stats/
+WARNING 2025-07-04 19:02:19,126 basehttp "GET /api/order-stats/?locations=both,both_items_Tea HTTP/1.1" 404 81
+INFO 2025-07-04 19:03:29,738 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1472
+INFO 2025-07-04 19:03:32,988 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2758
+INFO 2025-07-04 19:03:36,772 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1472
+INFO 2025-07-04 19:03:36,774 basehttp "GET /api/order-stats/?locations=Both,Both_items_Wholemeal HTTP/1.1" 200 1472
+INFO 2025-07-04 19:03:36,776 basehttp "GET /api/order-stats/?locations=Both,Both_items_Vg%20Muffin HTTP/1.1" 200 1472
+INFO 2025-07-04 19:03:37,384 views TriggerCalculationsView POST request received
+DEBUG 2025-07-04 19:03:37,384 views Received location: Both, item_name: Vg Muffin
+INFO 2025-07-04 19:03:37,384 views Processing calculation for: Both_items_Vg Muffin
+DEBUG 2025-07-04 19:03:37,384 views Initialized stats dictionary
+INFO 2025-07-04 19:03:37,389 basehttp "GET /api/order-stats/?locations=Both,Both_items_Vg%20Muffin HTTP/1.1" 200 1472
+INFO 2025-07-04 19:03:37,391 basehttp "GET /api/order-stats/?locations=Both,Both_items_Vg%20Muffin HTTP/1.1" 200 1472
+DEBUG 2025-07-04 19:03:37,422 views Calculating items stats from order lines
+INFO 2025-07-04 19:03:37,488 views Successfully saved stats for Both_items_Vg Muffin
+INFO 2025-07-04 19:03:37,489 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 55
+INFO 2025-07-04 19:03:37,494 basehttp "GET /api/order-stats/?locations=Both,Both_items_Vg%20Muffin HTTP/1.1" 200 3534
+INFO 2025-07-04 19:03:37,507 basehttp "GET /api/order-stats/?locations=Both,Both_items_Vg%20Muffin HTTP/1.1" 200 3534
+INFO 2025-07-04 19:03:37,509 basehttp "GET /api/order-stats/?locations=Both,Both_items_Vg%20Muffin HTTP/1.1" 200 3534
+INFO 2025-07-04 19:03:46,256 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3709
+INFO 2025-07-04 19:03:49,265 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2758
+INFO 2025-07-04 19:04:51,490 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py changed, reloading.
+INFO 2025-07-04 19:04:52,124 autoreload Watching for file changes with StatReloader

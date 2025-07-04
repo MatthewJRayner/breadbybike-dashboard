@@ -3,8 +3,8 @@ import DashboardDataProvider from '../components/DashboardDataProvider';
 import Selector from '../components/Selector';
 
 const ItemsDashboard = () => {
-    const [location, setLocation] = useState('both');
-    const [itemName, setName] = useState('Wholemeal');
+    const [location, setLocation] = useState('Both');
+    const [itemName, setName] = useState('Cinnamon');
     const [items, setItems] = useState([]);
     const [locations, setLocations] = useState([location, `${location}_items_${itemName}`]);
     const [stats, setStats] = useState({});
@@ -19,7 +19,7 @@ const ItemsDashboard = () => {
                 if (!response.ok) throw new Error('Failed to fetch catalog items');
                 const data = await response.json();
                 if (data.items) {
-                    setItems(data.items); // Use raw case-sensitive items from Square
+                    setItems(data.items);
                 }
             } catch (error) {
                 console.error('Error fetching catalog items:', error);
@@ -32,6 +32,7 @@ const ItemsDashboard = () => {
         setLocations([location, `${location}_items_${itemName}`]);
     }, [location, itemName]);
 
+    // Checks whether there needs to be a new calculation to display item specific stats
     const handleItemChange = (newItemName) => {
         setName(newItemName);
         const itemLocation = `${location}_items_${newItemName}`;
@@ -43,6 +44,7 @@ const ItemsDashboard = () => {
         setStats(prevStats => ({ ...prevStats, ...data }));
     };
 
+    // POST the location and item name to be calculated and added to OrderStats model in the backend
     const triggerCalculation = async (loc, item) => {
         setLoading(true);
         try {
@@ -51,17 +53,19 @@ const ItemsDashboard = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ location: loc, item_name: item }),
             });
-            if (response.ok) {
-                console.log('Calculation triggered successfully');
-                const updatedStats = await fetchStats(locations);
-                setStats(updatedStats);
-                setNeedsCalculation(false)
-            } else {
-                const errorData = await response.json()
-                console.error('Failed to trigger calculation', errorData.error || response.statusText)
+            
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Failed to trigger calculation');
             }
+
+            console.log('Calculation triggered successfully');
+            const updatedStats = await fetchStats(locations);
+            setStats(updatedStats);
+            setNeedsCalculation(false);
         } catch (error) {
             console.error('Error triggering calculation:', error);
+            alert(`Calculation failed: ${error.message}`);
         } finally {
             setLoading(false);
         }
@@ -80,11 +84,11 @@ const ItemsDashboard = () => {
     return (
         <div className='flex-col'>
             <div className="bg-white shadow-md flex p-4 rounded-2xl text-md items-center">
-                <h1 className="text-black_text mr-12">BBB Dashboard <span className="text-gray-300"> | Home</span></h1>
+                <h1 className="text-black_text mr-12">BBB Dashboard <span className="text-gray-300"> | Items</span></h1>
                 <Selector 
                     label="Location: "
                     value={location}
-                    options={['both', 'cafe', 'bakery']}
+                    options={['Both', 'Cafe', 'Bakery']}
                     onChange={setLocation}
                 />
                 <Selector 

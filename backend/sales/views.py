@@ -1,3 +1,4 @@
+import logging
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -14,6 +15,8 @@ import copy
 from square import Square
 from square.environment import SquareEnvironment
 import os
+
+logger = logging.getLogger('sales')
 
 def home(request):
     return HttpResponse("Django is working!")
@@ -58,69 +61,100 @@ class TriggerCalculationsView(APIView):
     """
     API view to trigger calculation of item statistics based on location and item name.
     Accepts POST requests with 'location' and 'item_name' parameters.
+    Uses functions from calc_functions services file that are used for overnight autmated scripts.
     """
-
     def post(self, request):
-        """
-        Handle POST request to calculate and save item statistics.
-
-        Args:
-            request: HTTP request object containing 'location' and 'item_name' in data.
-
-        Returns:
-            Response: JSON response with success message or error details.
-        """
-        # Extract and validate input
+        logger.info("TriggerCalculationsView POST request received")
+        
         location = request.data.get('location')
-        item_name = request.data.get('item_name')  # Match frontend key
+        item_name = request.data.get('item_name')
+        logger.debug(f"Received location: {location}, item_name: {item_name}")
+        poss_locations = ['Both', 'Cafe', 'Bakery']
 
         if not location or not item_name:
-            return Response({'error': 'Location and item name are required'}, status=status.HTTP_400_BAD_REQUEST)
+            logger.warning("Missing required parameters: location or item_name")
+            return Response({'error': 'Location and item name are required'}, 
+                           status=status.HTTP_400_BAD_REQUEST)
 
-        if not isinstance(location, str) or not isinstance(item_name, str):
-            return Response({'error': 'Location and item name must be strings'}, status=status.HTTP_400_BAD_REQUEST)
+        if location not in poss_locations:
+            logger.warning(f"Invalid location provided: {location}")
+            return Response({'error': 'Invalid location'}, 
+                          status=status.HTTP_400_BAD_REQUEST)
+
+        item_name = item_name.strip()
+        if not item_name:
+            logger.warning("Empty item name after stripping")
+            return Response({'error': 'Item name cannot be empty'}, 
+                          status=status.HTTP_400_BAD_REQUEST)
 
         item_key = f'{location}_items_{item_name}'
+        logger.info(f"Processing calculation for: {item_key}")
 
         try:
-            # Initialize stats from config or default
-            stats = copy.deepcopy(items_stats)
+            bakery_stats = copy.deepcopy(items_stats)
+            cafe_stats = copy.deepcopy(items_stats)
+            both_stats = copy.deepcopy(items_stats)
+            logger.debug("Initialized stats dictionary")
 
-            # Query data with consistent field names (adjust if different)
-            order_lines = OrderLine.objects.filter(name=item_name)  # Limit to 1000 records for performance
-            daily_orders = DailyOrderSnapshot.objects.filter(name=item_name)  # Limit to 1000 records
-
-            if not order_lines.exists() and not daily_orders.exists():
-                return Response({'error': f'No data found for item {item_name}'}, status=status.HTTP_404_NOT_FOUND)
-
-            # Perform calculations
-            if order_lines.exists():
-                calc_items_stats(stats, OrderLine.objects.filter(name=item_name))
-            if daily_orders.exists():
-                calc_daily_stats_items(stats, DailyOrderSnapshot.objects.filter(name=item_name))
-            
-            
-
-            # Serialize stats
-            serialized_stats = convert_to_serializable(stats)
-
-            # Update or create stats record
-            OrderStats.objects.update_or_create(
-                location=item_key,
-                defaults={'stats_json': serialized_stats}
+            # Create filters based on stats from only the last 90 days
+            bakery_order_lines = OrderLine.objects.filter(
+                name=item_name, 
+                location=CONFIG['BAKERY_ID'], 
+                date__gte=datetime.now(UTC).date() - relativedelta(days=90)
             )
+            cafe_order_lines = OrderLine.objects.filter(
+                name=item_name, 
+                location=CONFIG['CAFE_ID'], 
+                date__gte=datetime.now(UTC).date() - relativedelta(days=90)
+            )
+            both_order_lines = OrderLine.objects.filter(
+                name=item_name,
+                date__gte=datetime.now(UTC).date() - relativedelta(days=90)
+            )
+            bakery_daily_orders = DailyOrderSnapshot.objects.filter(name=item_name, location=CONFIG['BAKERY_ID'])
+            cafe_daily_orders = DailyOrderSnapshot.objects.filter(name=item_name, location=CONFIG['CAFE_ID'])
+            both_daily_orders = DailyOrderSnapshot.objects.filter(name=item_name)
             
-            return Response({'message': f'Stats calculated for {item_key}'}, status=status.HTTP_200_OK)
+            if bakery_order_lines.exists() and cafe_order_lines.exists() and both_order_lines.exists():
+                logger.debug("Calculating items stats from order lines")
+                calc_items_stats(bakery_stats, bakery_order_lines)
+                calc_items_stats(cafe_stats, cafe_order_lines)
+                calc_items_stats(both_stats, both_order_lines)
+                
+            if bakery_daily_orders.exists() and cafe_daily_orders.exists() and both_daily_orders.exists():
+                logger.debug("Calculating daily stats from daily orders")
+                calc_daily_stats_items(bakery_stats, bakery_daily_orders)
+                calc_daily_stats_items(cafe_stats, cafe_daily_orders)
+                calc_daily_stats_items(both_stats, both_daily_orders)
+            
+            # Update calculated stats in the model
+            OrderStats.objects.update_or_create(
+                location=f'Bakery_items_{item_name}',
+                defaults={'stats_json': convert_to_serializable(bakery_stats)}
+            )
+            OrderStats.objects.update_or_create(
+                location=f'Cafe_items_{item_name}',
+                defaults={'stats_json': convert_to_serializable(cafe_stats)}
+            )
+            OrderStats.objects.update_or_create(
+                location=f'Both_items_{item_name}',
+                defaults={'stats_json': convert_to_serializable(both_stats)}
+            )
+            logger.info(f"Successfully saved stats for {item_key}")
+            
+            return Response({'message': f'Stats calculated for {item_key}'}, 
+                           status=status.HTTP_200_OK)
 
-        except ObjectDoesNotExist as e:
-            return Response({'error': f'Database error: {str(e)}'}, status=status.HTTP_404_NOT_FOUND)
-        except ValueError as e:
-            return Response({'error': f'Validation error: {str(e)}'}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
-            return Response({'error': f'Unexpected error: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    
+            logger.error(f"Error processing {item_name}: {str(e)}", exc_info=True)
+            return Response({'error': f'Error processing {item_name}: {str(e)}'}, 
+                          status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class SquareCatalogItemsView(APIView):
+    """
+    API View to get the list of all items in the catalog currently.
+    This list will be used to get the item name variable in various part's of the code
+    """
     def get(self, request):
         client = Square(
             environment=SquareEnvironment.PRODUCTION,
@@ -130,8 +164,9 @@ class SquareCatalogItemsView(APIView):
             item_list = []
             item_response = client.catalog.list()
             for item in item_response:
-                if item.type == 'ITEM':
-                    item_list.append(item.item_data.name)
+                if item.type == 'ITEM' and hasattr(item, 'item_data') and item.item_data.name:
+                    item_list.append(item.item_data.name.strip())
+            item_list = sorted(list(set(item_list)))
             return Response({'items': item_list})
         except Exception as e:
             return Response({'error': str(e)}, status=500)
