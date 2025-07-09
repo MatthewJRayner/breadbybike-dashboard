@@ -345,3 +345,118 @@ INFO 2025-07-04 19:03:46,256 basehttp "GET /api/order-stats/?locations=Both,Both
 INFO 2025-07-04 19:03:49,265 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2758
 INFO 2025-07-04 19:04:51,490 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py changed, reloading.
 INFO 2025-07-04 19:04:52,124 autoreload Watching for file changes with StatReloader
+INFO 2025-07-09 18:09:32,574 autoreload Watching for file changes with StatReloader
+INFO 2025-07-09 18:31:18,291 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\static\stats_schema_home.py changed, reloading.
+INFO 2025-07-09 18:31:18,931 autoreload Watching for file changes with StatReloader
+INFO 2025-07-09 18:31:37,584 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py changed, reloading.
+INFO 2025-07-09 18:31:38,255 autoreload Watching for file changes with StatReloader
+INFO 2025-07-09 18:33:02,884 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py changed, reloading.
+INFO 2025-07-09 18:33:03,568 autoreload Watching for file changes with StatReloader
+INFO 2025-07-09 18:34:00,312 autoreload Watching for file changes with StatReloader
+INFO 2025-07-09 18:39:09,055 basehttp "GET / HTTP/1.1" 200 18
+WARNING 2025-07-09 18:39:09,440 log Not Found: /favicon.ico
+WARNING 2025-07-09 18:39:09,440 basehttp "GET /favicon.ico HTTP/1.1" 404 2496
+INFO 2025-07-09 18:44:49,610 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 18:44:49,612 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 18:46:51,317 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 18:46:51,320 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 18:48:20,078 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 18:48:20,081 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 18:56:24,519 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1307
+INFO 2025-07-09 18:56:25,970 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1352
+INFO 2025-07-09 18:56:27,683 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1307
+INFO 2025-07-09 18:56:29,039 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1352
+INFO 2025-07-09 18:56:33,360 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1307
+INFO 2025-07-09 18:56:35,214 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 18:56:36,793 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1307
+INFO 2025-07-09 18:56:38,550 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1352
+INFO 2025-07-09 18:56:47,632 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 19:13:26,452 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1352
+INFO 2025-07-09 19:13:28,466 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1307
+INFO 2025-07-09 19:13:31,622 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1352
+INFO 2025-07-09 19:13:43,666 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 20:01:24,130 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3573
+INFO 2025-07-09 20:01:24,133 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3573
+INFO 2025-07-09 20:01:25,690 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 20:01:25,824 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 20:01:27,904 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1307
+INFO 2025-07-09 20:01:27,904 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-09 20:01:29,440 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1352
+INFO 2025-07-09 20:01:30,879 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-09 20:01:30,880 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1307
+INFO 2025-07-09 20:01:31,493 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 20:03:31,346 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1307
+INFO 2025-07-09 20:03:32,524 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 20:06:12,489 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3573
+INFO 2025-07-09 20:06:12,491 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3573
+INFO 2025-07-09 20:06:15,391 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-09 20:06:18,180 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-09 20:06:22,146 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3573
+INFO 2025-07-09 20:06:22,149 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3573
+INFO 2025-07-09 20:06:22,154 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 1349
+INFO 2025-07-09 20:06:23,224 basehttp "OPTIONS /api/trigger-calculation/ HTTP/1.1" 200 0
+INFO 2025-07-09 20:06:23,227 views TriggerCalculationsView POST request received
+DEBUG 2025-07-09 20:06:23,227 views Received location: Both, item_name: Cappuccino
+INFO 2025-07-09 20:06:23,228 views Processing calculation for: Both_items_Cappuccino
+DEBUG 2025-07-09 20:06:23,228 views Initialized stats dictionary
+INFO 2025-07-09 20:06:23,230 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 1349
+INFO 2025-07-09 20:06:23,232 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 1349
+DEBUG 2025-07-09 20:06:23,270 views Calculating items stats from order lines
+DEBUG 2025-07-09 20:06:23,351 views Calculating daily stats from daily orders
+INFO 2025-07-09 20:06:23,367 views Successfully saved stats for Both_items_Cappuccino
+INFO 2025-07-09 20:06:23,368 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 56
+INFO 2025-07-09 20:06:23,374 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3535
+INFO 2025-07-09 20:06:23,383 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3535
+INFO 2025-07-09 20:06:23,385 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3535
+INFO 2025-07-09 20:06:25,782 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3535
+INFO 2025-07-09 20:06:25,785 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cappuccino HTTP/1.1" 200 3405
+INFO 2025-07-09 20:06:25,785 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3535
+INFO 2025-07-09 20:06:26,995 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cappuccino HTTP/1.1" 200 3405
+INFO 2025-07-09 20:06:26,998 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Cappuccino HTTP/1.1" 200 3499
+INFO 2025-07-09 20:06:26,998 basehttp "GET /api/order-stats/?locations=Cafe,Cafe_items_Cappuccino HTTP/1.1" 200 3405
+INFO 2025-07-09 20:06:27,998 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Cappuccino HTTP/1.1" 200 3499
+INFO 2025-07-09 20:06:28,000 basehttp "GET /api/order-stats/?locations=Bakery,Bakery_items_Cappuccino HTTP/1.1" 200 3499
+INFO 2025-07-09 20:06:28,003 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3535
+INFO 2025-07-09 20:06:28,859 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 20:06:28,861 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 20:06:41,976 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 20:06:41,978 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 20:06:42,428 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3573
+INFO 2025-07-09 20:06:42,430 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3573
+INFO 2025-07-09 20:06:42,780 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 20:06:42,782 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 20:06:44,604 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3573
+INFO 2025-07-09 20:06:44,606 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3573
+INFO 2025-07-09 20:06:44,775 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 20:06:44,777 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 20:06:45,325 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-09 20:06:48,265 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-09 20:06:51,341 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-09 20:06:54,587 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-09 20:07:32,055 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1307
+INFO 2025-07-09 20:07:33,052 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1352
+INFO 2025-07-09 20:07:33,951 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 20:07:45,407 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 20:07:45,410 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1349
+INFO 2025-07-09 20:12:31,299 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\static\stats_schema_home.py changed, reloading.
+INFO 2025-07-09 20:12:33,183 autoreload Watching for file changes with StatReloader
+INFO 2025-07-09 20:12:52,007 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py changed, reloading.
+INFO 2025-07-09 20:12:52,630 autoreload Watching for file changes with StatReloader
+INFO 2025-07-09 20:13:04,871 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py changed, reloading.
+INFO 2025-07-09 20:13:05,511 autoreload Watching for file changes with StatReloader
+INFO 2025-07-09 20:13:57,554 autoreload Watching for file changes with StatReloader
+INFO 2025-07-09 20:23:08,764 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1356
+INFO 2025-07-09 20:23:08,766 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1356
+INFO 2025-07-09 20:27:51,028 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1356
+INFO 2025-07-09 20:27:51,031 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1356
+INFO 2025-07-09 21:00:46,200 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1313
+INFO 2025-07-09 21:00:50,752 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1359
+INFO 2025-07-09 21:00:52,212 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1313
+INFO 2025-07-09 21:00:54,859 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1359
+INFO 2025-07-09 21:00:57,629 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1356
+INFO 2025-07-09 21:01:01,645 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3580
+INFO 2025-07-09 21:01:01,649 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3580
+INFO 2025-07-09 21:01:02,962 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1356
+INFO 2025-07-09 21:01:02,964 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1356
+INFO 2025-07-09 21:01:04,540 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-09 21:01:07,394 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737

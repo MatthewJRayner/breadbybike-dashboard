@@ -10,7 +10,7 @@ function App() {
     <Router>
       <div className='flex'>
         <Navbar />
-        <div className='flex-1 p-6 min-h-screen w-fit'>
+        <div className='flex-col p-6 min-h-screen w-full'>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/items' element={<Items />} />

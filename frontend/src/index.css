@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Work Sans;
+    src: url(../src/assets/font/WorkSans.ttf);
+}
+
 @import "tailwindcss";
 
 @theme {
@@ -14,13 +19,15 @@
 
     --color-black_text: oklch(0.1841 0.0179 230.66);
     --color-background_grey: oklch(0.9672 0 0);
+
+    --font-worksans: Work Sans;
 }
 
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     scroll-behavior: smooth;
     background-color: var(--color-background_grey);
 }
