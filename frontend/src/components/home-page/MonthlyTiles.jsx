@@ -18,17 +18,20 @@ const MonthlyTiles = ({ stats }) => {
                     const marginClass = isLeft
                         ? 'mr-2'
                         : 'ml-2'
+                    const isCurrency = Boolean(stat.currency);
+                    const formattedValue = new Intl.NumberFormat('en-UK', {
+                        style: 'decimal',
+                        minimumFractionDigits: isCurrency ? 2 : 0,
+                        maximumFractionDigits: 2,
+                    }).format(stat.value ?? 0);
 
                     return (
-                        <div key={idx} className={`${containerClasses} ${marginClass} rounded-lg shadow-mdflex justify-between items-center flex p-4 mb-4`}>
+                        <div key={idx} className={`${containerClasses} ${marginClass} rounded-md shadow-mdflex justify-between items-center flex p-4 mb-4`}>
                         <div className='flex-col text-left'>
-                            <div className='text-sm text-gray-400 font-thing'>{stat.label}</div>
+                            <div className='text-sm text-gray-400 font-normal'>{stat.label}</div>
                             <div className='font-semibold'>
-                                {stat.currency || ''}{new Intl.NumberFormat('en-UK', {
-                                    style: 'decimal',
-                                    minimumFractionDigits: 0,
-                                    maximumFractionDigits: 2,
-                                }).format(stat.value ?? 0)}
+                                {stat.currency || ''}
+                                {formattedValue}
                             </div>
                         </div>
                         <div>

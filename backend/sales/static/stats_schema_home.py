@@ -34,6 +34,20 @@ home_stats = {
         'average_sale_month': Decimal('0.00'),
         'items_sold': 0  
     },
+    'best_sellers': {
+        'yesterday': {
+            'names': [],
+            'sales': [],
+            'counts': [],
+            'percentages': [Decimal('0.00'), Decimal('0.00'), Decimal('0.00'), Decimal('0.00'), Decimal('0.00')]
+        },
+        'last_week': {
+            'names': [],
+            'sales': [],
+            'counts': [],
+            'percentages': [Decimal('0.00'), Decimal('0.00'), Decimal('0.00'), Decimal('0.00'), Decimal('0.00')]
+        }
+    },
     'daily_home_stats': {
         'orders': 0,
         'total_sales': Decimal('0.00'),
@@ -41,11 +55,5 @@ home_stats = {
         'average_sale': Decimal('0.00'),
         'net_sale': Decimal('0.00'),
         'service_charge': Decimal('0.00') ,
-        'best_sellers': {
-            'names': [],
-            'sales': [],
-            'counts': [],
-            'percentages': [Decimal('0.00'), Decimal('0.00'), Decimal('0.00'), Decimal('0.00'), Decimal('0.00')]
-        }
     },
 }

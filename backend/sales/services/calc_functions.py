@@ -12,6 +12,7 @@ current_month = today.month
 last_year_end = today - relativedelta(years=1, days=1)
 start_time = time(hour=7, minute=0, second=0)
 time_now = datetime.now(UTC).time()
+best_sellers_list_size = 5
 
 # FUNCTIONS
 
@@ -85,6 +86,18 @@ def calc_home_stats(dictionary, querylist):
         },
         'weekly_sales': {
             'sales': Decimal('0.00')
+        },
+        'best_sellers_stats': {
+            'yesterday': {
+                'sales': Decimal('0.00'),
+                'count': 0,
+                'best_sellers': {}    
+            },
+            'previous_week': {
+                'sales': Decimal('0.00'),
+                'count': 0,
+                'best_sellers': {}
+            }
         }
     }
     
@@ -116,9 +129,28 @@ def calc_home_stats(dictionary, querylist):
             dictionary['monthly_sales_graph']['total_sales_month'] += order.total_sale
             dictionary['monthly_sales_graph']['graph'][days_ago - 1] += order.total_sale
             if 1 <= days_ago <= 7:
+                if days_ago == 1:
+                    helper['best_sellers_stats']['yesterday']['sales'] += order.total_sale
+                    if order.name in helper['best_sellers_stats']['yesterday']['best_sellers']:
+                        helper['best_sellers_stats']['yesterday']['best_sellers'][order.name]['sales'] += order.total_sale
+                        helper['best_sellers_stats']['yesterday']['best_sellers'][order.name]['count'] += order.quantity
+                    else:
+                        helper['best_sellers_stats']['yesterday']['best_sellers'][order.name] = {
+                            'sales': order.total_sale,
+                            'count': order.quantity
+                        }
                 helper['weekly_sales']['sales'] += order.total_sale
                 helper['previous_week_sales']['sales'] += order.total_sale
                 helper['average_growth_graph']['previous_7_days'][days_ago - 1] += order.total_sale
+                helper['best_sellers_stats']['previous_week']['sales'] += order.total_sale
+                if order.name in helper['best_sellers_stats']['previous_week']['best_sellers']:
+                    helper['best_sellers_stats']['previous_week']['best_sellers'][order.name]['sales'] += order.total_sale
+                    helper['best_sellers_stats']['previous_week']['best_sellers'][order.name]['count'] += order.quantity
+                else:
+                    helper['best_sellers_stats']['previous_week']['best_sellers'][order.name] = {
+                        'sales': order.total_sale,
+                        'count': order.quantity
+                    }
                 
             if 8 <= days_ago <= 14:
                 helper['average_growth_graph']['previous_14_days'][days_ago - 8] += order.total_sale  
@@ -164,6 +196,23 @@ def calc_home_stats(dictionary, querylist):
     dictionary['monthly_sales_graph']['percentages']['previous_year'] = round(percent_increase(dictionary['monthly_sales_graph']['total_sales_month'], helper['monthly_sales_graph']['same_month_previous_year']))
     dictionary['monthly_stats_tiles']['net_sales_month'] = dictionary['monthly_stats_tiles']['total_sales_month'] - helper['monthly_stats_tiles']['total_lost']
     dictionary['monthly_stats_tiles']['average_sale_month'] = round(dictionary['monthly_stats_tiles']['total_sales_month'] / dictionary['monthly_stats_tiles']['items_sold'], 2) if dictionary['monthly_stats_tiles']['items_sold'] else Decimal('0.00')
+    top_sellers_yesterday = sorted(helper['best_sellers_stats']['yesterday']['best_sellers'].items(), key=lambda x: x[1]['sales'], reverse=True)[:best_sellers_list_size]
+    for k, v in top_sellers_yesterday:
+        dictionary['best_sellers']['yesterday']['names'].append(k)
+        dictionary['best_sellers']['yesterday']['sales'].append(v['sales'])
+        dictionary['best_sellers']['yesterday']['counts'].append(v['count'])
+    top_sellers_previous_week = sorted(helper['best_sellers_stats']['previous_week']['best_sellers'].items(), key=lambda x: x[1]['sales'], reverse=True)[:best_sellers_list_size]
+    for k, v in top_sellers_previous_week:
+        dictionary['best_sellers']['last_week']['names'].append(k)
+        dictionary['best_sellers']['last_week']['sales'].append(v['sales'])
+        dictionary['best_sellers']['last_week']['counts'].append(v['count'])
+    for i in range(best_sellers_list_size):
+        dictionary['best_sellers']['yesterday']['percentages'][i] = round((
+            dictionary['best_sellers']['yesterday']['sales'][i] / helper['best_sellers_stats']['yesterday']['sales'] if helper['best_sellers_stats']['yesterday']['sales'] > 0 else Decimal('1.00')
+            ) * 100)
+        dictionary['best_sellers']['last_week']['percentages'][i] = round((
+            dictionary['best_sellers']['last_week']['sales'][i] / helper['best_sellers_stats']['previous_week']['sales'] if helper['best_sellers_stats']['previous_week']['sales'] > 0 else Decimal('1.00')
+            ) * 100)
     
     # Reversing lists to get oldests dates on the left
     dictionary['average_growth_graph']['graph'].reverse()
@@ -271,14 +320,6 @@ def calc_daily_stats_home(dictionary, querylist):
     # Initialize the helper dictionary
     helper = {
         'tax': Decimal('0.00'),
-        'yesterday': {
-            'sales': Decimal('0.00'),
-            'count': 0,
-            'best_sellers': {}    
-        },
-        'previous_week': {
-            'sales': Decimal('0.00')
-        }
     }
     
     for order in querylist:
@@ -288,29 +329,10 @@ def calc_daily_stats_home(dictionary, querylist):
             dictionary['daily_home_stats']['orders'] += order.quantity
             dictionary['daily_home_stats']['discounts'] += order.discount
             dictionary['daily_home_stats']['service_charge'] += order.service_charge
-        if order.date == today - timedelta(days=1):
-            helper['yesterday']['sales'] += order.total_sale
-            if order.name in helper['yesterday']['best_sellers']:
-                helper['yesterday']['best_sellers'][order.name]['sales'] += order.total_sale
-                helper['yesterday']['best_sellers'][order.name]['count'] += order.quantity
-            else:
-                helper['yesterday']['best_sellers'][order.name] = {
-                    'sales': order.total_sale,
-                    'count': order.quantity
-                }
     
     # Post loop calculations
-    top_5 = sorted(helper['yesterday']['best_sellers'].items(), key=lambda x: x[1]['sales'], reverse=True)[:5]
-    for k, v in top_5:
-        dictionary['daily_home_stats']['best_sellers']['names'].append(k)
-        dictionary['daily_home_stats']['best_sellers']['sales'].append(v['sales'])
-        dictionary['daily_home_stats']['best_sellers']['counts'].append(v['count'])
     dictionary['daily_home_stats']['net_sale'] = dictionary['daily_home_stats']['total_sales'] - (dictionary['daily_home_stats']['discounts'] + dictionary['daily_home_stats']['service_charge'] + helper['tax'])
     dictionary['daily_home_stats']['average_sale'] = round(dictionary['daily_home_stats']['total_sales'] / dictionary['daily_home_stats']['orders'], 2) if dictionary['daily_home_stats']['orders'] else Decimal('0.00')
-    for i in range(5):
-        dictionary['daily_home_stats']['best_sellers']['percentages'][i] = round((
-            dictionary['daily_home_stats']['best_sellers']['sales'][i] / helper['yesterday']['sales'] if helper['yesterday']['sales'] > 0 else Decimal('1.00')
-            ) * 100)
         
         
 def calc_daily_stats_items(dictionary, querylist):
@@ -335,3 +357,5 @@ def calc_daily_stats_items(dictionary, querylist):
     
     # Post loop calculations
     dictionary['daily_items_stats']['daily_sales']['percentage'] = percent_increase(dictionary['daily_items_stats']['daily_sales']['sales'], helper['previous_week']['sales'])
+    temp_datetime = datetime.combine(datetime.now(UTC).date(), dictionary['daily_items_stats']['recent_time'])
+    dictionary['daily_items_stats']['recent_time'] = (temp_datetime + timedelta(hours=1)).time()

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import DashboardDataProvider from '../components/DashboardDataProvider';
 import Selector from '../components/Selector';
+import StatsBlock from '../components/StatsBlock';
+import DailyAverage from '../components/items-page/DailyAverage';
+import RecentTime from '../components/items-page/RecentTime';
 
 const ItemsDashboard = () => {
     const [location, setLocation] = useState('Both');
@@ -10,6 +13,7 @@ const ItemsDashboard = () => {
     const [stats, setStats] = useState({});
     const [needsCalculation, setNeedsCalculation] = useState(false);
     const [loading, setLoading] = useState(false);
+    var currency_sym = '£'
 
     // Fetch Square catalog items
     useEffect(() => {
@@ -99,11 +103,16 @@ const ItemsDashboard = () => {
                 />
                 {needsCalculation && (
                     <button
-                        className="ml-4 px-4 py-2 bg-bbb-blue-500 text-white rounded-lg hover:bg-bbb-blue-800 disabled:opacity-50"
+                        className="ml-4 p-2 bg-bbb-blue-500 text-white rounded-lg hover:bg-bbb-blue-800 disabled:opacity-50"
                         onClick={() => triggerCalculation(location, itemName)}
                         disabled={loading} // Disable during loading
                     >
-                        {loading ? 'Calculating...' : 'Calculate New Item Stats'}
+                        {loading ? 'Calculating...' : 
+                            <div>
+                                <svg className='size-4 fill-current' viewBox='0 0 512 512'>
+                                    <path d='M416 208c0 45.9-14.9 88.3-40 122.7l126.6 126.7c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0s208 93.1 208 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z'></path>
+                                </svg>
+                            </div>}
                     </button>
                 )}
             </div>
@@ -112,8 +121,29 @@ const ItemsDashboard = () => {
                 locations={locations}
                 onStatsLoaded={handleStatsLoaded}
             />
-
-            <pre>{JSON.stringify(stats[`${location}_items_${itemName}`], null, 2)}</pre> {/* Placeholder */}
+            <div className='w-full flex'>
+                <div className='w-2/3 flex-col mt-4 mr-2'>
+                    <div className='w-full flex'>
+                        <div className='w-1/2 mr-2'>
+                            <StatsBlock label='DAILY SALES' value={stats[`${location}_items_${itemName}`]?.daily_items_stats?.daily_sales?.sales} percentage={stats[`${location}_items_${itemName}`]?.daily_items_stats?.daily_sales?.percentage} />
+                        </div>
+                        <div className='w-1/2 ml-2'>
+                            <StatsBlock label='WEEKLY SALES' value={stats[`${location}_items_${itemName}`]?.weekly_sales?.sales} percentage={stats[`${location}_items_${itemName}`]?.weekly_sales?.percentage} />
+                        </div>
+                    </div>
+                </div>
+                <div className='w-1/3 flex-col mt-4 ml-2'>
+                    <div className='w-full'>
+                        <StatsBlock label='MONTHLY SALES' value={stats[`${location}_items_${itemName}`]?.monthly_sales?.sales} percentage={stats[`${location}_items_${itemName}`]?.monthly_sales?.percentage} />
+                    </div>
+                    <div className='mt-4 w-full'>
+                        <DailyAverage label='Daily Average (Last 7 Days)' count={stats[`${location}_items_${itemName}`]?.daily_average?.count} percent1={stats[`${location}_items_${itemName}`]?.daily_average?.percentage?.previous_week} percent2={stats[`${location}_items_${itemName}`]?.daily_average?.percentage?.previous_month} />
+                    </div>
+                    <div className='mt-4 w-full'>
+                        <RecentTime label='Recent Time (Yesterday)' time={stats[`${location}_items_${itemName}`]?.daily_items_stats?.recent_time} />
+                    </div>
+                </div>
+            </div>
         </div>
 
     );

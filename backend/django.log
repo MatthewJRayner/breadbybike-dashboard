@@ -460,3 +460,394 @@ INFO 2025-07-09 21:01:02,962 basehttp "GET /api/order-stats/?locations=Both HTTP
 INFO 2025-07-09 21:01:02,964 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1356
 INFO 2025-07-09 21:01:04,540 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
 INFO 2025-07-09 21:01:07,394 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 12:47:21,741 autoreload Watching for file changes with StatReloader
+INFO 2025-07-10 12:47:36,581 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1355
+INFO 2025-07-10 12:47:36,584 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1355
+INFO 2025-07-10 12:48:01,044 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1329
+INFO 2025-07-10 12:48:13,199 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1358
+INFO 2025-07-10 12:48:20,148 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1329
+INFO 2025-07-10 12:48:26,305 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1355
+INFO 2025-07-10 12:52:07,495 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3577
+INFO 2025-07-10 12:52:07,801 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3577
+INFO 2025-07-10 12:52:08,821 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1355
+INFO 2025-07-10 12:52:08,823 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1355
+INFO 2025-07-10 12:52:10,457 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 12:52:13,465 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 12:52:14,528 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1329
+INFO 2025-07-10 12:52:15,747 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1358
+INFO 2025-07-10 12:52:17,812 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1329
+INFO 2025-07-10 12:52:20,931 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1355
+INFO 2025-07-10 12:57:33,315 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1329
+INFO 2025-07-10 12:57:41,518 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1358
+INFO 2025-07-10 12:58:08,293 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1329
+INFO 2025-07-10 12:58:37,453 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1358
+INFO 2025-07-10 12:58:51,393 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1329
+INFO 2025-07-10 12:58:54,061 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1358
+INFO 2025-07-10 12:59:14,816 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1329
+INFO 2025-07-10 13:05:22,413 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py changed, reloading.
+INFO 2025-07-10 13:05:23,750 autoreload Watching for file changes with StatReloader
+INFO 2025-07-10 13:05:57,067 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py changed, reloading.
+INFO 2025-07-10 13:05:57,651 autoreload Watching for file changes with StatReloader
+INFO 2025-07-10 13:09:12,316 autoreload Watching for file changes with StatReloader
+INFO 2025-07-10 13:09:18,340 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1566
+INFO 2025-07-10 13:09:18,343 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1566
+INFO 2025-07-10 13:09:37,926 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1534
+INFO 2025-07-10 13:09:38,982 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1566
+INFO 2025-07-10 13:22:39,135 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1566
+INFO 2025-07-10 13:31:57,114 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3788
+INFO 2025-07-10 13:31:57,116 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3788
+INFO 2025-07-10 13:32:00,038 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 13:32:02,754 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 13:32:04,290 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1566
+INFO 2025-07-10 13:32:04,293 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1566
+INFO 2025-07-10 13:32:21,964 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\static\stats_schema_home.py changed, reloading.
+INFO 2025-07-10 13:32:22,628 autoreload Watching for file changes with StatReloader
+INFO 2025-07-10 13:42:17,948 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py changed, reloading.
+INFO 2025-07-10 13:42:18,550 autoreload Watching for file changes with StatReloader
+INFO 2025-07-10 13:44:07,608 autoreload Watching for file changes with StatReloader
+INFO 2025-07-10 13:48:57,569 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 13:58:03,584 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 13:58:03,586 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 14:00:07,628 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 14:00:07,630 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 14:11:23,604 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 14:11:23,606 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 14:13:35,862 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 14:13:35,867 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 14:19:14,986 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1524
+INFO 2025-07-10 14:19:24,421 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1567
+INFO 2025-07-10 14:19:31,735 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 14:19:34,766 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1524
+INFO 2025-07-10 14:19:37,155 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1567
+INFO 2025-07-10 14:24:07,093 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1524
+INFO 2025-07-10 14:24:09,057 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 14:24:09,790 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1567
+INFO 2025-07-10 14:24:10,540 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 14:24:11,291 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1524
+INFO 2025-07-10 14:24:12,614 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1567
+INFO 2025-07-10 14:24:15,191 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 14:33:14,893 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1524
+INFO 2025-07-10 14:33:16,370 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 14:40:01,813 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 14:40:01,816 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 14:40:04,669 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 14:40:07,385 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 14:40:10,194 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 14:40:10,195 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:02:55,064 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:02:55,068 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:05:14,196 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:05:14,201 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:05:17,605 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:05:20,501 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:22:04,122 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:22:04,124 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:22:07,531 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:22:07,532 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:22:09,141 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:22:09,143 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:22:10,212 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:22:10,214 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:22:10,786 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:22:10,788 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:22:10,790 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:22:12,012 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:22:12,014 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:22:12,214 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:22:12,215 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:22:13,633 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:22:13,633 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:22:13,636 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:22:16,881 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:22:19,732 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:22:22,554 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:22:25,607 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:22:28,400 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:22:31,168 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:23:39,657 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:23:39,660 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:23:41,372 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1567
+INFO 2025-07-10 16:23:44,533 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:23:44,535 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:23:47,322 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:23:49,632 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:23:49,635 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chin%20Chin%20Glass HTTP/1.1" 200 1561
+INFO 2025-07-10 16:23:49,635 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:23:50,081 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:23:52,595 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chin%20Chin%20Glass HTTP/1.1" 200 1561
+INFO 2025-07-10 16:23:52,597 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chin%20Chin%20Glass HTTP/1.1" 200 1561
+INFO 2025-07-10 16:23:52,599 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:25:09,243 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:25:09,245 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:25:12,064 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:25:14,880 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:28:44,635 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:28:44,637 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:30:22,379 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:30:22,381 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:30:25,458 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:30:28,309 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:34:19,031 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:34:19,033 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:34:38,157 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:34:38,159 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:34:40,958 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:34:43,787 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:39:37,400 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:39:37,402 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:39:39,188 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:39:39,190 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:39:42,157 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:39:44,328 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:39:44,328 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 1561
+INFO 2025-07-10 16:39:44,330 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:39:44,584 basehttp "OPTIONS /api/trigger-calculation/ HTTP/1.1" 200 0
+INFO 2025-07-10 16:39:44,585 views TriggerCalculationsView POST request received
+DEBUG 2025-07-10 16:39:44,585 views Received location: Both, item_name: Cappuccino
+INFO 2025-07-10 16:39:44,585 views Processing calculation for: Both_items_Cappuccino
+DEBUG 2025-07-10 16:39:44,586 views Initialized stats dictionary
+INFO 2025-07-10 16:39:44,590 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 1561
+INFO 2025-07-10 16:39:44,592 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 1561
+DEBUG 2025-07-10 16:39:44,628 views Calculating items stats from order lines
+INFO 2025-07-10 16:39:45,076 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+DEBUG 2025-07-10 16:39:45,268 views Calculating daily stats from daily orders
+INFO 2025-07-10 16:39:45,284 views Successfully saved stats for Both_items_Cappuccino
+INFO 2025-07-10 16:39:45,285 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 56
+INFO 2025-07-10 16:39:45,292 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3742
+INFO 2025-07-10 16:39:45,302 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3742
+INFO 2025-07-10 16:39:45,304 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3742
+INFO 2025-07-10 16:39:49,209 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3742
+INFO 2025-07-10 16:39:49,210 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3742
+INFO 2025-07-10 16:39:49,213 basehttp "GET /api/order-stats/?locations=Both,Both_items_Americano HTTP/1.1" 200 1561
+INFO 2025-07-10 16:39:49,557 views TriggerCalculationsView POST request received
+DEBUG 2025-07-10 16:39:49,558 views Received location: Both, item_name: Americano
+INFO 2025-07-10 16:39:49,558 views Processing calculation for: Both_items_Americano
+DEBUG 2025-07-10 16:39:49,558 views Initialized stats dictionary
+INFO 2025-07-10 16:39:49,563 basehttp "GET /api/order-stats/?locations=Both,Both_items_Americano HTTP/1.1" 200 1561
+INFO 2025-07-10 16:39:49,565 basehttp "GET /api/order-stats/?locations=Both,Both_items_Americano HTTP/1.1" 200 1561
+DEBUG 2025-07-10 16:39:49,599 views Calculating items stats from order lines
+DEBUG 2025-07-10 16:39:49,673 views Calculating daily stats from daily orders
+INFO 2025-07-10 16:39:49,690 views Successfully saved stats for Both_items_Americano
+INFO 2025-07-10 16:39:49,691 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 55
+INFO 2025-07-10 16:39:49,698 basehttp "GET /api/order-stats/?locations=Both,Both_items_Americano HTTP/1.1" 200 3737
+INFO 2025-07-10 16:39:49,710 basehttp "GET /api/order-stats/?locations=Both,Both_items_Americano HTTP/1.1" 200 3737
+INFO 2025-07-10 16:39:49,712 basehttp "GET /api/order-stats/?locations=Both,Both_items_Americano HTTP/1.1" 200 3737
+INFO 2025-07-10 16:40:01,106 basehttp "GET /api/order-stats/?locations=Both,Both_items_Americano HTTP/1.1" 200 3737
+INFO 2025-07-10 16:40:01,109 basehttp "GET /api/order-stats/?locations=Both,Both_items_Americano HTTP/1.1" 200 3737
+INFO 2025-07-10 16:40:01,115 basehttp "GET /api/order-stats/?locations=Both,Both_items_Burger%20&%20Fries%20(pre-order) HTTP/1.1" 200 1561
+INFO 2025-07-10 16:40:01,593 views TriggerCalculationsView POST request received
+DEBUG 2025-07-10 16:40:01,593 views Received location: Both, item_name: Burger & Fries (pre-order)
+INFO 2025-07-10 16:40:01,593 views Processing calculation for: Both_items_Burger & Fries (pre-order)
+DEBUG 2025-07-10 16:40:01,593 views Initialized stats dictionary
+INFO 2025-07-10 16:40:01,598 basehttp "GET /api/order-stats/?locations=Both,Both_items_Burger%20&%20Fries%20(pre-order) HTTP/1.1" 200 1561
+INFO 2025-07-10 16:40:01,600 basehttp "GET /api/order-stats/?locations=Both,Both_items_Burger%20&%20Fries%20(pre-order) HTTP/1.1" 200 1561
+INFO 2025-07-10 16:40:01,650 views Successfully saved stats for Both_items_Burger & Fries (pre-order)
+INFO 2025-07-10 16:40:01,650 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 72
+INFO 2025-07-10 16:40:01,656 basehttp "GET /api/order-stats/?locations=Both,Both_items_Burger%20&%20Fries%20(pre-order) HTTP/1.1" 200 1561
+INFO 2025-07-10 16:40:01,667 basehttp "GET /api/order-stats/?locations=Both,Both_items_Burger%20&%20Fries%20(pre-order) HTTP/1.1" 200 1561
+INFO 2025-07-10 16:40:01,668 basehttp "GET /api/order-stats/?locations=Both,Both_items_Burger%20&%20Fries%20(pre-order) HTTP/1.1" 200 1561
+INFO 2025-07-10 16:40:05,348 basehttp "GET /api/order-stats/?locations=Both,Both_items_Burger%20&%20Fries%20(pre-order) HTTP/1.1" 200 1561
+INFO 2025-07-10 16:40:05,349 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 1561
+INFO 2025-07-10 16:40:05,350 basehttp "GET /api/order-stats/?locations=Both,Both_items_Burger%20&%20Fries%20(pre-order) HTTP/1.1" 200 1561
+INFO 2025-07-10 16:40:05,726 views TriggerCalculationsView POST request received
+DEBUG 2025-07-10 16:40:05,726 views Received location: Both, item_name: Banana Bread
+INFO 2025-07-10 16:40:05,726 views Processing calculation for: Both_items_Banana Bread
+DEBUG 2025-07-10 16:40:05,726 views Initialized stats dictionary
+INFO 2025-07-10 16:40:05,732 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 1561
+INFO 2025-07-10 16:40:05,734 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 1561
+DEBUG 2025-07-10 16:40:05,765 views Calculating items stats from order lines
+DEBUG 2025-07-10 16:40:05,820 views Calculating daily stats from daily orders
+INFO 2025-07-10 16:40:05,836 views Successfully saved stats for Both_items_Banana Bread
+INFO 2025-07-10 16:40:05,837 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 58
+INFO 2025-07-10 16:40:05,843 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 3626
+INFO 2025-07-10 16:40:05,854 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 3626
+INFO 2025-07-10 16:40:05,855 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 3626
+INFO 2025-07-10 16:40:10,346 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 3626
+INFO 2025-07-10 16:40:10,348 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 3626
+INFO 2025-07-10 16:40:10,352 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chin%20Chin%20Bottle HTTP/1.1" 200 1561
+INFO 2025-07-10 16:40:10,948 views TriggerCalculationsView POST request received
+DEBUG 2025-07-10 16:40:10,949 views Received location: Both, item_name: Chin Chin Bottle
+INFO 2025-07-10 16:40:10,949 views Processing calculation for: Both_items_Chin Chin Bottle
+DEBUG 2025-07-10 16:40:10,949 views Initialized stats dictionary
+INFO 2025-07-10 16:40:10,955 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chin%20Chin%20Bottle HTTP/1.1" 200 1561
+INFO 2025-07-10 16:40:10,956 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chin%20Chin%20Bottle HTTP/1.1" 200 1561
+INFO 2025-07-10 16:40:10,995 views Successfully saved stats for Both_items_Chin Chin Bottle
+INFO 2025-07-10 16:40:10,996 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 62
+INFO 2025-07-10 16:40:11,001 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chin%20Chin%20Bottle HTTP/1.1" 200 3530
+INFO 2025-07-10 16:40:11,012 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chin%20Chin%20Bottle HTTP/1.1" 200 3530
+INFO 2025-07-10 16:40:11,014 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chin%20Chin%20Bottle HTTP/1.1" 200 3530
+INFO 2025-07-10 16:40:13,921 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chin%20Chin%20Bottle HTTP/1.1" 200 3530
+INFO 2025-07-10 16:40:13,923 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chin%20Chin%20Bottle HTTP/1.1" 200 3530
+INFO 2025-07-10 16:40:13,927 basehttp "GET /api/order-stats/?locations=Both,Both_items_Latte HTTP/1.1" 200 1561
+INFO 2025-07-10 16:40:14,661 views TriggerCalculationsView POST request received
+DEBUG 2025-07-10 16:40:14,661 views Received location: Both, item_name: Latte
+INFO 2025-07-10 16:40:14,661 views Processing calculation for: Both_items_Latte
+DEBUG 2025-07-10 16:40:14,661 views Initialized stats dictionary
+INFO 2025-07-10 16:40:14,666 basehttp "GET /api/order-stats/?locations=Both,Both_items_Latte HTTP/1.1" 200 1561
+INFO 2025-07-10 16:40:14,668 basehttp "GET /api/order-stats/?locations=Both,Both_items_Latte HTTP/1.1" 200 1561
+DEBUG 2025-07-10 16:40:14,702 views Calculating items stats from order lines
+DEBUG 2025-07-10 16:40:14,785 views Calculating daily stats from daily orders
+INFO 2025-07-10 16:40:14,802 views Successfully saved stats for Both_items_Latte
+INFO 2025-07-10 16:40:14,803 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 51
+INFO 2025-07-10 16:40:14,809 basehttp "GET /api/order-stats/?locations=Both,Both_items_Latte HTTP/1.1" 200 3753
+INFO 2025-07-10 16:40:14,818 basehttp "GET /api/order-stats/?locations=Both,Both_items_Latte HTTP/1.1" 200 3753
+INFO 2025-07-10 16:40:14,820 basehttp "GET /api/order-stats/?locations=Both,Both_items_Latte HTTP/1.1" 200 3753
+INFO 2025-07-10 16:40:18,081 basehttp "GET /api/order-stats/?locations=Both,Both_items_Latte HTTP/1.1" 200 3753
+INFO 2025-07-10 16:40:18,083 basehttp "GET /api/order-stats/?locations=Both,Both_items_Latte HTTP/1.1" 200 3753
+INFO 2025-07-10 16:40:18,087 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 3626
+INFO 2025-07-10 16:44:37,980 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 3626
+INFO 2025-07-10 16:44:37,982 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 3626
+INFO 2025-07-10 16:44:37,987 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3742
+INFO 2025-07-10 16:44:38,925 views TriggerCalculationsView POST request received
+DEBUG 2025-07-10 16:44:38,926 views Received location: Both, item_name: Cappuccino
+INFO 2025-07-10 16:44:38,926 views Processing calculation for: Both_items_Cappuccino
+DEBUG 2025-07-10 16:44:38,926 views Initialized stats dictionary
+INFO 2025-07-10 16:44:38,931 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3742
+INFO 2025-07-10 16:44:38,933 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3742
+DEBUG 2025-07-10 16:44:38,967 views Calculating items stats from order lines
+DEBUG 2025-07-10 16:44:39,046 views Calculating daily stats from daily orders
+INFO 2025-07-10 16:44:39,063 views Successfully saved stats for Both_items_Cappuccino
+INFO 2025-07-10 16:44:39,064 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 56
+INFO 2025-07-10 16:44:39,071 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3742
+INFO 2025-07-10 16:44:39,083 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3742
+INFO 2025-07-10 16:44:39,085 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3742
+INFO 2025-07-10 16:44:43,672 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3742
+INFO 2025-07-10 16:44:43,674 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cappuccino HTTP/1.1" 200 3742
+INFO 2025-07-10 16:44:43,677 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:44:55,927 views TriggerCalculationsView POST request received
+DEBUG 2025-07-10 16:44:55,927 views Received location: Both, item_name: Cinnamon
+INFO 2025-07-10 16:44:55,927 views Processing calculation for: Both_items_Cinnamon
+DEBUG 2025-07-10 16:44:55,927 views Initialized stats dictionary
+INFO 2025-07-10 16:44:55,932 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:44:55,934 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+DEBUG 2025-07-10 16:44:55,970 views Calculating items stats from order lines
+DEBUG 2025-07-10 16:44:56,084 views Calculating daily stats from daily orders
+INFO 2025-07-10 16:44:56,101 views Successfully saved stats for Both_items_Cinnamon
+INFO 2025-07-10 16:44:56,102 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 54
+INFO 2025-07-10 16:44:56,110 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:44:56,120 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:44:56,122 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:53:40,830 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:53:40,832 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:53:43,622 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:53:46,450 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:54:53,785 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:54:53,788 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1561
+INFO 2025-07-10 16:54:59,223 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:54:59,226 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:55:02,111 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:55:05,053 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:57:24,131 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:57:24,133 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3784
+INFO 2025-07-10 16:57:27,078 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 16:57:29,852 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 17:01:29,879 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py changed, reloading.
+INFO 2025-07-10 17:01:30,576 autoreload Watching for file changes with StatReloader
+INFO 2025-07-10 17:02:11,187 autoreload E:\Development\BBB Sales Dashboard\breadbybike-dashboard\backend\sales\services\calc_functions.py changed, reloading.
+INFO 2025-07-10 17:02:11,776 autoreload Watching for file changes with StatReloader
+INFO 2025-07-10 17:09:57,710 autoreload Watching for file changes with StatReloader
+INFO 2025-07-10 17:10:06,064 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3786
+INFO 2025-07-10 17:10:06,067 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3786
+INFO 2025-07-10 17:10:09,057 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 17:10:11,838 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 17:14:15,069 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3786
+INFO 2025-07-10 17:14:15,072 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3786
+INFO 2025-07-10 17:14:17,903 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 17:14:19,329 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3786
+INFO 2025-07-10 17:14:19,331 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3786
+INFO 2025-07-10 17:14:19,345 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chai%20Latte HTTP/1.1" 200 1564
+INFO 2025-07-10 17:14:20,839 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 17:14:35,740 views TriggerCalculationsView POST request received
+DEBUG 2025-07-10 17:14:35,740 views Received location: Both, item_name: Chai Latte
+INFO 2025-07-10 17:14:35,740 views Processing calculation for: Both_items_Chai Latte
+DEBUG 2025-07-10 17:14:35,740 views Initialized stats dictionary
+INFO 2025-07-10 17:14:35,755 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chai%20Latte HTTP/1.1" 200 1564
+INFO 2025-07-10 17:14:35,758 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chai%20Latte HTTP/1.1" 200 1564
+DEBUG 2025-07-10 17:14:35,780 views Calculating items stats from order lines
+DEBUG 2025-07-10 17:14:35,834 views Calculating daily stats from daily orders
+INFO 2025-07-10 17:14:35,850 views Successfully saved stats for Both_items_Chai Latte
+INFO 2025-07-10 17:14:35,850 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 56
+INFO 2025-07-10 17:14:35,856 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chai%20Latte HTTP/1.1" 200 3627
+INFO 2025-07-10 17:14:35,876 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chai%20Latte HTTP/1.1" 200 3627
+INFO 2025-07-10 17:14:35,879 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chai%20Latte HTTP/1.1" 200 3627
+INFO 2025-07-10 17:14:40,353 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chai%20Latte HTTP/1.1" 200 3627
+INFO 2025-07-10 17:14:40,355 basehttp "GET /api/order-stats/?locations=Both,Both_items_Chai%20Latte HTTP/1.1" 200 3627
+INFO 2025-07-10 17:14:40,374 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 1564
+INFO 2025-07-10 17:14:41,119 views TriggerCalculationsView POST request received
+DEBUG 2025-07-10 17:14:41,119 views Received location: Both, item_name: Banana Bread
+INFO 2025-07-10 17:14:41,119 views Processing calculation for: Both_items_Banana Bread
+DEBUG 2025-07-10 17:14:41,120 views Initialized stats dictionary
+INFO 2025-07-10 17:14:41,133 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 1564
+INFO 2025-07-10 17:14:41,135 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 1564
+DEBUG 2025-07-10 17:14:41,159 views Calculating items stats from order lines
+DEBUG 2025-07-10 17:14:41,214 views Calculating daily stats from daily orders
+INFO 2025-07-10 17:14:41,230 views Successfully saved stats for Both_items_Banana Bread
+INFO 2025-07-10 17:14:41,231 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 58
+INFO 2025-07-10 17:14:41,237 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 3628
+INFO 2025-07-10 17:14:41,257 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 3628
+INFO 2025-07-10 17:14:41,259 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 3628
+INFO 2025-07-10 17:14:56,431 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 3628
+INFO 2025-07-10 17:14:56,433 basehttp "GET /api/order-stats/?locations=Both,Both_items_Banana%20Bread HTTP/1.1" 200 3628
+INFO 2025-07-10 17:14:56,440 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cookie HTTP/1.1" 200 1564
+INFO 2025-07-10 17:14:57,858 views TriggerCalculationsView POST request received
+DEBUG 2025-07-10 17:14:57,858 views Received location: Both, item_name: Cookie
+INFO 2025-07-10 17:14:57,858 views Processing calculation for: Both_items_Cookie
+DEBUG 2025-07-10 17:14:57,858 views Initialized stats dictionary
+INFO 2025-07-10 17:14:57,864 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cookie HTTP/1.1" 200 1564
+INFO 2025-07-10 17:14:57,865 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cookie HTTP/1.1" 200 1564
+DEBUG 2025-07-10 17:14:57,898 views Calculating items stats from order lines
+DEBUG 2025-07-10 17:14:57,961 views Calculating daily stats from daily orders
+INFO 2025-07-10 17:14:57,978 views Successfully saved stats for Both_items_Cookie
+INFO 2025-07-10 17:14:57,979 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 52
+INFO 2025-07-10 17:14:57,984 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cookie HTTP/1.1" 200 3715
+INFO 2025-07-10 17:14:57,996 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cookie HTTP/1.1" 200 3715
+INFO 2025-07-10 17:14:57,998 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cookie HTTP/1.1" 200 3715
+INFO 2025-07-10 17:15:30,811 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cookie HTTP/1.1" 200 3715
+INFO 2025-07-10 17:15:30,813 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cookie HTTP/1.1" 200 3715
+INFO 2025-07-10 17:15:30,817 basehttp "GET /api/order-stats/?locations=Both,Both_items_Flat%20White HTTP/1.1" 200 1564
+INFO 2025-07-10 17:15:35,787 views TriggerCalculationsView POST request received
+DEBUG 2025-07-10 17:15:35,787 views Received location: Both, item_name: Flat White
+INFO 2025-07-10 17:15:35,787 views Processing calculation for: Both_items_Flat White
+DEBUG 2025-07-10 17:15:35,787 views Initialized stats dictionary
+INFO 2025-07-10 17:15:35,792 basehttp "GET /api/order-stats/?locations=Both,Both_items_Flat%20White HTTP/1.1" 200 1564
+INFO 2025-07-10 17:15:35,794 basehttp "GET /api/order-stats/?locations=Both,Both_items_Flat%20White HTTP/1.1" 200 1564
+DEBUG 2025-07-10 17:15:35,832 views Calculating items stats from order lines
+DEBUG 2025-07-10 17:15:35,950 views Calculating daily stats from daily orders
+INFO 2025-07-10 17:15:35,964 views Successfully saved stats for Both_items_Flat White
+INFO 2025-07-10 17:15:35,966 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 56
+INFO 2025-07-10 17:15:35,973 basehttp "GET /api/order-stats/?locations=Both,Both_items_Flat%20White HTTP/1.1" 200 3772
+INFO 2025-07-10 17:15:35,985 basehttp "GET /api/order-stats/?locations=Both,Both_items_Flat%20White HTTP/1.1" 200 3772
+INFO 2025-07-10 17:15:35,987 basehttp "GET /api/order-stats/?locations=Both,Both_items_Flat%20White HTTP/1.1" 200 3772
+INFO 2025-07-10 17:16:21,786 basehttp "GET /api/order-stats/?locations=Both,Both_items_Flat%20White HTTP/1.1" 200 3772
+INFO 2025-07-10 17:16:21,788 basehttp "GET /api/order-stats/?locations=Both,Both_items_Flat%20White HTTP/1.1" 200 3772
+INFO 2025-07-10 17:16:21,794 basehttp "GET /api/order-stats/?locations=Both,Both_items_Roast%20Veg%20Sandwich HTTP/1.1" 200 1564
+INFO 2025-07-10 17:16:22,747 views TriggerCalculationsView POST request received
+DEBUG 2025-07-10 17:16:22,748 views Received location: Both, item_name: Roast Veg Sandwich
+INFO 2025-07-10 17:16:22,748 views Processing calculation for: Both_items_Roast Veg Sandwich
+DEBUG 2025-07-10 17:16:22,748 views Initialized stats dictionary
+INFO 2025-07-10 17:16:22,754 basehttp "GET /api/order-stats/?locations=Both,Both_items_Roast%20Veg%20Sandwich HTTP/1.1" 200 1564
+INFO 2025-07-10 17:16:22,756 basehttp "GET /api/order-stats/?locations=Both,Both_items_Roast%20Veg%20Sandwich HTTP/1.1" 200 1564
+DEBUG 2025-07-10 17:16:22,785 views Calculating items stats from order lines
+DEBUG 2025-07-10 17:16:22,843 views Calculating daily stats from daily orders
+INFO 2025-07-10 17:16:22,857 views Successfully saved stats for Both_items_Roast Veg Sandwich
+INFO 2025-07-10 17:16:22,858 basehttp "POST /api/trigger-calculation/ HTTP/1.1" 200 64
+INFO 2025-07-10 17:16:22,864 basehttp "GET /api/order-stats/?locations=Both,Both_items_Roast%20Veg%20Sandwich HTTP/1.1" 200 3692
+INFO 2025-07-10 17:16:22,876 basehttp "GET /api/order-stats/?locations=Both,Both_items_Roast%20Veg%20Sandwich HTTP/1.1" 200 3692
+INFO 2025-07-10 17:16:22,878 basehttp "GET /api/order-stats/?locations=Both,Both_items_Roast%20Veg%20Sandwich HTTP/1.1" 200 3692
+INFO 2025-07-10 17:16:46,002 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1564
+INFO 2025-07-10 17:16:46,005 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1564
+INFO 2025-07-10 17:16:46,567 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3786
+INFO 2025-07-10 17:16:46,569 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3786
+INFO 2025-07-10 17:16:47,697 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1564
+INFO 2025-07-10 17:16:47,843 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1564
+INFO 2025-07-10 17:16:47,978 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3786
+INFO 2025-07-10 17:16:47,980 basehttp "GET /api/order-stats/?locations=Both,Both_items_Cinnamon HTTP/1.1" 200 3786
+INFO 2025-07-10 17:16:49,458 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 17:16:50,734 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1564
+INFO 2025-07-10 17:16:50,736 basehttp "GET /api/order-stats/?locations=Both HTTP/1.1" 200 1564
+INFO 2025-07-10 17:16:52,286 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 17:16:55,115 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 17:16:58,239 basehttp "GET /api/square-catalog-items/ HTTP/1.1" 200 2737
+INFO 2025-07-10 17:17:02,193 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1567
+INFO 2025-07-10 17:17:02,975 basehttp "GET /api/order-stats/?locations=Cafe HTTP/1.1" 200 1527
+INFO 2025-07-10 17:17:08,835 basehttp "GET /api/order-stats/?locations=Bakery HTTP/1.1" 200 1567
