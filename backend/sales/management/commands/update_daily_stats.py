@@ -51,9 +51,9 @@ class Command(BaseCommand):
         calc_daily_stats_home(bakery_stats_dict, DailyOrderSnapshot.objects.filter(location=CONFIG['BAKERY_ID']))
         calc_daily_stats_home(cafe_stats_dict, DailyOrderSnapshot.objects.filter(location=CONFIG['CAFE_ID']))
         calc_daily_stats_home(both_stats_dict, DailyOrderSnapshot.objects.all())
-        calc_daily_stats_items(bakery_cinnamon_dict, DailyOrderSnapshot.objects.filter(name=item_name, location=CONFIG['BAKERY_ID']))
-        calc_daily_stats_items(cafe_cinnamon_dict, DailyOrderSnapshot.objects.filter(name=item_name, location=CONFIG['CAFE_ID']))
-        calc_daily_stats_items(both_cinnamon_dict, DailyOrderSnapshot.objects.filter(name=item_name))
+        calc_daily_stats_items(bakery_cinnamon_dict, DailyOrderSnapshot.objects.filter(name__icontains=item_name, location=CONFIG['BAKERY_ID']))
+        calc_daily_stats_items(cafe_cinnamon_dict, DailyOrderSnapshot.objects.filter(name__icontains=item_name, location=CONFIG['CAFE_ID']))
+        calc_daily_stats_items(both_cinnamon_dict, DailyOrderSnapshot.objects.filter(name__icontains=item_name))
         
         # Upload the stats to the OrderStats model
         OrderStats.objects.update_or_create(

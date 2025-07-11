@@ -1,4 +1,3 @@
-import logging
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -15,8 +14,7 @@ import copy
 from square import Square
 from square.environment import SquareEnvironment
 import os
-
-logger = logging.getLogger('sales')
+from django.db.models import Sum
 
 def home(request):
     return HttpResponse("Django is working!")
@@ -64,37 +62,28 @@ class TriggerCalculationsView(APIView):
     Uses functions from calc_functions services file that are used for overnight autmated scripts.
     """
     def post(self, request):
-        logger.info("TriggerCalculationsView POST request received")
         
         location = request.data.get('location')
         item_name = request.data.get('item_name')
-        logger.debug(f"Received location: {location}, item_name: {item_name}")
         poss_locations = ['Both', 'Cafe', 'Bakery']
 
         if not location or not item_name:
-            logger.warning("Missing required parameters: location or item_name")
             return Response({'error': 'Location and item name are required'}, 
                            status=status.HTTP_400_BAD_REQUEST)
 
         if location not in poss_locations:
-            logger.warning(f"Invalid location provided: {location}")
             return Response({'error': 'Invalid location'}, 
                           status=status.HTTP_400_BAD_REQUEST)
 
         item_name = item_name.strip()
         if not item_name:
-            logger.warning("Empty item name after stripping")
             return Response({'error': 'Item name cannot be empty'}, 
                           status=status.HTTP_400_BAD_REQUEST)
-
-        item_key = f'{location}_items_{item_name}'
-        logger.info(f"Processing calculation for: {item_key}")
 
         try:
             bakery_stats = copy.deepcopy(items_stats)
             cafe_stats = copy.deepcopy(items_stats)
             both_stats = copy.deepcopy(items_stats)
-            logger.debug("Initialized stats dictionary")
 
             # Create filters based on stats from only the last 90 days
             bakery_order_lines = OrderLine.objects.filter(
@@ -115,18 +104,17 @@ class TriggerCalculationsView(APIView):
             cafe_daily_orders = DailyOrderSnapshot.objects.filter(name=item_name, location=CONFIG['CAFE_ID'])
             both_daily_orders = DailyOrderSnapshot.objects.filter(name=item_name)
             
-            if bakery_order_lines.exists() and cafe_order_lines.exists() and both_order_lines.exists():
-                logger.debug("Calculating items stats from order lines")
-                calc_items_stats(bakery_stats, bakery_order_lines)
-                calc_items_stats(cafe_stats, cafe_order_lines)
+            if both_order_lines.exists() and both_daily_orders.exists():
                 calc_items_stats(both_stats, both_order_lines)
-                
-            if bakery_daily_orders.exists() and cafe_daily_orders.exists() and both_daily_orders.exists():
-                logger.debug("Calculating daily stats from daily orders")
-                calc_daily_stats_items(bakery_stats, bakery_daily_orders)
-                calc_daily_stats_items(cafe_stats, cafe_daily_orders)
                 calc_daily_stats_items(both_stats, both_daily_orders)
-            
+                if bakery_order_lines.exists() and bakery_daily_orders.exists():
+                    calc_items_stats(bakery_stats, bakery_order_lines)
+                    calc_daily_stats_items(bakery_stats, bakery_daily_orders)
+                if cafe_daily_orders.exists() and cafe_order_lines.exists():
+                    calc_items_stats(cafe_stats, cafe_order_lines)
+                    calc_daily_stats_items(cafe_stats, cafe_daily_orders)
+                    
+                    
             # Update calculated stats in the model
             OrderStats.objects.update_or_create(
                 location=f'Bakery_items_{item_name}',
@@ -140,13 +128,15 @@ class TriggerCalculationsView(APIView):
                 location=f'Both_items_{item_name}',
                 defaults={'stats_json': convert_to_serializable(both_stats)}
             )
-            logger.info(f"Successfully saved stats for {item_key}")
+
+            orders = OrderLine.objects.filter(name=item_name, date__gte=datetime.now(UTC).date() - relativedelta(days=90))
+            total_sales = orders.aggregate(total=Sum('total_sale'))['total'] or 0
+            print(f"Found {orders.count()} orders for '{item_name}' with total sales: {total_sales}")
             
-            return Response({'message': f'Stats calculated for {item_key}'}, 
+            return Response({'message': f'Stats calculated for {item_name}'}, 
                            status=status.HTTP_200_OK)
 
         except Exception as e:
-            logger.error(f"Error processing {item_name}: {str(e)}", exc_info=True)
             return Response({'error': f'Error processing {item_name}: {str(e)}'}, 
                           status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 

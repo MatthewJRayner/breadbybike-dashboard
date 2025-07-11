@@ -40,7 +40,7 @@ class Command(BaseCommand):
         # Add / delete orders for DailyOrderSnapshot
         DailyOrderSnapshot.objects.all().delete()
         
-        # Check if any order's from today we're picked up
+        # Check if any order's from today were picked up
         today_orders = OrderLine.objects.filter(date=(datetime.now(UTC).date()))
         for order in today_orders:
             DailyOrderSnapshot.objects.create(

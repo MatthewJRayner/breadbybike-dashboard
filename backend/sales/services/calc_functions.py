@@ -248,10 +248,11 @@ def calc_items_stats(dictionary, querylist):
         days_ago = (today - order.date).days
         time_block_index = ((order.time.hour - start_time.hour) * 60 + order.time.minute) // 30
     
-        dictionary['period_graphs']['last_3_months']['daily_graph']['graph'][(days_ago - 1) if days_ago > 0 else 0] += order.quantity
-        dictionary['period_graphs']['last_3_months']['weekday_count_graph']['graph'][order.date.weekday()] += order.quantity
-        if 0 <= time_block_index < 16:
-            dictionary['period_graphs']['last_3_months']['time_of_day_graph']['graph'][time_block_index] += order.quantity
+        if 1 <= days_ago <= 90:
+            dictionary['period_graphs']['last_3_months']['daily_graph']['graph'][(days_ago - 1) if days_ago > 0 else 0] += order.quantity
+            dictionary['period_graphs']['last_3_months']['weekday_count_graph']['graph'][order.date.weekday()] += order.quantity
+            if 0 <= time_block_index < 16:
+                dictionary['period_graphs']['last_3_months']['time_of_day_graph']['graph'][time_block_index] += order.quantity
         
         # ORDERS FROM LAST 30 DAYS
         if 1 <= days_ago <= 30:
