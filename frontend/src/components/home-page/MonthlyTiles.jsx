@@ -2,7 +2,7 @@ import React from 'react';
 
 const MonthlyTiles = ({ stats }) => {
     return (
-        <div className='grid grid-cols-2 mt-4 w-full'>
+        <div className='grid grid-cols-2 w-full'>
             {Array.isArray(stats) && stats.length > 0 ? (
                 stats.map((stat, idx) => {
                     const isSpecial = idx === 1 || idx === 2;

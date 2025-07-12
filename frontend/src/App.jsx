@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Items from './pages/Items';
 import Orders from './pages/Orders';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import './App.css'
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
     <Router>
       <div className='flex'>
         <Navbar />
-        <div className='flex-col p-6 min-h-screen w-full'>
+        <div className='flex-col p-6 overflow-auto min-h-screen w-full'>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/items' element={<Items />} />

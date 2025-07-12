@@ -140,7 +140,6 @@ def calc_home_stats(dictionary, querylist):
                             'count': order.quantity
                         }
                 helper['weekly_sales']['sales'] += order.total_sale
-                helper['previous_week_sales']['sales'] += order.total_sale
                 helper['average_growth_graph']['previous_7_days'][days_ago - 1] += order.total_sale
                 helper['best_sellers_stats']['previous_week']['sales'] += order.total_sale
                 if order.name in helper['best_sellers_stats']['previous_week']['best_sellers']:
@@ -153,6 +152,7 @@ def calc_home_stats(dictionary, querylist):
                     }
                 
             if 8 <= days_ago <= 14:
+                helper['previous_week_sales']['sales'] += order.total_sale
                 helper['average_growth_graph']['previous_14_days'][days_ago - 8] += order.total_sale  
             if 15 <= days_ago <= 21:
                 helper['average_growth_graph']['previous_21_days'][days_ago - 15] += order.total_sale
@@ -175,6 +175,10 @@ def calc_home_stats(dictionary, querylist):
     # Label Creation
     for i in range(1, current_month + 1):
         dictionary['year_sales_graph']['labels'].append(f"{calendar.month_abbr[i]} '{today.strftime('%y')}")
+    for i in range(30):
+        temp_day = today - timedelta(days=i+1)
+        dictionary['monthly_sales_graph']['labels'].append(f"{temp_day.strftime('%b %d')}")
+    
     
     for i in range(7):
         day = today - timedelta(days=i+1)
@@ -218,6 +222,7 @@ def calc_home_stats(dictionary, querylist):
     dictionary['average_growth_graph']['graph'].reverse()
     dictionary['average_growth_graph']['labels'].reverse()
     dictionary['monthly_sales_graph']['graph'].reverse()
+    dictionary['monthly_sales_graph']['labels'].reverse()
 
 
 def calc_items_stats(dictionary, querylist):
@@ -249,20 +254,20 @@ def calc_items_stats(dictionary, querylist):
         time_block_index = ((order.time.hour - start_time.hour) * 60 + order.time.minute) // 30
     
         if 1 <= days_ago <= 90:
-            dictionary['period_graphs']['last_3_months']['daily_graph']['graph'][(days_ago - 1) if days_ago > 0 else 0] += order.quantity
-            dictionary['period_graphs']['last_3_months']['weekday_count_graph']['graph'][order.date.weekday()] += order.quantity
+            dictionary['period_graphs']['last_3_months']['daily']['graph'][(days_ago - 1) if days_ago > 0 else 0] += order.quantity
+            dictionary['period_graphs']['last_3_months']['weekday_average']['graph'][order.date.weekday()] += order.quantity
             if 0 <= time_block_index < 16:
-                dictionary['period_graphs']['last_3_months']['time_of_day_graph']['graph'][time_block_index] += order.quantity
+                dictionary['period_graphs']['last_3_months']['time_of_day_average']['graph'][time_block_index] += order.quantity
         
         # ORDERS FROM LAST 30 DAYS
         if 1 <= days_ago <= 30:
             dictionary['monthly_sales']['sales'] += order.total_sale
-            dictionary['period_graphs']['last_month']['daily_graph']['graph'][days_ago-1] += order.quantity
-            dictionary['period_graphs']['last_month']['weekday_count_graph']['graph'][order.date.weekday()] += order.quantity
+            dictionary['period_graphs']['last_month']['daily']['graph'][days_ago-1] += order.quantity
+            dictionary['period_graphs']['last_month']['weekday_average']['graph'][order.date.weekday()] += order.quantity
             helper['monthly_sales']['previous_month'] += order.total_sale
             helper['daily_average']['previous_month_count'][days_ago - 1] += order.quantity
             if 0 <= time_block_index < 16:
-                dictionary['period_graphs']['last_month']['time_of_day_graph']['graph'][time_block_index] += order.quantity
+                dictionary['period_graphs']['last_month']['time_of_day_average']['graph'][time_block_index] += order.quantity
             
             # ORDERS FROM LAST 7 DAYS
             if 1 <= days_ago <= 7:
@@ -270,11 +275,11 @@ def calc_items_stats(dictionary, querylist):
                 dictionary['total_sales_last_week']['count'] += order.quantity
                 dictionary['total_sales_last_week']['sales'] += order.total_sale
                 dictionary['total_sales_last_week']['graph'][order.date.weekday()] += order.quantity
-                dictionary['period_graphs']['last_week']['daily_graph']['graph'][days_ago-1] += order.quantity
-                dictionary['period_graphs']['last_week']['weekday_count_graph']['graph'][order.date.weekday()] += order.quantity
+                dictionary['period_graphs']['last_week']['daily']['graph'][days_ago-1] += order.quantity
+                dictionary['period_graphs']['last_week']['weekday_average']['graph'][order.date.weekday()] += order.quantity
                 helper['daily_average']['count_list'][days_ago -1] += order.quantity
                 if 0 <= time_block_index < 16:
-                    dictionary['period_graphs']['last_week']['time_of_day_graph']['graph'][time_block_index] += order.quantity
+                    dictionary['period_graphs']['last_week']['time_of_day_average']['graph'][time_block_index] += order.quantity
             
             # ORDERS FROM 7 DAYS BEFORE
             if 8 <= days_ago <= 14:
@@ -288,7 +293,14 @@ def calc_items_stats(dictionary, querylist):
             helper['daily_average']['previous_month_count'][days_ago-31] += order.quantity
     
     # Label Creation
-    dictionary['total_sales_last_week']['labels'] = [calendar.day_name[(today - timedelta(days=i)).weekday()] for i in range(1, 8)]
+    for i in range(90):
+        temp_day = today - timedelta(days=i+1)
+        dictionary['period_graphs']['last_3_months']['daily']['labels'].append(f"{temp_day.strftime('%b %d')}")
+        if i <= 29:
+            dictionary['period_graphs']['last_month']['daily']['labels'].append(f"{temp_day.strftime('%b %d')}")
+            if i <= 6:
+                dictionary['total_sales_last_week']['labels'].append(calendar.day_abbr[temp_day.weekday()])
+                dictionary['period_graphs']['last_week']['daily']['labels'].append(f"{temp_day.strftime('%b %d')}")
     
     # POST LOOP CALCULATIONS
     dictionary['weekly_sales']['percentage'] = percent_increase(dictionary['weekly_sales']['sales'], helper['weekly_sales']['previous_week'])
@@ -297,21 +309,16 @@ def calc_items_stats(dictionary, querylist):
     dictionary['daily_average']['count'] = round(average(helper['daily_average']['count_list']))
     dictionary['daily_average']['percentage']['previous_week'] = percent_increase(dictionary['daily_average']['count'], average(helper['daily_average']['previous_week_count']))
     dictionary['daily_average']['percentage']['previous_month'] = percent_increase(dictionary['daily_average']['count'], average(helper['daily_average']['previous_month_count']))
-    for i in range(16):
-        dictionary['period_graphs']['last_week']['time_of_day_graph']['graph'][i] = round(dictionary['period_graphs']['last_week']['time_of_day_graph']['graph'][i] / 7)
-        dictionary['period_graphs']['last_month']['time_of_day_graph']['graph'][i] = round(dictionary['period_graphs']['last_month']['time_of_day_graph']['graph'][i] / 30)
-        dictionary['period_graphs']['last_3_months']['time_of_day_graph']['graph'][i] = round(dictionary['period_graphs']['last_3_months']['time_of_day_graph']['graph'][i] / 90)
-    for i in range(7):
-        dictionary['period_graphs']['last_week']['weekday_count_graph']['graph'][i] = round(dictionary['period_graphs']['last_week']['weekday_count_graph']['graph'][i] / 7)
-        dictionary['period_graphs']['last_month']['weekday_count_graph']['graph'][i] = round(dictionary['period_graphs']['last_month']['weekday_count_graph']['graph'][i] / 30)
-        dictionary['period_graphs']['last_3_months']['weekday_count_graph']['graph'][i] = round(dictionary['period_graphs']['last_3_months']['weekday_count_graph']['graph'][i] / 90)
         
     # Reversing lists to get oldests dates on the left
     dictionary['total_sales_last_week']['graph'].reverse()
     dictionary['total_sales_last_week']['labels'].reverse()
-    dictionary['period_graphs']['last_week']['daily_graph']['graph'].reverse()
-    dictionary['period_graphs']['last_month']['daily_graph']['graph'].reverse()
-    dictionary['period_graphs']['last_3_months']['daily_graph']['graph'].reverse()
+    dictionary['period_graphs']['last_week']['daily']['graph'].reverse()
+    dictionary['period_graphs']['last_month']['daily']['graph'].reverse()
+    dictionary['period_graphs']['last_3_months']['daily']['graph'].reverse()
+    dictionary['period_graphs']['last_week']['daily']['labels'].reverse()
+    dictionary['period_graphs']['last_month']['daily']['labels'].reverse()
+    dictionary['period_graphs']['last_3_months']['daily']['labels'].reverse()
     
 
 def calc_daily_stats_home(dictionary, querylist):
@@ -359,4 +366,4 @@ def calc_daily_stats_items(dictionary, querylist):
     # Post loop calculations
     dictionary['daily_items_stats']['daily_sales']['percentage'] = percent_increase(dictionary['daily_items_stats']['daily_sales']['sales'], helper['previous_week']['sales'])
     temp_datetime = datetime.combine(datetime.now(UTC).date(), dictionary['daily_items_stats']['recent_time'])
-    dictionary['daily_items_stats']['recent_time'] = (temp_datetime + timedelta(hours=1)).time()
+    dictionary['daily_items_stats']['recent_time'] = (temp_datetime + timedelta(hours=1)).time() if datetime.now(UTC) != datetime.now() else dictionary['daily_items_stats']['recent_time']

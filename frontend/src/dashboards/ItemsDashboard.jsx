@@ -4,6 +4,8 @@ import Selector from '../components/Selector';
 import StatsBlock from '../components/StatsBlock';
 import DailyAverage from '../components/items-page/DailyAverage';
 import RecentTime from '../components/items-page/RecentTime';
+import WeekSalesDisplay from '../components/items-page/WeekSalesDisplay';
+import MultiGraphPeriodDisplay from '../components/items-page/MultiGraphPeriodDisplay';
 
 const ItemsDashboard = () => {
     const [location, setLocation] = useState('Both');
@@ -13,7 +15,6 @@ const ItemsDashboard = () => {
     const [stats, setStats] = useState({});
     const [needsCalculation, setNeedsCalculation] = useState(false);
     const [loading, setLoading] = useState(false);
-    var currency_sym = '£'
 
     // Fetch Square catalog items
     useEffect(() => {
@@ -116,12 +117,14 @@ const ItemsDashboard = () => {
                     </button>
                 )}
             </div>
+            {/* Load Stats from model */}
             <DashboardDataProvider
                 key={`${location}-${itemName}-${needsCalculation}-${loading}`}
                 locations={locations}
                 onStatsLoaded={handleStatsLoaded}
             />
             <div className='w-full flex'>
+                {/* Left Side */}
                 <div className='w-2/3 flex-col mt-4 mr-2'>
                     <div className='w-full flex'>
                         <div className='w-1/2 mr-2'>
@@ -131,10 +134,17 @@ const ItemsDashboard = () => {
                             <StatsBlock label='WEEKLY SALES' value={stats[`${location}_items_${itemName}`]?.weekly_sales?.sales} percentage={stats[`${location}_items_${itemName}`]?.weekly_sales?.percentage} />
                         </div>
                     </div>
+                    <div className='w-full mt-4'>
+                        <MultiGraphPeriodDisplay stats={stats[`${location}_items_${itemName}`]?.period_graphs}/>
+                    </div>
                 </div>
+                {/* Right Side */}
                 <div className='w-1/3 flex-col mt-4 ml-2'>
                     <div className='w-full'>
                         <StatsBlock label='MONTHLY SALES' value={stats[`${location}_items_${itemName}`]?.monthly_sales?.sales} percentage={stats[`${location}_items_${itemName}`]?.monthly_sales?.percentage} />
+                    </div>
+                    <div className='w-full mt-4'>
+                        <WeekSalesDisplay stats={stats[`${location}_items_${itemName}`]?.total_sales_last_week} label={'Total Sales (Last Week)'}/>
                     </div>
                     <div className='mt-4 w-full'>
                         <DailyAverage label='Daily Average (Last 7 Days)' count={stats[`${location}_items_${itemName}`]?.daily_average?.count} percent1={stats[`${location}_items_${itemName}`]?.daily_average?.percentage?.previous_week} percent2={stats[`${location}_items_${itemName}`]?.daily_average?.percentage?.previous_month} />

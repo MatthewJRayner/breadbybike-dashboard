@@ -128,10 +128,6 @@ class TriggerCalculationsView(APIView):
                 location=f'Both_items_{item_name}',
                 defaults={'stats_json': convert_to_serializable(both_stats)}
             )
-
-            orders = OrderLine.objects.filter(name=item_name, date__gte=datetime.now(UTC).date() - relativedelta(days=90))
-            total_sales = orders.aggregate(total=Sum('total_sale'))['total'] or 0
-            print(f"Found {orders.count()} orders for '{item_name}' with total sales: {total_sales}")
             
             return Response({'message': f'Stats calculated for {item_name}'}, 
                            status=status.HTTP_200_OK)

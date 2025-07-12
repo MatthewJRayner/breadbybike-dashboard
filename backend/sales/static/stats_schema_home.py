@@ -26,7 +26,8 @@ home_stats = {
             'previous_month': 0,
             'previous_year': 0
         },
-        'graph': [0] * 30
+        'graph': [0] * 30,
+        'labels': []
     },
     'monthly_stats_tiles': {
         'total_sales_month': Decimal('0.00'),

@@ -8,7 +8,7 @@ const nav_items = [
 
 function Navbar() {
     return (
-        <div className='w-48 p-4 flex flex-col h-screen'>
+        <div className='w-48 p-4 flex-col h-screen'>
             <div className='mb-20 text-x1 font-bold text-center'>
                 <img src='src/assets/bbb_logo.svg' alt='Bread By Bike Logo' className='h-12 mx-auto' />
             </div>

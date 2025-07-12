@@ -4,13 +4,17 @@ import Selector from '../components/Selector';
 import DailyStatsSummary from '../components/home-page/DailyStatsSummary';
 import MonthlyTiles from '../components/home-page/MonthlyTiles';
 import BestSellers from '../components/home-page/BestSellers';
+import YearSalesDisplay from '../components/home-page/YearSalesDisplay';
+import AverageGrowthDisplay from '../components/home-page/AverageGrowthDisplay';
+import MonthSalesDisplay from '../components/home-page/MonthSalesDisplay';
 
 const HomeDashboard = () => {
     const [location, setLocation] = useState('Both');
     const locations = [location];
     const [stats, setStats] = useState({});
-    var current_month = new Date().toLocaleString("en-us", { month: 'long' })
-    var currency_sym = '£'
+    var current_month = new Date().toLocaleString("en-us", { month: 'long' });
+    var current_year = new Date().toLocaleDateString("en-us", { year: 'numeric' })
+    var currency_sym = '£';
 
     // Sets the stats dictionary being displaying to change with the location selector
     const handleStatsLoaded = (data) => {
@@ -35,15 +39,8 @@ const HomeDashboard = () => {
         { label: `Items Sold (${current_month})`, value: stats[location]?.monthly_stats_tiles?.items_sold, viewbox: '0 0 448 512', icon_path: 'M0 80v149.5c0 17 6.7 33.3 18.7 45.3l176 176c25 25 65.5 25 90.5 0l133.5-133.5c25-25 25-65.5 0-90.5l-176-176c-12-12-28.3-18.7-45.3-18.7L48 32C21.5 32 0 53.5 0 80zm112 32a32 32 0 1 1 0 64 32 32 0 1 1 0-64z'},
     ];
 
-    const BestSellersStats = [
-        {},
-        {},
-        {},
-        {},
-    ];
-
     return (
-        <div className='flex-col w-full'>
+        <div className='flex-col'>
             <div className="bg-white shadow-md flex p-4 rounded-2xl text-md items-center">
                 <h1 className="text-black_text mr-12">BBB Dashboard <span className="text-gray-300"> | Home</span></h1>
                 <Selector 
@@ -53,18 +50,34 @@ const HomeDashboard = () => {
                     onChange={setLocation}
                 />
             </div>
+            {/* Load Stats from model */}
             <DashboardDataProvider locations={locations} onStatsLoaded={handleStatsLoaded} />
             <div className='w-full flex'>
+                {/* Left Side */}
                 <div className='w-1/2 flex-col mr-2'>
                     <div className='mt-4 w-full'>
                         <DailyStatsSummary stats={DailyStatsSummaryStats} />
+                    </div>
+                    <div className='flex mt-4 w-full justify-between'>
+                        <div className='mr-2 w-1/2'>
+                            <AverageGrowthDisplay stats={stats[location]?.average_growth_graph} label={'Average Growth'} desc={'Growth to same day previous week'} bottomLabel={'Previous 2 Weeks'}/>
+                        </div>
+                        <div className='ml-2 w-1/2'>
+                            <MonthSalesDisplay stats={stats[location]?.monthly_sales_graph} label={`Total Sales`} desc={'Total Sales over last 30 days'} />
+                        </div>
                     </div>
                     <div className='mt-4 w-full'>
                         <BestSellers stats={stats[location]?.best_sellers}/>
                     </div>
                 </div>
+                {/* Right Side */}
                 <div className='w-1/2 flex-col ml-2'>
-                    <MonthlyTiles stats={MonthlyTilesStats} />
+                    <div className='mt-4 w-full'>
+                        <YearSalesDisplay stats={stats[location]?.year_sales_graph} title={`${current_year} Sales (${location})`} label1={'Total Sales'} label2={'Monthly Average'} height={300} />
+                    </div>
+                    <div className='mt-4 w-full'>
+                        <MonthlyTiles stats={MonthlyTilesStats} />
+                    </div>
                 </div>
             </div>
         </div>
