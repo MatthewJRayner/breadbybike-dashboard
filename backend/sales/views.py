@@ -13,8 +13,7 @@ from sales.config import CONFIG
 import copy
 from square import Square
 from square.environment import SquareEnvironment
-import os
-from django.db.models import Sum
+import time
 
 def home(request):
     return HttpResponse("Django is working!")
@@ -156,3 +155,15 @@ class SquareCatalogItemsView(APIView):
             return Response({'items': item_list})
         except Exception as e:
             return Response({'error': str(e)}, status=500)
+
+class UpdateDailyStatsView(APIView):
+    """
+    Triggers the update_daily_stats command from the frontend, preferably on page load.
+    """
+    
+    def post(self, request, *args, **kwargs):
+        try:
+            call_command('update_daily_stats')
+            return Response({'message': 'Daily stats updated successfully.'}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'error': f'Internal server error: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

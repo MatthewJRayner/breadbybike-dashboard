@@ -58,11 +58,11 @@ const HomeDashboard = () => {
                     <div className='mt-4 w-full'>
                         <DailyStatsSummary stats={DailyStatsSummaryStats} />
                     </div>
-                    <div className='flex mt-4 w-full justify-between'>
-                        <div className='mr-2 w-1/2'>
+                    <div className='grid grid-cols-2 mt-4 w-full justify-between'>
+                        <div className='mr-2'>
                             <AverageGrowthDisplay stats={stats[location]?.average_growth_graph} label={'Average Growth'} desc={'Growth to same day previous week'} bottomLabel={'Previous 2 Weeks'}/>
                         </div>
-                        <div className='ml-2 w-1/2'>
+                        <div className='ml-2'>
                             <MonthSalesDisplay stats={stats[location]?.monthly_sales_graph} label={`Total Sales`} desc={'Total Sales over last 30 days'} />
                         </div>
                     </div>

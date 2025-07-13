@@ -48,4 +48,4 @@ def fetch_orders_new():
         if not cursor:
             break
     
-    return order_entries
+    return order_entries if len(order_entries) > 1 else []

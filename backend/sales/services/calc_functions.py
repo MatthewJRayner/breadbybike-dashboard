@@ -365,5 +365,5 @@ def calc_daily_stats_items(dictionary, querylist):
     
     # Post loop calculations
     dictionary['daily_items_stats']['daily_sales']['percentage'] = percent_increase(dictionary['daily_items_stats']['daily_sales']['sales'], helper['previous_week']['sales'])
-    temp_datetime = datetime.combine(datetime.now(UTC).date(), dictionary['daily_items_stats']['recent_time'])
+    temp_datetime = datetime.combine(datetime.now(UTC).date(), time.fromisoformat(str(dictionary['daily_items_stats']['recent_time'])))
     dictionary['daily_items_stats']['recent_time'] = (temp_datetime + timedelta(hours=1)).time() if datetime.now(UTC) != datetime.now() else dictionary['daily_items_stats']['recent_time']
