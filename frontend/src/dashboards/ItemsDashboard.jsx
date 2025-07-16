@@ -88,6 +88,11 @@ const ItemsDashboard = () => {
 
     return (
         <div className='flex-col'>
+            <DashboardDataProvider
+                key={`${location}-${itemName}-${needsCalculation}-${loading}`}
+                locations={locations}
+                onStatsLoaded={handleStatsLoaded}
+            />
             <div className="bg-white shadow-md flex p-4 rounded-2xl text-md items-center">
                 <h1 className="text-black_text mr-12">BBB Dashboard <span className="text-gray-300"> | Items</span></h1>
                 <Selector 
@@ -117,12 +122,6 @@ const ItemsDashboard = () => {
                     </button>
                 )}
             </div>
-            {/* Load Stats from model */}
-            <DashboardDataProvider
-                key={`${location}-${itemName}-${needsCalculation}-${loading}`}
-                locations={locations}
-                onStatsLoaded={handleStatsLoaded}
-            />
             <div className='w-full flex'>
                 {/* Left Side */}
                 <div className='w-2/3 flex-col mt-4 mr-2'>

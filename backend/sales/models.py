@@ -73,3 +73,24 @@ class DailyOrderSnapshot(models.Model):
     
     def __str__(self):
         return f"Order {self.name} x{self.quantity} at {self.time} {self.date} ({self.location})"
+    
+
+class ShopifyOrders(models.Model):
+    """
+    Captures all orders to display for the Front of House on the site, these will only be orders that are marked as Pickup or 'Store Pickup'
+    """
+    order_id = models.CharField(max_length=100, unique=True)
+    delivery_date = models.DateField()
+    customer_name_first = models.CharField(max_length=255, blank=True, null=True)
+    customer_name_last = models.CharField(max_length=255, blank=True, null=True)
+    line_items = models.JSONField()
+    notes = models.TextField(blank=True, null=True)
+    method = models.TextField(blank=True, null=True)
+    
+    class Meta:
+        indexes = [
+            models.Index(fields=['delivery_date']),
+        ]
+    
+    def __str__(self):
+        return f"{self.order_id} | {self.customer_name_first} {self.customer_name_last} | {self.line_items}"

@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from sales.models import OrderStats, OrderLine, DailyOrderSnapshot
+from sales.models import OrderStats, OrderLine, DailyOrderSnapshot, ShopifyOrders
 from dateutil.relativedelta import relativedelta
 from datetime import datetime, UTC
 from sales.services.calc_functions import calc_items_stats, calc_daily_stats_items, convert_to_serializable
@@ -167,3 +167,23 @@ class UpdateDailyStatsView(APIView):
             return Response({'message': 'Daily stats updated successfully.'}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': f'Internal server error: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+class ShopifyOrdersView(APIView):
+    def get(self, request):
+        try:
+            orders = ShopifyOrders.objects.all().order_by('delivery_date')
+            data = [
+                {
+                    'order_id': order.order_id,
+                    'delivery_date': order.delivery_date,
+                    'customer_name_first': order.customer_name_first,
+                    'customer_name_last': order.customer_name_last,
+                    'line_items': order.line_items,
+                    'notes': order.notes,
+                    'method': order.method
+                }
+                for order in orders
+            ]
+            return Response(data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'error': f'Internal error: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

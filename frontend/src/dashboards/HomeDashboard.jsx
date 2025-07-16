@@ -41,6 +41,7 @@ const HomeDashboard = () => {
 
     return (
         <div className='flex-col'>
+            <DashboardDataProvider locations={locations} onStatsLoaded={handleStatsLoaded} />
             <div className="bg-white shadow-md flex p-4 rounded-2xl text-md items-center">
                 <h1 className="text-black_text mr-12">BBB Dashboard <span className="text-gray-300"> | Home</span></h1>
                 <Selector 
@@ -51,7 +52,6 @@ const HomeDashboard = () => {
                 />
             </div>
             {/* Load Stats from model */}
-            <DashboardDataProvider locations={locations} onStatsLoaded={handleStatsLoaded} />
             <div className='w-full flex'>
                 {/* Left Side */}
                 <div className='w-1/2 flex-col mr-2'>
