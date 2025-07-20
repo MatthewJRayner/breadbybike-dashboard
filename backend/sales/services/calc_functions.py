@@ -118,9 +118,6 @@ def calc_home_stats(dictionary, querylist):
                 dictionary['monthly_stats_tiles']['items_sold'] += int(order.quantity)
                 helper['monthly_stats_tiles']['total_lost'] += (order.tax + order.discount + order.service_charge)
             
-            if order.date.month == current_month - 1:
-                helper['monthly_sales_graph']['previous_month_sales'] += order.total_sale
-            
             # ORDER TAKEN FROM EVERY MONTH CURRENT YEAR
             dictionary['year_sales_graph']['graph'][f'month{order.date.month}'] += order.total_sale
             

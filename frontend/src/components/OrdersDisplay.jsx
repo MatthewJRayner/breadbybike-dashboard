@@ -6,7 +6,7 @@ const OrdersDisplay = ({ orders, title, maxHeight = null }) => {
             <div className='text-black_text font-medium text-2xl'>{title.toUpperCase()}</div>
 
             {orders.length === 0 ? (
-                <div className='text-gray-400 text-normal font-semibold italic'>No orders found.</div>
+                <div className='text-bbb-blue-200 text-normal font-medium italic mt-2'>No orders found.</div>
             ) : (
                 <div className='flex max-w-full'>
                     <div className='text-left w-fit mr-10'>

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import ShopifyOrdersProvider from '../components/ShopifyOrdersProvider';
 import OrdersDisplay from '../components/OrdersDisplay';
+import useRequireAccessLevel from '../components/requireAccessLevel';
 
 function Orders() {
-    const [orders, setOrders] = useState([]);
+    useRequireAccessLevel('staff')
 
+    const [orders, setOrders] = useState([]);
     const today = new Date().toISOString().split('T')[0];
     const todaysOrders = orders.filter(o => o.delivery_date === today);
     const futureOrders = orders.filter(o => o.delivery_date > today);
