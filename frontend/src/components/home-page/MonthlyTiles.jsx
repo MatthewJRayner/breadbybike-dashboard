@@ -2,7 +2,7 @@ import React from 'react';
 
 const MonthlyTiles = ({ stats }) => {
     return (
-        <div className='grid grid-cols-2 w-full'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 w-full'>
             {Array.isArray(stats) && stats.length > 0 ? (
                 stats.map((stat, idx) => {
                     const isSpecial = idx === 1 || idx === 2;
@@ -16,8 +16,8 @@ const MonthlyTiles = ({ stats }) => {
                     
                     const isLeft = idx === 0 || idx === 2;
                     const marginClass = isLeft
-                        ? 'mr-2'
-                        : 'ml-2'
+                        ? 'sm:mr-2'
+                        : 'sm:ml-2'
                     const isCurrency = Boolean(stat.currency);
                     const formattedValue = new Intl.NumberFormat('en-UK', {
                         style: 'decimal',

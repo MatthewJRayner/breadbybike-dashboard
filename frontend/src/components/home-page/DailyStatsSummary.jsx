@@ -2,7 +2,7 @@ import React from 'react';
 
 const DailyStatsSummary = ({stats}) => {
     return (
-        <div className="grid grid-cols-3 bg-white pt-6 pl-6 pr-4 rounded-md shadow-md w-full">
+        <div className="grid grid-cols-2 sm:grid-cols-3 bg-white pt-6 pl-6 pr-4 rounded-md shadow-md w-full">
             {Array.isArray(stats) && stats.length > 0 ? (
                 stats.map((stat, idx) => {
                     const isCurrency = Boolean(stat.currency);
@@ -19,12 +19,12 @@ const DailyStatsSummary = ({stats}) => {
                                     <path d={stat.icon_path} />
                                 </svg>
                             </div>
-                            <div className='w-4/5 pr-4'> 
-                                <div className="text-md font-semibold text-black_text">
+                            <div className='w-4/5 pr-2 sm:pr-4 ml-2 sm:ml-0'> 
+                                <div className="text-sm sm:text-md font-semibold text-black_text">
                                     {stat.currency || ''}
                                     {formattedValue}
                                 </div>
-                                <div className="text-gray-400 font-normal text-[11px]">{stat.label}</div>
+                                <div className="text-gray-400 font-normal text-[8px] sm:text-[11px]">{stat.label}</div>
                             </div>
                         </div>
                     );

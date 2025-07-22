@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BarChart from '../Graphs/BarChart';
 import LineChart from '../Graphs/LineChart';
 import Selector from '../Selector';
 
 const MultiGraphPeriodDisplay = ({ stats }) => {
     const [type, setType] = useState('Weekday Average');
-    const [period, setPeriod] = useState('Last Month');
+    const [period, setPeriod] = useState('Last Month'); 
     const periodKey = period.toLowerCase().replace(/\s+/g, '_');
     const getBarData = (type, period) => {
         if (type === 'Weekday Average') {
@@ -34,7 +34,34 @@ const MultiGraphPeriodDisplay = ({ stats }) => {
     const height = 517
     
     // Dynamically change bar thickness
-    const chartThickness = labels.length === 7 ? 50 : 20
+    const numBars = labels.length
+    const [chartThickness, setChartThickness] = useState(40);
+    useEffect(() => {
+        const handleResize = () => {
+            const screenWidth = window.innerWidth;
+
+            let baseThickness;
+            if (screenWidth < 640) {
+                baseThickness = 20;
+            } else if (screenWidth < 768) {
+                baseThickness = 25;
+            } else if (screenWidth < 1024) {
+                baseThickness = 35;
+            } else {
+                baseThickness = 40;
+            }
+
+            const maxBars = 12;
+            const minThickness = 10;
+            const calculated = Math.max(minThickness, Math.min(baseThickness, baseThickness * (maxBars / Math.max(numBars, 1))));
+
+            setChartThickness(calculated);
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [numBars])
     const showYLabel= labels.length === 7 ? true : false
 
 

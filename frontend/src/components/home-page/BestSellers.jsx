@@ -15,7 +15,7 @@ const BestSellers = ({stats}) => {
     })) || [];
 
     return (
-        <div className='rounded-md shadow-md flex-col bg-white p-4'>
+        <div className='rounded-md shadow-md flex-col bg-white p-4 sm:p-4'>
             <div className='flex justify-between items-center'>
                 <div className='font-medium text-base text-gray-400'>Best Sellers</div>
                 <div className='text-sm'>
@@ -31,7 +31,7 @@ const BestSellers = ({stats}) => {
                 {BestSellerStats.map((stat, idx) => (
                     <div key={idx} className='flex w-full justify-between items-center mt-3'>
                         <div className='flex items-center'>
-                            <h1 className='mr-2 text-lg font-semibold text-black_text'>{stat.name}</h1>
+                            <h1 className='mr-2 text-sm sm:text-lg font-semibold text-black_text'>{stat.name}</h1>
                             <div className='flex items-center font-normal'>
                                 <h3 className='mr-2 text-sm font-normal'>
                                     {new Intl.NumberFormat('en-GB', {
@@ -43,7 +43,7 @@ const BestSellers = ({stats}) => {
                                 <p className='text-xs font-medium text-gray-500'>{stat.count}</p>
                             </div>
                         </div>
-                        <div className='text-bbb-blue-500 mr-10 font-semibold'>
+                        <div className='text-bbb-blue-500 mr-4 sm:mr-10 font-semibold'>
                             {stat.percentage}%
                         </div>
                     </div>

@@ -10,18 +10,25 @@ const Login = ({ setAccessLevel }) => {
     const [code, setCode] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const now = new Date().getTime();
+    localStorage.setItem('sessionStart', now.toString());
     const accessLevel = localStorage.getItem('accessLevel');
+
     if (accessLevel === 'manager') return <Navigate to='/' replace />;
     if (accessLevel === 'staff') return <Navigate to='/orders' replace />;
 
     const handleLogin = (e) => {
         e.preventDefault();
+        const now = new Date().getTime();
+
         if (code === ACCESS_CODES.manager) {
             localStorage.setItem('accessLevel', 'manager');
+            localStorage.setItem('sessionStart', now.toString());
             setAccessLevel('manager');
             navigate('/');
         } else if (code === ACCESS_CODES.staff) {
             localStorage.setItem('accessLevel', 'staff');
+            localStorage.setItem('sessionStart', now.toString());
             setAccessLevel('staff');
             navigate('/orders');
         } else {

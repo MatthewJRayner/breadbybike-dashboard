@@ -11,10 +11,19 @@ import './App.css'
 
 const App = () => {
   const [accessLevel, setAccessLevel] = useState(localStorage.getItem('accessLevel'));
+  const SESSION_DURATION = 30 * 60 * 1000; // 30 Minutes in ms
 
   useEffect(() => {
-    const stored = localStorage.getItem('accessLevel');
-    setAccessLevel(stored);
+    const storedAccess = localStorage.getItem('accessLevel');
+    const sessionStart = parseInt(localStorage.getItem('sessionStart'), 10);
+    const now = new Date().getTime();
+    if (storedAccess && sessionStart && now - sessionStart < SESSION_DURATION) {
+      setAccessLevel(storedAccess);
+    } else {
+      localStorage.removeItem('accessLevel');
+      localStorage.removeItem('sessionStart');
+      setAccessLevel(null);
+    }
   }, []);
 
   useEffect(() => {
@@ -38,9 +47,9 @@ const App = () => {
   return (
     <Router>
       <div className='flex-col'>
-        <div className='flex'>
+        <div className='flex flex-col lg:flex-row'>
           <Navbar />
-          <div className='flex-col p-6 overflow-auto min-h-screen w-full'>
+          <div className='flex-col p-4 overflow-auto min-h-screen w-full'>
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/items' element={<Items />} />

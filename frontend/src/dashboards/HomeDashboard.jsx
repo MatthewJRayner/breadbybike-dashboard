@@ -42,8 +42,8 @@ const HomeDashboard = () => {
     return (
         <div className='flex-col'>
             <DashboardDataProvider locations={locations} onStatsLoaded={handleStatsLoaded} />
-            <div className="bg-white shadow-md flex p-4 rounded-2xl text-md items-center">
-                <h1 className="text-black_text mr-12">BBB Dashboard <span className="text-gray-300"> | Home</span></h1>
+            <div className="bg-white shadow-md flex p-4 rounded-2xl text-md items-center justify-center md:justify-start">
+                <h1 className="text-gray-300 mr-4 md:mr-12 inline-block"><span className='text-black_text hidden md:inline-block'>BBB Dashboard </span> <span className='hidden md:inline-block'> | </span><span className='text-black_text md:text-gray-300 font-semibold md:font-normal'> Home</span></h1>
                 <Selector 
                     label="Location: "
                     value={location}
@@ -52,17 +52,17 @@ const HomeDashboard = () => {
                 />
             </div>
             {/* Load Stats from model */}
-            <div className='w-full flex'>
+            <div className='w-full flex flex-col lg:flex-row'>
                 {/* Left Side */}
-                <div className='w-1/2 flex-col mr-2'>
+                <div className='w-full lg:w-1/2 flex-col lg:mr-2'>
                     <div className='mt-4 w-full'>
                         <DailyStatsSummary stats={DailyStatsSummaryStats} />
                     </div>
-                    <div className='grid grid-cols-2 mt-4 w-full justify-between'>
-                        <div className='mr-2'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 sm:mt-4 justify-between'>
+                        <div className='mt-4 sm:mt-0 sm:mr-2'>
                             <AverageGrowthDisplay stats={stats[location]?.average_growth_graph} label={'Average Growth'} desc={'Growth to same day previous week'} bottomLabel={'Previous 2 Weeks'}/>
                         </div>
-                        <div className='ml-2'>
+                        <div className='mt-4 sm:mt-0 sm:ml-2'>
                             <MonthSalesDisplay stats={stats[location]?.monthly_sales_graph} label={`Total Sales`} desc={'Total Sales over last 30 days'} />
                         </div>
                     </div>
@@ -71,9 +71,9 @@ const HomeDashboard = () => {
                     </div>
                 </div>
                 {/* Right Side */}
-                <div className='w-1/2 flex-col ml-2'>
+                <div className='w-full lg:w-1/2 flex-col lg:ml-2'>
                     <div className='mt-4 w-full'>
-                        <YearSalesDisplay stats={stats[location]?.year_sales_graph} title={`${current_year} Sales (${location})`} label1={'Total Sales'} label2={'Monthly Average'} height={300} />
+                        <YearSalesDisplay stats={stats[location]?.year_sales_graph} title={`${current_year} Sales (${location})`} label1={'Total Sales'} label2={'Monthly Average'} height={300}/>
                     </div>
                     <div className='mt-4 w-full'>
                         <MonthlyTiles stats={MonthlyTilesStats} />

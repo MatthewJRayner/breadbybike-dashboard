@@ -93,23 +93,27 @@ const ItemsDashboard = () => {
                 locations={locations}
                 onStatsLoaded={handleStatsLoaded}
             />
-            <div className="bg-white shadow-md flex p-4 rounded-2xl text-md items-center">
-                <h1 className="text-black_text mr-12">BBB Dashboard <span className="text-gray-300"> | Items</span></h1>
-                <Selector 
-                    label="Location: "
-                    value={location}
-                    options={['Both', 'Cafe', 'Bakery']}
-                    onChange={setLocation}
-                />
-                <Selector 
-                    label="Items: "
-                    value={itemName}
-                    options={items}
-                    onChange={handleItemChange}
-                />
+            <div className="bg-white shadow-md flex flex-wrap p-4 rounded-2xl text-sm sm:text-md items-center justify-between sm:justify-start">
+                <h1 className="text-gray-300 mr-4 md:mr-8 inline-block"><span className='text-black_text hidden md:inline-block'>BBB Dashboard </span> <span className='hidden md:inline-block'> | </span><span className='text-black_text md:text-gray-300 font-semibold md:font-normal'> Items</span></h1>
+                <div className='mr-4'>
+                    <Selector 
+                        label="Location: "
+                        value={location}
+                        options={['Both', 'Cafe', 'Bakery']}
+                        onChange={setLocation}
+                    />
+                </div>
+                <div className='mr-4'>
+                    <Selector 
+                        label="Items: "
+                        value={itemName}
+                        options={items}
+                        onChange={handleItemChange}
+                    />
+                </div>
                 {needsCalculation && (
                     <button
-                        className="ml-4 p-2 bg-bbb-blue-500 text-white rounded-lg hover:bg-bbb-blue-800 disabled:opacity-50"
+                        className="ml-2 p-2 bg-bbb-blue-500 text-white rounded-lg hover:bg-bbb-blue-800 disabled:opacity-50"
                         onClick={() => triggerCalculation(location, itemName)}
                         disabled={loading} // Disable during loading
                     >
@@ -122,14 +126,14 @@ const ItemsDashboard = () => {
                     </button>
                 )}
             </div>
-            <div className='w-full flex'>
+            <div className='w-full flex flex-col lg:flex-row'>
                 {/* Left Side */}
-                <div className='w-2/3 flex-col mt-4 mr-2'>
-                    <div className='w-full flex'>
-                        <div className='w-1/2 mr-2'>
+                <div className='w-full lg:w-2/3 flex-col mt-0 lg:mt-4 lg:mr-2'>
+                    <div className='w-full flex flex-col lg:flex-row'>
+                        <div className='w-full lg:w-1/2 mt-4 lg:mt-0 lg:mr-2'>
                             <StatsBlock label='DAILY SALES' value={stats[`${location}_items_${itemName}`]?.daily_items_stats?.daily_sales?.sales} percentage={stats[`${location}_items_${itemName}`]?.daily_items_stats?.daily_sales?.percentage} />
                         </div>
-                        <div className='w-1/2 ml-2'>
+                        <div className='w-full lg:w-1/2 mt-4 lg:mt-0 lg:ml-2'>
                             <StatsBlock label='WEEKLY SALES' value={stats[`${location}_items_${itemName}`]?.weekly_sales?.sales} percentage={stats[`${location}_items_${itemName}`]?.weekly_sales?.percentage} />
                         </div>
                     </div>
@@ -138,7 +142,7 @@ const ItemsDashboard = () => {
                     </div>
                 </div>
                 {/* Right Side */}
-                <div className='w-1/3 flex-col mt-4 ml-2'>
+                <div className='w-full lg:w-1/3 flex-col mt-4 lg:ml-2'>
                     <div className='w-full'>
                         <StatsBlock label='MONTHLY SALES' value={stats[`${location}_items_${itemName}`]?.monthly_sales?.sales} percentage={stats[`${location}_items_${itemName}`]?.monthly_sales?.percentage} />
                     </div>

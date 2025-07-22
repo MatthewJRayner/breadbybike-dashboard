@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import BarChart from '../Graphs/BarChart';
 
 const WeekSalesDisplay = ({ stats, label }) => {
@@ -9,6 +9,34 @@ const WeekSalesDisplay = ({ stats, label }) => {
         : 'M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8V64c0-17.7-14.3-32-32-32s-32 14.3-32 32v306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z'
     const currency_loc = 'GBP'
     const highestValue = data.length > 0 ? Math.max(...data) : 0;
+    const numBars = labels.length
+    const [chartThickness, setChartThickness] = useState(40);
+    useEffect(() => {
+        const handleResize = () => {
+            const screenWidth = window.innerWidth;
+
+            let baseThickness;
+            if (screenWidth < 640) {
+                baseThickness = 25;
+            } else if (screenWidth < 768) {
+                baseThickness = 25;
+            } else if (screenWidth < 1024) {
+                baseThickness = 35;
+            } else {
+                baseThickness = 40;
+            }
+
+            const maxBars = 12;
+            const minThickness = 10;
+            const calculated = Math.max(minThickness, Math.min(baseThickness, baseThickness * (maxBars / Math.max(numBars, 1))));
+
+            setChartThickness(calculated);
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [numBars])
     
         return (
         <div className='flex-col bg-white rounded-md shadow-md'>
@@ -32,7 +60,7 @@ const WeekSalesDisplay = ({ stats, label }) => {
                     xLabels={labels}
                     data={data}
                     chartHeight={300}
-                    chartThickness={30}
+                    chartThickness={chartThickness}
                     chartStepSize={(Math.round(highestValue / 10) * 10) / 3}
                     showYLabels={false}
                 />

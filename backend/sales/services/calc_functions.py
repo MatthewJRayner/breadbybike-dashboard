@@ -261,8 +261,6 @@ def calc_items_stats(dictionary, querylist):
             dictionary['monthly_sales']['sales'] += order.total_sale
             dictionary['period_graphs']['last_month']['daily']['graph'][days_ago-1] += order.quantity
             dictionary['period_graphs']['last_month']['weekday_average']['graph'][order.date.weekday()] += order.quantity
-            helper['monthly_sales']['previous_month'] += order.total_sale
-            helper['daily_average']['previous_month_count'][days_ago - 1] += order.quantity
             if 0 <= time_block_index < 16:
                 dictionary['period_graphs']['last_month']['time_of_day_average']['graph'][time_block_index] += order.quantity
             
