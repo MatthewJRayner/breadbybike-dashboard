@@ -1,6 +1,5 @@
 from django.core.management.base import BaseCommand
 from sales.models import OrderLine
-from sales.config import CONFIG
 from sales.services.fetch_orders_all import fetch_orders_all
 
 class Command(BaseCommand):
