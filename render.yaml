@@ -11,9 +11,3 @@ services:
       - key: PYTHON_VERSION
         value: 3.11
       - fromDotEnv: true  # Optional: pulls values from .env if added via Render dashboard
-
-  - type: static
-    name: bbb-frontend
-    rootDir: frontend
-    buildCommand: "npm install && npm run build"
-    staticPublishPath: "dist"  # Change to "build" if using CRA (Create React App)
