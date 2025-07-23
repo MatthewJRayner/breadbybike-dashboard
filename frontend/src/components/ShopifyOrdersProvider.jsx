@@ -8,7 +8,7 @@ const ShopifyOrdersProvider = ({ onOrdersLoaded }) => {
     useEffect (() => {
         const fetchOrders = async () => {
             setLoading(true);
-            const url = 'http://localhost:8000/api/shopify-orders/';
+            const url = 'https://breadbybike-dashboard-backend.onrender.com/api/shopify-orders/';
             console.log(`Fetching stats from ${url}`)
 
             try {

@@ -14,7 +14,7 @@ export const updateCooldownCheck = () => {
 
 export const triggerStatsUpdate = async () => {
     try {
-        const response = await fetch('http://localhost:8000/api/update-daily-stats/', {
+        const response = await fetch('https://breadbybike-dashboard-backend.onrender.com/api/update-daily-stats/', {
             method: 'POST',
         });
         if (!response.ok) {

@@ -1,5 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
+import logo from '../assets/bbb_logo.svg'
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -22,7 +23,7 @@ const Navbar = () => {
         <div className='w-full lg:w-48 lg:h-screen p-4 flex-col'>
             {/* Logo and Hamburger */}
             <div className='flex items-center justify-between lg:justify-center lg:mb-16 lg:mt-3'>
-                <img src='src/assets/bbb_logo.svg' alt='Bread By Bike Logo' className='h-5 lg:h-10' />
+                <img src={logo} alt='Bread By Bike Logo' className='h-5 lg:h-10' />
                 <button className='lg:hidden focus:outline-none' onClick={() => setMenuOpen(!menuOpen)} aria-label='Toggle Menu'>
                     <svg class='fill-bbb-blue-500 size-5' viewBox='0 0 640 640'>
                         <path d='M96 160c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H128c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H128c-17.7 0-32-14.3-32-32zm448 160c0 17.7-14.3 32-32 32H128c-17.7 0-32-14.3-32-32s14.3-32 32-32h384c17.7 0 32 14.3 32 32z' />
