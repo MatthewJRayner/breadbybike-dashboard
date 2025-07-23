@@ -6,7 +6,7 @@ from dateutil.relativedelta import relativedelta
 from sales.services.calc_functions import calc_items_stats, convert_to_serializable, calc_daily_stats_home, calc_daily_stats_items, convert_from_serializable
 from sales.static.stats_schema_items import items_stats
 from sales.static.stats_schema_home import home_stats
-from sales.config import CONFIG
+from django.conf import settings
 import json
 import copy
 
@@ -56,11 +56,11 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS(f'Successfully imported {len(today_orders)} new daily orders.'))   
             
             # Perform calculations on objects in DailyOrderSnapshot
-            calc_daily_stats_home(bakery_stats_dict, DailyOrderSnapshot.objects.filter(location=CONFIG['BAKERY_ID']))
-            calc_daily_stats_home(cafe_stats_dict, DailyOrderSnapshot.objects.filter(location=CONFIG['CAFE_ID']))
+            calc_daily_stats_home(bakery_stats_dict, DailyOrderSnapshot.objects.filter(location=settings.CONFIG['BAKERY_ID']))
+            calc_daily_stats_home(cafe_stats_dict, DailyOrderSnapshot.objects.filter(location=settings.CONFIG['CAFE_ID']))
             calc_daily_stats_home(both_stats_dict, DailyOrderSnapshot.objects.all())
-            calc_daily_stats_items(bakery_cinnamon_dict, DailyOrderSnapshot.objects.filter(name__icontains=item_name, location=CONFIG['BAKERY_ID']))
-            calc_daily_stats_items(cafe_cinnamon_dict, DailyOrderSnapshot.objects.filter(name__icontains=item_name, location=CONFIG['CAFE_ID']))
+            calc_daily_stats_items(bakery_cinnamon_dict, DailyOrderSnapshot.objects.filter(name__icontains=item_name, location=settings.CONFIG['BAKERY_ID']))
+            calc_daily_stats_items(cafe_cinnamon_dict, DailyOrderSnapshot.objects.filter(name__icontains=item_name, location=settings.CONFIG['CAFE_ID']))
             calc_daily_stats_items(both_cinnamon_dict, DailyOrderSnapshot.objects.filter(name__icontains=item_name))
             
             # Upload the stats to the OrderStats model

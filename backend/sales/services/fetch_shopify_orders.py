@@ -1,6 +1,6 @@
 import requests
 import json
-from sales.config import CONFIG
+from django.conf import settings
 from datetime import datetime, UTC, timedelta
 
 
@@ -18,10 +18,10 @@ def fetch_shopify_orders():
         'limit': 250
     }
     headers = {
-        'X-Shopify-Access-Token': CONFIG['SHOPIFY_ACCESS_TOKEN'],
+        'X-Shopify-Access-Token': settings.CONFIG['SHOPIFY_ACCESS_TOKEN'],
         'Content-Type': 'application/json'
     }
-    url = f"https://{CONFIG['SHOPIFY_SHOP_URL']}/admin/api/{CONFIG['SHOPIFY_API_VERSION']}/orders.json"
+    url = f"https://{settings.CONFIG['SHOPIFY_SHOP_URL']}/admin/api/{settings.CONFIG['SHOPIFY_API_VERSION']}/orders.json"
 
     # Request and filtering
     pickup_orders = []

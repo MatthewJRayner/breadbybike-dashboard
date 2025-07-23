@@ -3,13 +3,13 @@ from square.environment import SquareEnvironment
 from sales.models import OrderLine
 from datetime import datetime, timedelta, UTC
 from dateutil.relativedelta import relativedelta
-from sales.config import CONFIG
+from django.conf import settings
 
 def fetch_orders_new():
     """ Returns all orders since the most recent time in the database until now"""
     client = Square(
         environment=SquareEnvironment.PRODUCTION,
-        token=CONFIG['SQUARE_ACCESS_TOKEN']
+        token=settings.CONFIG['SQUARE_ACCESS_TOKEN']
     )
     
     latest_order = OrderLine.objects.order_by('-date', '-time').first()
@@ -23,7 +23,7 @@ def fetch_orders_new():
     cursor = None
     while True:
         order_response = client.orders.search(
-            location_ids=[CONFIG['BAKERY_ID'], CONFIG['CAFE_ID']],
+            location_ids=[settings.CONFIG['BAKERY_ID'], settings.CONFIG['CAFE_ID']],
             query={
                 'filter': {
                     'date_time_filter': {

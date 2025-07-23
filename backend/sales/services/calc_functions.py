@@ -4,7 +4,6 @@ from decimal import Decimal
 from dateutil.relativedelta import relativedelta
 from sales.static.stats_schema_home import home_stats
 from sales.static.stats_schema_items import items_stats
-from sales.config import CONFIG
 
 # VARIABLES AND CONSTANTS
 today = datetime.now(UTC).date()

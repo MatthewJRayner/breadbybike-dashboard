@@ -42,7 +42,7 @@ const MultiGraphPeriodDisplay = ({ stats }) => {
 
             let baseThickness;
             if (screenWidth < 640) {
-                baseThickness = 20;
+                baseThickness = 15;
             } else if (screenWidth < 768) {
                 baseThickness = 25;
             } else if (screenWidth < 1024) {

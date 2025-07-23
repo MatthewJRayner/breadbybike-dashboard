@@ -9,7 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.core.management import call_command
 from sales.static.stats_schema_items import items_stats
-from sales.config import CONFIG
+from django.conf import settings
 import copy
 from square import Square
 from square.environment import SquareEnvironment
@@ -87,36 +87,36 @@ class TriggerCalculationsView(APIView):
             # Create filters based on stats from only the last 90 days
             if item_name == 'All':
                 bakery_order_lines = OrderLine.objects.filter( 
-                    location=CONFIG['BAKERY_ID'], 
+                    location=settings.CONFIG['BAKERY_ID'], 
                     date__gte=datetime.now(UTC).date() - relativedelta(days=90)
                 )
                 cafe_order_lines = OrderLine.objects.filter(
-                    location=CONFIG['CAFE_ID'], 
+                    location=settings.CONFIG['CAFE_ID'], 
                     date__gte=datetime.now(UTC).date() - relativedelta(days=90)
                 )
                 both_order_lines = OrderLine.objects.filter(
                     date__gte=datetime.now(UTC).date() - relativedelta(days=90)
                 )
-                bakery_daily_orders = DailyOrderSnapshot.objects.filter(location=CONFIG['BAKERY_ID'])
-                cafe_daily_orders = DailyOrderSnapshot.objects.filter(location=CONFIG['CAFE_ID'])
+                bakery_daily_orders = DailyOrderSnapshot.objects.filter(location=settings.CONFIG['BAKERY_ID'])
+                cafe_daily_orders = DailyOrderSnapshot.objects.filter(location=settings.CONFIG['CAFE_ID'])
                 both_daily_orders = DailyOrderSnapshot.objects.all()
             else:
                 bakery_order_lines = OrderLine.objects.filter( 
                     name=item_name,
-                    location=CONFIG['BAKERY_ID'], 
+                    location=settings.CONFIG['BAKERY_ID'], 
                     date__gte=datetime.now(UTC).date() - relativedelta(days=90)
                 )
                 cafe_order_lines = OrderLine.objects.filter(
                     name=item_name,
-                    location=CONFIG['CAFE_ID'], 
+                    location=settings.CONFIG['CAFE_ID'], 
                     date__gte=datetime.now(UTC).date() - relativedelta(days=90)
                 )
                 both_order_lines = OrderLine.objects.filter(
                     name=item_name,
                     date__gte=datetime.now(UTC).date() - relativedelta(days=90)
                 )
-                bakery_daily_orders = DailyOrderSnapshot.objects.filter(name=item_name, location=CONFIG['BAKERY_ID'])
-                cafe_daily_orders = DailyOrderSnapshot.objects.filter(name=item_name, location=CONFIG['CAFE_ID'])
+                bakery_daily_orders = DailyOrderSnapshot.objects.filter(name=item_name, location=settings.CONFIG['BAKERY_ID'])
+                cafe_daily_orders = DailyOrderSnapshot.objects.filter(name=item_name, location=settings.CONFIG['CAFE_ID'])
                 both_daily_orders = DailyOrderSnapshot.objects.filter(name=item_name)
             
             if both_order_lines.exists() and both_daily_orders.exists():

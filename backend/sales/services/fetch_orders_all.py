@@ -3,14 +3,14 @@ from square.environment import SquareEnvironment
 from sales.models import OrderLine
 from datetime import datetime, UTC, timedelta
 from dateutil.relativedelta import relativedelta
-from sales.config import CONFIG
+from django.conf import settings
 
 def fetch_orders_all():
     """ Returns all orders from first day of previous month last year (roughly 13 months)"""
     order_entries = []
     client = Square(
         environment=SquareEnvironment.PRODUCTION,
-        token=CONFIG['SQUARE_ACCESS_TOKEN']
+        token=settings.CONFIG['SQUARE_ACCESS_TOKEN']
     )
     end_date = datetime.now(UTC).date()
     start_date = (end_date - relativedelta(years=1, months=1)).replace(day=1)
@@ -19,13 +19,13 @@ def fetch_orders_all():
     for i in range(delta_days):
         current_date = start_date + timedelta(days=i)
         date_str = current_date.isoformat()
-        start_at = f"{date_str}{CONFIG['SQUARE_API_START_TIME']}"
-        end_at = f"{date_str}{CONFIG['SQUARE_API_END_TIME']}"
+        start_at = f"{date_str}{settings.CONFIG['SQUARE_API_START_TIME']}"
+        end_at = f"{date_str}{settings.CONFIG['SQUARE_API_END_TIME']}"
         
         cursor = None
         while True:
             order_response = client.orders.search(
-                location_ids = [CONFIG['BAKERY_ID'], CONFIG['CAFE_ID']],
+                location_ids = [settings.CONFIG['BAKERY_ID'], settings.CONFIG['CAFE_ID']],
                 query={
                     'filter': {
                         'date_time_filter': {

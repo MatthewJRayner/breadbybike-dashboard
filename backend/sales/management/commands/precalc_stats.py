@@ -4,7 +4,7 @@ from datetime import datetime, UTC, time
 from dateutil.relativedelta import relativedelta
 from sales.static.stats_schema_home import home_stats
 from sales.static.stats_schema_items import items_stats
-from sales.config import CONFIG
+from django.conf import settings
 from sales.services.calc_functions import calc_home_stats, calc_items_stats, convert_to_serializable
 import copy
 
@@ -29,11 +29,11 @@ class Command(BaseCommand):
         
         # Perform calculations for all stats
         calc_home_stats(both_home_stats, OrderLine.objects.all().order_by('-date'))
-        calc_home_stats(bakery_home_stats, OrderLine.objects.filter(location=CONFIG['BAKERY_ID']).order_by('-date'))
-        calc_home_stats(cafe_home_stats, OrderLine.objects.filter(location=CONFIG['CAFE_ID']).order_by('-date'))
+        calc_home_stats(bakery_home_stats, OrderLine.objects.filter(location=settings.CONFIG['BAKERY_ID']).order_by('-date'))
+        calc_home_stats(cafe_home_stats, OrderLine.objects.filter(location=settings.CONFIG['CAFE_ID']).order_by('-date'))
         calc_items_stats(both_items_stats, OrderLine.objects.filter(date__gte=today - relativedelta(days=90), name__icontains=item_name).order_by('-date'))
-        calc_items_stats(bakery_items_stats, OrderLine.objects.filter(location=CONFIG['BAKERY_ID'], date__gte=today - relativedelta(days=90), name__icontains=item_name).order_by('-date'))
-        calc_items_stats(cafe_items_stats, OrderLine.objects.filter(location=CONFIG['CAFE_ID'], date__gte=today - relativedelta(days=90), name__icontains=item_name).order_by('-date'))
+        calc_items_stats(bakery_items_stats, OrderLine.objects.filter(location=settings.CONFIG['BAKERY_ID'], date__gte=today - relativedelta(days=90), name__icontains=item_name).order_by('-date'))
+        calc_items_stats(cafe_items_stats, OrderLine.objects.filter(location=settings.CONFIG['CAFE_ID'], date__gte=today - relativedelta(days=90), name__icontains=item_name).order_by('-date'))
         
         # Converts to serializable format
         both_home_stats = convert_to_serializable(both_home_stats)
