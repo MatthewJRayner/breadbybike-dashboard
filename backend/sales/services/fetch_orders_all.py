@@ -12,7 +12,7 @@ def fetch_orders_all():
         environment=SquareEnvironment.PRODUCTION,
         token=settings.CONFIG['SQUARE_ACCESS_TOKEN']
     )
-    end_date = datetime.now(UTC).date()
+    end_date = (datetime.now(UTC).date() - relativedelta(years=1)).replace(day=1)
     start_date = (end_date - relativedelta(years=1, months=1)).replace(day=1)
     
     delta_days = (end_date - start_date).days + 1
