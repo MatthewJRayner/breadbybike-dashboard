@@ -319,6 +319,15 @@ def calc_daily_stats_home(dictionary, querylist):
     """
     Calculates the stats for home page from the current days orders and yesterdays for the frontend
     """
+    # Sets all stats to zero in case the dictionary hasn't been reset
+    daily_home_stats = dictionary['daily_home_stats']
+    daily_home_stats['orders'] = 0
+    daily_home_stats['total_sales'] = Decimal('0.00')
+    daily_home_stats['discounts'] = Decimal('0.00')
+    daily_home_stats['average_sale'] = Decimal('0.00')
+    daily_home_stats['net_sale'] = Decimal('0.00')
+    daily_home_stats['service_charge'] = Decimal('0.00')
+    
     # Initialize the helper dictionary
     helper = {
         'tax': Decimal('0.00'),
@@ -326,21 +335,26 @@ def calc_daily_stats_home(dictionary, querylist):
     
     for order in querylist:
         if order.date == today:
-            dictionary['daily_home_stats']['total_sales'] += order.total_sale
+            daily_home_stats['total_sales'] += order.total_sale
             helper['tax'] += order.tax
-            dictionary['daily_home_stats']['orders'] += order.quantity
-            dictionary['daily_home_stats']['discounts'] += order.discount
-            dictionary['daily_home_stats']['service_charge'] += order.service_charge
+            daily_home_stats['orders'] += order.quantity
+            daily_home_stats['discounts'] += order.discount
+            daily_home_stats['service_charge'] += order.service_charge
     
     # Post loop calculations
-    dictionary['daily_home_stats']['net_sale'] = dictionary['daily_home_stats']['total_sales'] - (dictionary['daily_home_stats']['discounts'] + dictionary['daily_home_stats']['service_charge'] + helper['tax'])
-    dictionary['daily_home_stats']['average_sale'] = round(dictionary['daily_home_stats']['total_sales'] / dictionary['daily_home_stats']['orders'], 2) if dictionary['daily_home_stats']['orders'] else Decimal('0.00')
+    daily_home_stats['net_sale'] = daily_home_stats['total_sales'] - (daily_home_stats['discounts'] + daily_home_stats['service_charge'] + helper['tax'])
+    daily_home_stats['average_sale'] = round(daily_home_stats['total_sales'] / daily_home_stats['orders'], 2) if daily_home_stats['orders'] else Decimal('0.00')
         
         
 def calc_daily_stats_items(dictionary, querylist):
     """
     Calculates the stats for items page from the current days orders and the same day previous week for the frontend
     """
+    # Sets all stats to zero in case the dictionary hasn't been reset
+    daily_items_stats = dictionary['daily_items_stats']
+    daily_items_stats['daily_sales']['sales'] = Decimal('0.00')
+    daily_items_stats['daily_sales']['percentage'] = 0
+    
     # Initialize the helper dictionary
     helper = {
         'previous_week': {
@@ -350,14 +364,14 @@ def calc_daily_stats_items(dictionary, querylist):
     
     for order in querylist:
         if order.date == today:
-            dictionary['daily_items_stats']['daily_sales']['sales'] += order.total_sale
+            daily_items_stats['daily_sales']['sales'] += order.total_sale
         if order.date == today - timedelta(days=1):
-            dictionary['daily_items_stats']['recent_time'] = order.time if order.time > time.fromisoformat(str(dictionary['daily_items_stats']['recent_time'])) else dictionary['daily_items_stats']['recent_time']
+            daily_items_stats['recent_time'] = order.time if order.time > time.fromisoformat(str(daily_items_stats['recent_time'])) else daily_items_stats['recent_time']
         if order.date == today - timedelta(days=7) and order.time <= time_now:
             helper['previous_week']['sales'] += order.total_sale
         
     
     # Post loop calculations
-    dictionary['daily_items_stats']['daily_sales']['percentage'] = percent_increase(dictionary['daily_items_stats']['daily_sales']['sales'], helper['previous_week']['sales'])
-    temp_datetime = datetime.combine(datetime.now(UTC).date(), time.fromisoformat(str(dictionary['daily_items_stats']['recent_time'])))
-    dictionary['daily_items_stats']['recent_time'] = (temp_datetime + timedelta(hours=1)).time() if datetime.now(UTC) != datetime.now() else dictionary['daily_items_stats']['recent_time']
+    daily_items_stats['daily_sales']['percentage'] = percent_increase(daily_items_stats['daily_sales']['sales'], helper['previous_week']['sales'])
+    temp_datetime = datetime.combine(datetime.now(UTC).date(), time.fromisoformat(str(daily_items_stats['recent_time'])))
+    daily_items_stats['recent_time'] = (temp_datetime + timedelta(hours=1)).time() if datetime.now(UTC) != datetime.now() else daily_items_stats['recent_time']
