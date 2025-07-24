@@ -6,6 +6,7 @@ class Command(BaseCommand):
     help = 'Loads Square order date into the datebase from first day of previous month last year (roughly 13 months)'
     
     def handle(self, *args, **options):
+        OrderLine.objects.all()
         orders = fetch_orders_all()
         if orders:
             self.stdout.write(self.style.SUCCESS('Successfully fetched order, importing data now...'))
