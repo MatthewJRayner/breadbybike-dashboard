@@ -4,6 +4,7 @@ from decimal import Decimal
 from dateutil.relativedelta import relativedelta
 from sales.static.stats_schema_home import home_stats
 from sales.static.stats_schema_items import items_stats
+import copy
 
 # VARIABLES AND CONSTANTS
 today = datetime.now(UTC).date()
@@ -320,6 +321,7 @@ def calc_daily_stats_home(dictionary, querylist):
     Calculates the stats for home page from the current days orders and yesterdays for the frontend
     """
     # Sets all stats to zero in case the dictionary hasn't been reset
+    dictionary['daily_home_stats'] = copy.deepcopy(items_stats['daily_home_stats'])
     daily_home_stats = dictionary['daily_home_stats']
     daily_home_stats['orders'] = 0
     daily_home_stats['total_sales'] = Decimal('0.00')
@@ -351,6 +353,7 @@ def calc_daily_stats_items(dictionary, querylist):
     Calculates the stats for items page from the current days orders and the same day previous week for the frontend
     """
     # Sets all stats to zero in case the dictionary hasn't been reset
+    dictionary['daily_items_stats'] = copy.deepcopy(items_stats['daily_items_stats'])
     daily_items_stats = dictionary['daily_items_stats']
     daily_items_stats['daily_sales']['sales'] = Decimal('0.00')
     daily_items_stats['daily_sales']['percentage'] = 0
