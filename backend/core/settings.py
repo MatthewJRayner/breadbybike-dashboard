@@ -29,11 +29,8 @@ DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 ALLOWED_HOSTS = [
     'localhost', 
     '127.0.0.1',
-    'https://breadbybike-dashboard-backend.onrender.com',
-    'https://breadbybike-dashboard-production.up.railway.app',
+    'https://breadbybike-dashboard-production.up.railway.app'
 ]
-if os.getenv('RAILWAY_HOSTNAME'):
-    ALLOWED_HOSTS.append(os.getenv('RAILWAY_HOSTNAME'))
 
 
 # Application definition
