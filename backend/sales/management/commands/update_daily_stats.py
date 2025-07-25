@@ -19,7 +19,7 @@ class Command(BaseCommand):
         today = datetime.now(UTC).date()
         today_orders = fetch_orders_new()
         both_stats_dict = convert_from_serializable(OrderStats.objects.get(location='Both').stats_json)
-        if len(today_orders) > 1 or both_stats_dict['daily_home_stats']['orders'] == 0:
+        if len(today_orders) > 2 or both_stats_dict['daily_home_stats']['orders'] == 0:
             bakery_stats_dict = convert_from_serializable(OrderStats.objects.get(location='Bakery').stats_json)
             cafe_stats_dict = convert_from_serializable(OrderStats.objects.get(location='Cafe').stats_json)
             bakery_cinnamon_dict = convert_from_serializable(OrderStats.objects.get(location='Bakery_items_Cinnamon').stats_json)
