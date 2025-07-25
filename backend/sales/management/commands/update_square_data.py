@@ -27,7 +27,7 @@ class Command(BaseCommand):
                     quantity=int(item.quantity) if item.quantity else 1,
                     location=order.location_id,
                     date=order.created_at[:10],
-                    time=order.created_at[11:16],
+                    time=order.created_at[11:19],
                     tax=round(item.total_tax_money.amount / 100, 2) if item.total_tax_money.amount else 0,
                     discount=round(item.total_discount_money.amount / 100, 2) if item.total_discount_money.amount else 0,
                     service_charge=round((order.total_service_charge_money.amount // len(order.line_items)) / 100, 2) if order.total_service_charge_money.amount else 0,
