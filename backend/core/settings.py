@@ -30,9 +30,10 @@ ALLOWED_HOSTS = [
     'localhost', 
     '127.0.0.1',
     'https://breadbybike-dashboard-backend.onrender.com',
+    'https://breadbybike-dashboard-production.up.railway.app',
 ]
-if os.getenv('RENDER_EXTERNAL_HOSTNAME'):
-    ALLOWED_HOSTS.append(os.getenv('RENDER_EXTERNAL_HOSTNAME'))
+if os.getenv('RAILWAY_HOSTNAME'):
+    ALLOWED_HOSTS.append(os.getenv('RAILWAY_HOSTNAME'))
 
 
 # Application definition
