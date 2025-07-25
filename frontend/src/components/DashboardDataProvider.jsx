@@ -8,7 +8,7 @@ const DashboardDataProvider = ({ locations, onStatsLoaded }) => {
     useEffect(() => {
         const fetchStats = async () => {
             setLoading(true);
-            const url = `https://breadbybike-dashboard-backend.onrender.com/api/order-stats/?locations=${locations.join(',')}`;
+            const url = `https://breadbybike-dashboard-production.up.railway.app/api/order-stats/?locations=${locations.join(',')}`;
             console.log(`fetching from: ${url}`);
 
             try {

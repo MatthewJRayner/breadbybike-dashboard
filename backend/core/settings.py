@@ -61,7 +61,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
-    'https://breadbybike-dashboard.onrender.com'
+    'https://bbb-dashboard.vercel.app'
 ]
 
 ROOT_URLCONF = 'core.urls'

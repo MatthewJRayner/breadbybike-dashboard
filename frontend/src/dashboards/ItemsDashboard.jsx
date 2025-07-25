@@ -20,7 +20,7 @@ const ItemsDashboard = () => {
     useEffect(() => {
         const fetchCatalogItems = async () => {
             try {
-                const response = await fetch('https://breadbybike-dashboard-backend.onrender.com/api/square-catalog-items/');
+                const response = await fetch('https://breadbybike-dashboard-production.up.railway.app/api/square-catalog-items/');
                 if (!response.ok) throw new Error('Failed to fetch catalog items');
                 const data = await response.json();
                 if (data.items) {
@@ -53,7 +53,7 @@ const ItemsDashboard = () => {
     const triggerCalculation = async (loc, item) => {
         setLoading(true);
         try {
-            const response = await fetch('https://breadbybike-dashboard-backend.onrender.com/api/trigger-calculation/', {
+            const response = await fetch('https://breadbybike-dashboard-production.up.railway.app/api/trigger-calculation/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ location: loc, item_name: item }),
@@ -77,7 +77,7 @@ const ItemsDashboard = () => {
     };
 
     const fetchStats = async (locs) => {
-        const response = await fetch(`https://breadbybike-dashboard-backend.onrender.com/api/order-stats/?locations=${locs.join(',')}`);
+        const response = await fetch(`https://breadbybike-dashboard-production.up.railway.app/api/order-stats/?locations=${locs.join(',')}`);
         if (!response.ok) {
             console.error('Failed to fetch stats:', await response.text());
         }

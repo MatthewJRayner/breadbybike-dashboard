@@ -8,7 +8,7 @@ const ShopifyOrdersProvider = ({ onOrdersLoaded }) => {
     useEffect (() => {
         const fetchOrders = async () => {
             setLoading(true);
-            const url = 'https://breadbybike-dashboard-backend.onrender.com/api/shopify-orders/';
+            const url = 'https://breadbybike-dashboard-production.up.railway.app/api/shopify-orders/';
             console.log(`Fetching stats from ${url}`)
 
             try {
