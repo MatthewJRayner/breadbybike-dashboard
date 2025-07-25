@@ -29,8 +29,7 @@ DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 ALLOWED_HOSTS = [
     'localhost', 
     '127.0.0.1',
-    'http://breadbybike-dashboard-production.up.railway.app',
-    'https://breadbybike-dashboard-production.up.railway.app'
+    'breadbybike-dashboard-production.up.railway.app',
 ]
 
 
