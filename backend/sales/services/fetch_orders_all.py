@@ -7,6 +7,8 @@ from django.conf import settings
 
 def fetch_orders_all():
     """ Returns all orders from first day of previous month last year (roughly 13 months)"""
+    # Reset database to avoid repeat orders
+    OrderLine.objects.all().delete()
     order_entries = []
     client = Square(
         environment=SquareEnvironment.PRODUCTION,

@@ -248,7 +248,7 @@ def calc_items_stats(dictionary, querylist):
     # Big for loop to iterate through all the items in the querylist
     for order in querylist:
         days_ago = (today - order.date).days
-        time_block_index = ((order.time.hour - start_time.hour) * 60 + order.time.minute) // 30
+        time_block_index = ((datetime.strptime(order.time, '%H:%M:%S').time().hour - start_time.hour) * 60 + datetime.strptime(order.time, '%H:%M:%S').time().minute) // 30
     
         if 1 <= days_ago <= 90:
             dictionary['period_graphs']['last_3_months']['daily']['graph'][(days_ago - 1) if days_ago > 0 else 0] += order.quantity
@@ -367,8 +367,8 @@ def calc_daily_stats_items(dictionary, querylist):
         if order.date == today:
             daily_items_stats['daily_sales']['sales'] += order.total_sale
         if order.date == today - timedelta(days=1):
-            daily_items_stats['recent_time'] = order.time if order.time > time.fromisoformat(str(daily_items_stats['recent_time'])) else daily_items_stats['recent_time']
-        if order.date == today - timedelta(days=7) and order.time <= time_now:
+            daily_items_stats['recent_time'] = datetime.strptime(order.time, '%H:%M:%S').time() if datetime.strptime(order.time, '%H:%M:%S').time() > time.fromisoformat(str(daily_items_stats['recent_time'])) else daily_items_stats['recent_time']
+        if order.date == today - timedelta(days=7) and datetime.strptime(order.time, '%H:%M:%S').time() <= time_now:
             helper['previous_week']['sales'] += order.total_sale
         
     

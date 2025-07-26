@@ -9,7 +9,7 @@ class OrderLine(models.Model):
     """
     name = models.CharField(max_length=255, default='Custom')
     date = models.DateField()
-    time = models.TimeField()
+    time = models.CharField(max_length=8)
     location = models.CharField(max_length=50)
     quantity = models.PositiveIntegerField()
     total_sale = models.DecimalField(max_digits=10, decimal_places=2)
