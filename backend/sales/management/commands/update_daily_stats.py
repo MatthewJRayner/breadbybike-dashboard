@@ -34,7 +34,7 @@ class Command(BaseCommand):
         bakery_cinnamon_dict['daily_items_stats'] = copy.deepcopy(items_stats['daily_items_stats'])
         cafe_cinnamon_dict['daily_items_stats'] = copy.deepcopy(items_stats['daily_items_stats'])
         both_cinnamon_dict['daily_items_stats'] = copy.deepcopy(items_stats['daily_items_stats'])
-        if len(today_orders) > 2 or both_stats_dict['daily_home_stats']['orders'] == 0:
+        if len(today_orders) > 2:
             self.stdout.write(self.style.SUCCESS(f'Successfully fetched stats for all locations and {item_name}.'))
             
             for order in today_orders:
@@ -92,4 +92,4 @@ class Command(BaseCommand):
             
             self.stdout.write(self.style.SUCCESS('Successfully computed and stored precomputed stats for the home and items pages.'))
         else:
-            self.stdout.write(self.style.SUCCESS('No orders to update so current stats kept.'))
+            self.stdout.write(self.style.SUCCESS('Not enough orders to update so current stats kept.'))
