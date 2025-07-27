@@ -51,7 +51,7 @@ class Command(BaseCommand):
             calc_daily_stats_home(stats_dict, DailyOrderSnapshot.objects.filter(location=settings.CONFIG['BAKERY_ID']))
             
             # Upload the stats to the OrderStats model
-            stats_obj.stats_json = stats_dict
+            stats_obj.stats_json = convert_to_serializable(stats_dict)
             stats_obj.save()
             
             self.stdout.write(self.style.SUCCESS('Successfully computed and stored precomputed stats for the home and items pages.'))
