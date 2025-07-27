@@ -1,5 +1,5 @@
 from django.urls import path
-from sales.views import OrderStatsView, TriggerCalculationsView, SquareCatalogItemsView, UpdateDailyStatsView, ShopifyOrdersView
+from sales.views import OrderStatsView, TriggerCalculationsView, SquareCatalogItemsView, UpdateDailyStatsView, ShopifyOrdersView, VerifyCodeView
 
 urlpatterns = [
     path('order-stats/', OrderStatsView.as_view(), name='order-stats'),
@@ -7,4 +7,5 @@ urlpatterns = [
     path('square-catalog-items/', SquareCatalogItemsView.as_view(), name='square-catalog-items'),
     path('update-daily-stats/', UpdateDailyStatsView.as_view(), name='update-daily-stats'),
     path('shopify-orders/', ShopifyOrdersView.as_view(), name='shopify-orders'),
+    path('verify-code/', VerifyCodeView.as_view(), name='verify-code')
 ]

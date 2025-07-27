@@ -14,6 +14,8 @@ import copy
 from square import Square
 from square.environment import SquareEnvironment
 import time
+import json
+import os
 
 def home(request):
     return HttpResponse("Django is working!")
@@ -204,3 +206,14 @@ class ShopifyOrdersView(APIView):
             return Response(data, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': f'Internal error: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+class VerifyCodeView(APIView):
+    def post(self, request):
+        code = request.data.get('code')
+            
+        if code == os.getenv('MANAGER_LOGIN'):
+            return Response({'status': 'ok', 'role': 'manager'})
+        elif code == os.getenv('STAFF_LOGIN'):
+            return Response({'status': 'ok', 'role': 'staff'})
+        else:
+            return Response({'status': 'error', 'message': 'Invalid code'}, status=status.HTTP_401_UNAUTHORIZED)

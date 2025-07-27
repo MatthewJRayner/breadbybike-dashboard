@@ -3,7 +3,7 @@ from sales.models import DailyOrderSnapshot, OrderStats, OrderLine
 from sales.services.fetch_orders_today import fetch_orders_today
 from datetime import datetime, UTC
 from dateutil.relativedelta import relativedelta
-from sales.services.calc_functions import calc_items_stats, convert_to_serializable, calc_daily_stats_home, calc_daily_stats_items, convert_from_serializable
+from sales.services.calc_functions import convert_to_serializable, calc_daily_stats_home, calc_daily_stats_items, convert_from_serializable
 from sales.static.stats_schema_items import items_stats
 from sales.static.stats_schema_home import home_stats
 from django.conf import settings

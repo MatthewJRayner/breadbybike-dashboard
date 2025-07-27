@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 
 const ACCESS_CODES = {
-    manager: 'FW42',
-    staff: 'HIPPY41'
+    manager: import.meta.env.VITE_MANAGER_LOGIN,
+    staff: import.meta.env.VITE_STAFF_LOGIN 
 }
 
 const Login = ({ setAccessLevel }) => {
@@ -17,23 +17,41 @@ const Login = ({ setAccessLevel }) => {
     if (accessLevel === 'manager') return <Navigate to='/' replace />;
     if (accessLevel === 'staff') return <Navigate to='/orders' replace />;
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        const now = new Date().getTime();
+        setError(null);
 
-        if (code === ACCESS_CODES.manager) {
-            localStorage.setItem('accessLevel', 'manager');
-            localStorage.setItem('sessionStart', now.toString());
-            setAccessLevel('manager');
-            navigate('/');
-        } else if (code === ACCESS_CODES.staff) {
-            localStorage.setItem('accessLevel', 'staff');
-            localStorage.setItem('sessionStart', now.toString());
-            setAccessLevel('staff');
-            navigate('/orders');
-        } else {
-            setError('Invalid access code.');
+        try {
+          const response = await fetch(`${import.meta.env.VITE_API_URL}/api/verify-code/`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ code })
+          });
+
+          const data = await response.json();
+
+          if (response.ok && data.status === 'ok') {
+              const now = new Date().getTime();
+              localStorage.setItem('accessLevel', data.role);
+              localStorage.setItem('sessionStart', now.toString());
+              setAccessLevel(data.role);
+
+              // Redirect based on role
+              if (data.role === 'manager') {
+                  navigate('/');
+              } else if (data.role === 'staff') {
+                  navigate('/orders');
+              }
+          } else {
+              setError('Invalid access code.');
+          }
+        } catch (err) {
+          console.error(err);
+          setError('Invalid code')
         }
+      
     };
 
     return (

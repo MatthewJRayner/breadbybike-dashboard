@@ -14,7 +14,7 @@ export const updateCooldownCheck = () => {
 
 export const triggerStatsUpdate = async () => {
     try {
-        const response = await fetch('https://breadbybike-dashboard-production.up.railway.app/api/update-daily-stats/', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/update-daily-stats/`, {
             method: 'POST',
         });
         if (!response.ok) {

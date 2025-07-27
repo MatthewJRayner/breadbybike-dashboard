@@ -1,4 +1,4 @@
-# 🧁 Bread by Bike – Sales Dashboard
+# Bread by Bike – Sales Dashboard
 
 Welcome to the full-stack **Sales Dashboard** built for the London-based bakery & café **Bread by Bike**. This platform empowers daily, weekly, and yearly sales analysis using an intuitive interface, live financial stats, and automation—serving both real-world internal use and an employer-facing public preview.
 
@@ -19,7 +19,7 @@ This dashboard is a custom-built, production-grade analytics tool developed with
 
 ## 🚀 Live Demo Links
 
-- 🔐 [**Main App (Private)**](https://breadbybike-dashboard-production.up.railway.app) — Internal app with login, background jobs & real sales data.  
+- 🔐 [**Main App (Private)**](https://bbb-dashboard.vercel.app) — Internal app with login, background jobs & real sales data.  
 - 👁️ [**Public Preview**](https://sales-dashboard-preview.vercel.app) — Static, dummy-data version for employers and the public.  
 
 ---
