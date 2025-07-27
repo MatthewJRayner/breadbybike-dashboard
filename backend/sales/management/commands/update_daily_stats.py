@@ -18,23 +18,24 @@ class Command(BaseCommand):
         item_name = 'Cinnamon' # Default item name, this will later be grabbed from frontend
         today = datetime.now(UTC).date()
         today_orders = fetch_orders_new()
+        
+        # Fetch stats from models
         both_stats_dict = convert_from_serializable(OrderStats.objects.get(location='Both').stats_json)
+        bakery_stats_dict = convert_from_serializable(OrderStats.objects.get(location='Bakery').stats_json)
+        cafe_stats_dict = convert_from_serializable(OrderStats.objects.get(location='Cafe').stats_json)
+        bakery_cinnamon_dict = convert_from_serializable(OrderStats.objects.get(location='Bakery_items_Cinnamon').stats_json)
+        cafe_cinnamon_dict = convert_from_serializable(OrderStats.objects.get(location='Cafe_items_Cinnamon').stats_json)
+        both_cinnamon_dict = convert_from_serializable(OrderStats.objects.get(location='Both_items_Cinnamon').stats_json)
+        
+        # Reset model data to 0
+        bakery_stats_dict['daily_home_stats'] = copy.deepcopy(home_stats['daily_home_stats'])
+        cafe_stats_dict['daily_home_stats'] = copy.deepcopy(home_stats['daily_home_stats'])
+        both_stats_dict['daily_home_stats'] = copy.deepcopy(home_stats['daily_home_stats'])
+        bakery_cinnamon_dict['daily_items_stats'] = copy.deepcopy(items_stats['daily_items_stats'])
+        cafe_cinnamon_dict['daily_items_stats'] = copy.deepcopy(items_stats['daily_items_stats'])
+        both_cinnamon_dict['daily_items_stats'] = copy.deepcopy(items_stats['daily_items_stats'])
         if len(today_orders) > 2 or both_stats_dict['daily_home_stats']['orders'] == 0:
-            bakery_stats_dict = convert_from_serializable(OrderStats.objects.get(location='Bakery').stats_json)
-            cafe_stats_dict = convert_from_serializable(OrderStats.objects.get(location='Cafe').stats_json)
-            bakery_cinnamon_dict = convert_from_serializable(OrderStats.objects.get(location='Bakery_items_Cinnamon').stats_json)
-            cafe_cinnamon_dict = convert_from_serializable(OrderStats.objects.get(location='Cafe_items_Cinnamon').stats_json)
-            both_cinnamon_dict = convert_from_serializable(OrderStats.objects.get(location='Both_items_Cinnamon').stats_json)
-            
             self.stdout.write(self.style.SUCCESS(f'Successfully fetched stats for all locations and {item_name}.'))
-            
-            # Cleans the dictionary to avoid adding 
-            bakery_stats_dict['daily_home_stats'] = copy.deepcopy(home_stats['daily_home_stats'])
-            cafe_stats_dict['daily_home_stats'] = copy.deepcopy(home_stats['daily_home_stats'])
-            both_stats_dict['daily_home_stats'] = copy.deepcopy(home_stats['daily_home_stats'])
-            bakery_cinnamon_dict['daily_items_stats'] = copy.deepcopy(items_stats['daily_items_stats'])
-            cafe_cinnamon_dict['daily_items_stats'] = copy.deepcopy(items_stats['daily_items_stats'])
-            both_cinnamon_dict['daily_items_stats'] = copy.deepcopy(items_stats['daily_items_stats'])
             
             for order in today_orders:
                 if not order.line_items:
@@ -46,7 +47,7 @@ class Command(BaseCommand):
                         quantity=int(item.quantity) if item.quantity else 1,
                         location=order.location_id,
                         date=today,
-                        time=order.created_at[11:16],
+                        time=order.created_at[11:19],
                         total_sale=round(item.total_money.amount / 100, 2) if item.total_money.amount else 0,
                         discount=round(item.total_discount_money.amount / 100, 2) if item.total_discount_money.amount else 0,
                         service_charge=round((order.total_service_charge_money.amount // len(order.line_items)) / 100, 2) if order.total_service_charge_money.amount else 0,
