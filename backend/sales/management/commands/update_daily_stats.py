@@ -19,6 +19,9 @@ class Command(BaseCommand):
         today = datetime.now(UTC).date()
         today_orders = fetch_orders_new()
         if len(today_orders) > 2:
+            # Reset the DailyOrderSnapshot model
+            DailyOrderSnapshot.objects.filter(date=today).delete()
+            
             # Fetch stats from models
             stats_obj = OrderStats.objects.get(location='Both')
             stats_dict = convert_from_serializable(stats_obj.stats_json)
@@ -51,8 +54,10 @@ class Command(BaseCommand):
             calc_daily_stats_home(stats_dict, DailyOrderSnapshot.objects.filter(location=settings.CONFIG['BAKERY_ID']))
             
             # Upload the stats to the OrderStats model
-            stats_obj.stats_json = convert_to_serializable(stats_dict)
-            stats_obj.save()
+            OrderStats.objects.update_or_create(
+                location=f'Both',
+                defaults={'stats_json': convert_to_serializable(stats_dict)}
+            )
             
             self.stdout.write(self.style.SUCCESS('Successfully computed and stored precomputed stats for the home and items pages.'))
         else:
