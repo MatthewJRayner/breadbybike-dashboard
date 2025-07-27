@@ -26,8 +26,6 @@ class Command(BaseCommand):
             stats_obj = OrderStats.objects.get(location='Both')
             stats_dict = convert_from_serializable(stats_obj.stats_json)
             stats_dict['daily_home_stats'] = copy.deepcopy(home_stats['daily_home_stats'])
-            stats_obj.stats_json = convert_to_serializable(stats_dict)
-            stats_obj.save()
             
             self.stdout.write(self.style.SUCCESS(f'Successfully fetched stats for all locations and {item_name}.'))
             
