@@ -19,9 +19,9 @@ const YearSalesDisplay = ({ stats, title, label1, label2, height }) => {
             } else if (screenWidth < 768) {
                 baseThickness = 20;
             } else if (screenWidth < 1024) {
-                baseThickness = 30;
+                baseThickness = 25;
             } else {
-                baseThickness = 40;
+                baseThickness = 35;
             }
 
             const maxBars = 12;

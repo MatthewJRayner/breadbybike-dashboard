@@ -1,22 +1,22 @@
 from square import Square
 from square.environment import SquareEnvironment
-from sales.models import OrderLine
+from sales.models import OrderLine, DailyOrderSnapshot
 from datetime import datetime, timedelta, UTC
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
 
-def fetch_orders_new():
+def fetch_orders_today():
     """ Returns all orders since the most recent time in the database until now"""
     client = Square(
         environment=SquareEnvironment.PRODUCTION,
         token=settings.CONFIG['SQUARE_ACCESS_TOKEN']
     )
     
-    latest_order = OrderLine.objects.order_by('-date', '-time').first()
+    latest_order = DailyOrderSnapshot.objects.order_by('-date', '-time').first()
     if latest_order:
         start_at = str(f"{latest_order.date}T{latest_order.time}.000Z")
     else:
-        start_at = (datetime.now(UTC) - timedelta(days=2)).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+        start_at = (datetime.now(UTC)).strftime("%Y-%m-%dT%H:%M:%S.000Z")
     end_at = datetime.now(UTC).isoformat(timespec='milliseconds').replace('+00:00', 'Z')
     
     order_entries = []
@@ -48,4 +48,4 @@ def fetch_orders_new():
         if not cursor:
             break
     
-    return order_entries if len(order_entries) > 1 else []
+    return order_entries

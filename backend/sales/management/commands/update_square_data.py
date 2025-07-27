@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from sales.models import OrderLine, DailyOrderSnapshot
-from sales.services.fetch_orders_new import fetch_orders_new
+from backend.sales.services.fetch_orders_update import fetch_orders_update
 from datetime import datetime, UTC
 from dateutil.relativedelta import relativedelta
 
@@ -16,7 +16,7 @@ class Command(BaseCommand):
         OrderLine.objects.filter(date=datetime.now(UTC).date()).delete()  # Delete today's entries to avoid duplicates
         self.stdout.write(self.style.SUCCESS(f'Deleted {count_deleted} old order lines.'))
         
-        orders = fetch_orders_new()
+        orders = fetch_orders_update()
         counter = 0
         for order in orders:
             if not order.line_items:
