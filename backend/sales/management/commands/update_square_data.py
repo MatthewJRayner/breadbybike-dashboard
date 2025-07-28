@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from sales.models import OrderLine, DailyOrderSnapshot
-from backend.sales.services.fetch_orders_update import fetch_orders_update
+from sales.services.fetch_orders_update import fetch_orders_update
 from datetime import datetime, UTC
 from dateutil.relativedelta import relativedelta
 
