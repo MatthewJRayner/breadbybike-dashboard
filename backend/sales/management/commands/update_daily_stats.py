@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from sales.models import DailyOrderSnapshot, OrderStats, OrderLine
-from sales.services.fetch_orders_update import fetch_orders_import
+from sales.services.fetch_orders_update import fetch_orders_update
 from datetime import datetime, UTC
 from dateutil.relativedelta import relativedelta
 from sales.services.calc_functions import convert_to_serializable, calc_daily_stats_home, calc_daily_stats_items, convert_from_serializable
