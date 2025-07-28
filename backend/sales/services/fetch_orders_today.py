@@ -12,12 +12,9 @@ def fetch_orders_today():
         token=settings.CONFIG['SQUARE_ACCESS_TOKEN']
     )
     
-    latest_order = DailyOrderSnapshot.objects.order_by('-date', '-time').first()
-    if latest_order:
-        start_at = str(f"{latest_order.date}T{latest_order.time}.000Z")
-    else:
-        start_at = (datetime.now(UTC)).strftime("%Y-%m-%dT%H:%M:%S.000Z")
-    end_at = datetime.now(UTC).isoformat(timespec='milliseconds').replace('+00:00', 'Z')
+    today = datetime.now(UTC)
+    start_at = today.strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    end_at = today.isoformat(timespec='milliseconds').replace('+00:00', 'Z')
     
     order_entries = []
     cursor = None
