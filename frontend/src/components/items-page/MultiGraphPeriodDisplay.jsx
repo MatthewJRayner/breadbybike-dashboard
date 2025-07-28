@@ -51,7 +51,7 @@ const MultiGraphPeriodDisplay = ({ stats }) => {
                 baseThickness = 40;
             }
 
-            const maxBars = 12;
+            const maxBars = 16;
             const minThickness = 10;
             const calculated = Math.max(minThickness, Math.min(baseThickness, baseThickness * (maxBars / Math.max(numBars, 1))));
 
