@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from sales.models import DailyOrderSnapshot, OrderStats, OrderLine
-from sales.services.fetch_orders_update import fetch_orders_update
+from sales.services.fetch_orders_today import fetch_orders_today
 from datetime import datetime, UTC
 from dateutil.relativedelta import relativedelta
 from sales.services.calc_functions import convert_to_serializable, calc_daily_stats_home, calc_daily_stats_items, convert_from_serializable
@@ -17,7 +17,7 @@ class Command(BaseCommand):
         # CONSTANTS / VARIABLES
         item_name = 'Cinnamon' # Default item name, this will later be grabbed from frontend
         today = datetime.now(UTC).date()
-        today_orders = fetch_orders_update()
+        today_orders = fetch_orders_today()
         if len(today_orders) > 2:
             # Reset the DailyOrderSnapshot model
             DailyOrderSnapshot.objects.filter(date=today).delete()
