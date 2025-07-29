@@ -32,11 +32,11 @@ class Command(BaseCommand):
             
             # Set model data back to zero
             OrderStats.objects.filter(location='Both').update(stats_json=convert_to_serializable(copy.deepcopy(home_stats)))
-            OrderStats.objects.filter(location='Both').update(stats_json=convert_to_serializable(copy.deepcopy(home_stats)))
-            OrderStats.objects.filter(location='Both').update(stats_json=convert_to_serializable(copy.deepcopy(home_stats)))
+            OrderStats.objects.filter(location='Bakery').update(stats_json=convert_to_serializable(copy.deepcopy(home_stats)))
+            OrderStats.objects.filter(location='Cafe').update(stats_json=convert_to_serializable(copy.deepcopy(home_stats)))
             OrderStats.objects.filter(location=f'Both_items_{item_name}').update(stats_json=convert_to_serializable(copy.deepcopy(items_stats)))
-            OrderStats.objects.filter(location=f'Both_items_{item_name}').update(stats_json=convert_to_serializable(copy.deepcopy(items_stats)))
-            OrderStats.objects.filter(location=f'Both_items_{item_name}').update(stats_json=convert_to_serializable(copy.deepcopy(items_stats)))
+            OrderStats.objects.filter(location=f'Bakery_items_{item_name}').update(stats_json=convert_to_serializable(copy.deepcopy(items_stats)))
+            OrderStats.objects.filter(location=f'Cafe_items_{item_name}').update(stats_json=convert_to_serializable(copy.deepcopy(items_stats)))
             
             both_stats_dict['daily_home_stats'] = copy.deepcopy(home_stats['daily_home_stats'])
             bakery_stats_dict['daily_home_stats'] = copy.deepcopy(home_stats['daily_home_stats'])
