@@ -30,20 +30,20 @@ class Command(BaseCommand):
             bakery_items_dict = convert_from_serializable(OrderStats.objects.get(location=f'Bakery_items_{item_name}').stats_json)
             cafe_items_dict = convert_from_serializable(OrderStats.objects.get(location=f'Cafe_items_{item_name}').stats_json)
             
+            # Set model data back to zero
+            OrderStats.objects.filter(location='Both').update(stats_json=convert_to_serializable(copy.deepcopy(home_stats)))
+            OrderStats.objects.filter(location='Both').update(stats_json=convert_to_serializable(copy.deepcopy(home_stats)))
+            OrderStats.objects.filter(location='Both').update(stats_json=convert_to_serializable(copy.deepcopy(home_stats)))
+            OrderStats.objects.filter(location=f'Both_items_{item_name}').update(stats_json=convert_to_serializable(copy.deepcopy(items_stats)))
+            OrderStats.objects.filter(location=f'Both_items_{item_name}').update(stats_json=convert_to_serializable(copy.deepcopy(items_stats)))
+            OrderStats.objects.filter(location=f'Both_items_{item_name}').update(stats_json=convert_to_serializable(copy.deepcopy(items_stats)))
+            
             both_stats_dict['daily_home_stats'] = copy.deepcopy(home_stats['daily_home_stats'])
             bakery_stats_dict['daily_home_stats'] = copy.deepcopy(home_stats['daily_home_stats'])
             cafe_stats_dict['daily_home_stats'] = copy.deepcopy(home_stats['daily_home_stats'])
             both_items_dict['daily_items_stats'] = copy.deepcopy(items_stats['daily_items_stats'])
             bakery_items_dict['daily_items_stats'] = copy.deepcopy(items_stats['daily_items_stats'])
             cafe_items_dict['daily_items_stats'] = copy.deepcopy(items_stats['daily_items_stats'])
-            
-            # Set model data back to zero
-            OrderStats.objects.filter(location='Both').update(stats_json=convert_to_serializable(both_stats_dict))
-            OrderStats.objects.filter(location='Both').update(stats_json=convert_to_serializable(bakery_stats_dict))
-            OrderStats.objects.filter(location='Both').update(stats_json=convert_to_serializable(bcafe_stats_dict))
-            OrderStats.objects.filter(location=f'Both_items_{item_name}').update(stats_json=convert_to_serializable(both_items_dict))
-            OrderStats.objects.filter(location=f'Both_items_{item_name}').update(stats_json=convert_to_serializable(bakery_items_dict))
-            OrderStats.objects.filter(location=f'Both_items_{item_name}').update(stats_json=convert_to_serializable(cafe_items_dict))
             
             self.stdout.write(self.style.SUCCESS(f'Successfully fetched stats for all locations and {item_name}.'))
             
