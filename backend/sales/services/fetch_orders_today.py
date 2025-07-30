@@ -13,7 +13,7 @@ def fetch_orders_today():
     )
     
     today = datetime.now(UTC)
-    start_at = today.strftime("%Y-%m-%dT00:00:00.000Z")
+    start_at = f'{today.date()}T00:00:00.000Z'
     end_at = today.isoformat(timespec='milliseconds').replace('+00:00', 'Z')
     
     order_entries = []
