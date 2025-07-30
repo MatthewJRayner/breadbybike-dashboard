@@ -14,7 +14,7 @@ def fetch_orders_today():
     
     today = datetime.now(UTC)
     start_at = f'{today.date()}T00:00:00.000Z'
-    end_at = today.isoformat(timespec='milliseconds').replace('+00:00', 'Z')
+    end_at = f'{today.date()}T23:59:59.000Z'
     
     order_entries = []
     cursor = None
