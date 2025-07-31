@@ -30,6 +30,13 @@ class Command(BaseCommand):
             bakery_items_dict = convert_from_serializable(OrderStats.objects.get(location=f'Bakery_items_{item_name}').stats_json)
             cafe_items_dict = convert_from_serializable(OrderStats.objects.get(location=f'Cafe_items_{item_name}').stats_json)
             
+            OrderStats.objects.filter(location='Both').update(stats_json=convert_to_serializable(home_stats))
+            OrderStats.objects.filter(location='Bakery').update(stats_json=convert_to_serializable(home_stats))
+            OrderStats.objects.filter(location='Cafe').update(stats_json=convert_to_serializable(home_stats))
+            OrderStats.objects.filter(location=f'Both_items_{item_name}').update(stats_json=convert_to_serializable(items_stats))
+            OrderStats.objects.filter(location=f'Bakery_items_{item_name}').update(stats_json=convert_to_serializable(items_stats))
+            OrderStats.objects.filter(location=f'Cafe_items_{item_name}').update(stats_json=convert_to_serializable(items_stats))
+            
             # Set daily stats to zero
             both_stats_dict['daily_home_stats'] = copy.deepcopy(home_stats['daily_home_stats'])
             bakery_stats_dict['daily_home_stats'] = copy.deepcopy(home_stats['daily_home_stats'])
