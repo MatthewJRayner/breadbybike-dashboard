@@ -19,10 +19,6 @@ class Command(BaseCommand):
         today = datetime.now(UTC).date()
         today_orders = fetch_orders_today()
         if len(today_orders) > 2:
-            # Reset the DailyOrderSnapshot model
-            DailyOrderSnapshot.objects.filter(date=today).delete()
-            
-            # Fetch stats from models
             both_stats_dict = convert_from_serializable(OrderStats.objects.get(location='Both').stats_json)
             bakery_stats_dict = convert_from_serializable(OrderStats.objects.get(location='Bakery').stats_json)
             cafe_stats_dict = convert_from_serializable(OrderStats.objects.get(location='Cafe').stats_json)
