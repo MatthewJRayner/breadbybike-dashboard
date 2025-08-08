@@ -5,17 +5,16 @@ from datetime import datetime, timedelta, UTC
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
 
-def fetch_orders_today():
+def fetch_orders_today(date):
     """ Returns all orders since the most recent time in the database until now"""
     client = Square(
         environment=SquareEnvironment.PRODUCTION,
         token=settings.CONFIG['SQUARE_ACCESS_TOKEN']
     )
     
-    today = datetime.now(UTC)
-    start_at = f'{today.date()}T00:00:00.000Z'
-    end_at = f'{today.date()}T23:59:59.000Z'
-    
+    start_at = f'{date.date()}T00:00:00.000Z'
+    end_at = f'{date.date()}T23:59:59.000Z'
+
     order_entries = []
     cursor = None
     while True:

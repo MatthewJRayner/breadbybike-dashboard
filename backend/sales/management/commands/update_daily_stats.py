@@ -16,11 +16,11 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         # CONSTANTS / VARIABLES
         item_name = 'Cinnamon' # Default item name, this will later be grabbed from frontend
-        today = datetime.now(UTC).date()
-        today_orders = fetch_orders_today()
+        today = datetime.now(UTC)
+        today_orders = fetch_orders_today(today)
         if len(today_orders) > 2:
             # Reset the DailyOrderSnapshot model
-            DailyOrderSnapshot.objects.filter(date=today).delete()
+            DailyOrderSnapshot.objects.filter(date=today.date()).delete()
             
             # Fetch stats from models
             both_stats_dict = convert_from_serializable(OrderStats.objects.get(location='Both').stats_json)
