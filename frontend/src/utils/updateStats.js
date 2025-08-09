@@ -2,13 +2,29 @@ const STATS_UPDATE_KEY = 'lastStatsUpdateTime';
 const COOLDOWN_TIME = 2 * 60 * 1000; // 2 minutes in ms
 
 export const updateCooldownCheck = () => {
-    const lastUpdate = localStorage.getItem(STATS_UPDATE_KEY);
+    const storedData = localStorage.getItem(STATS_UPDATE_KEY);
+    const parsedData = storedData ? JSON.parse(storedData) : { date: null, time: null };
+
+    const currentDate = new Date().toISOString().split('T')[0];
     const currentTime = Date.now();
 
-    if (!lastUpdate || currentTime - parseInt(lastUpdate) > COOLDOWN_TIME) {
-        localStorage.setItem(STATS_UPDATE_KEY, currentTime.toString());
+    if (!parsedData.date || parsedData.date !== currentDate) {
+        localStorage.setItem(
+            STATS_UPDATE_KEY,
+            JSON.stringify({ date: currentDate, time: currentTime })
+        );
         return true;
     }
+
+    const lastUpdateTime = parseInt(parsedData.time);
+    if (currentTime - lastUpdateTime > COOLDOWN_TIME) {
+        localStorage.setItem(
+            STATS_UPDATE_KEY,
+            JSON.stringify({ date: currentDate, time: currentTime.toString() })
+        );
+        return true;
+    }
+
     return false;
 };
 
