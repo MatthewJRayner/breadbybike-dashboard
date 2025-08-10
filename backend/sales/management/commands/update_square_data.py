@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from sales.models import OrderLine, DailyOrderSnapshot
+from sales.models import OrderLine, DailyOrderSnapshot, OrderStats
 from sales.services.fetch_orders_update import fetch_orders_update
 from datetime import datetime, UTC
 from dateutil.relativedelta import relativedelta
@@ -85,3 +85,7 @@ class Command(BaseCommand):
             )   
             
         self.stdout.write(self.style.SUCCESS(f'Successfully cleared and updated DailyOrderSnapshot'))
+        
+        OrderStats.objects.all().delete()  # Clear existing stats dictionary before updating in another script
+        
+        self.stdout.write(self.style.SUCCESS('Cleared stats dictionaries, ready to calculate new data'))
