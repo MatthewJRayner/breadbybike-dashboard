@@ -87,5 +87,4 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(f'Successfully cleared and updated DailyOrderSnapshot'))
         
         OrderStats.objects.all().delete()  # Clear existing stats dictionary before updating in another script
-        
         self.stdout.write(self.style.SUCCESS('Cleared stats dictionaries, ready to calculate new data'))
