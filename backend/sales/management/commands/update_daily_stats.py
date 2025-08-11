@@ -31,7 +31,6 @@ class Command(BaseCommand):
             both_items_dict = convert_from_serializable(OrderStats.objects.get(location=f'Both_items_{item_name}').stats_json)
             bakery_items_dict = convert_from_serializable(OrderStats.objects.get(location=f'Bakery_items_{item_name}').stats_json)
             cafe_items_dict = convert_from_serializable(OrderStats.objects.get(location=f'Cafe_items_{item_name}').stats_json)
-            OrderStats.objects.all().delete()  # Clear all stats before updating
             self.stdout.write(self.style.SUCCESS(f'Current Orders in DB when fetching: {both_stats_dict['daily_home_stats']['orders']}'))
             
             # Set daily stats to zero
