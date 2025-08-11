@@ -31,7 +31,7 @@ class Command(BaseCommand):
             both_items_dict = convert_from_serializable(OrderStats.objects.get(location=f'Both_items_{item_name}').stats_json)
             bakery_items_dict = convert_from_serializable(OrderStats.objects.get(location=f'Bakery_items_{item_name}').stats_json)
             cafe_items_dict = convert_from_serializable(OrderStats.objects.get(location=f'Cafe_items_{item_name}').stats_json)
-            self.stdout.write(self.style.SUCCESS(f'Current Orders in DB: {both_stats_dict['daily_home_stats']['orders']}'))
+            self.stdout.write(self.style.SUCCESS(f'Current Orders in DB when fetching: {both_stats_dict['daily_home_stats']['orders']}'))
             
             # Set daily stats to zero
             both_stats_dict['daily_home_stats'] = copy.deepcopy(home_stats['daily_home_stats'])
@@ -40,7 +40,7 @@ class Command(BaseCommand):
             both_items_dict['daily_items_stats'] = copy.deepcopy(items_stats['daily_items_stats'])
             bakery_items_dict['daily_items_stats'] = copy.deepcopy(items_stats['daily_items_stats'])
             cafe_items_dict['daily_items_stats'] = copy.deepcopy(items_stats['daily_items_stats'])
-            self.stdout.write(self.style.SUCCESS(f'Current Orders in DB: {both_stats_dict['daily_home_stats']['orders']}'))
+            self.stdout.write(self.style.SUCCESS(f'Current orders in DB after zeroing: {both_stats_dict['daily_home_stats']['orders']}'))
             
             self.stdout.write(self.style.SUCCESS(f'Successfully fetched stats for all locations and {item_name}.'))
             
@@ -70,7 +70,7 @@ class Command(BaseCommand):
             calc_daily_stats_items(both_items_dict, DailyOrderSnapshot.objects.filter(name__icontains=item_name))
             calc_daily_stats_items(bakery_items_dict, DailyOrderSnapshot.objects.filter(name__icontains=item_name, location=settings.CONFIG['BAKERY_ID']))
             calc_daily_stats_items(cafe_items_dict, DailyOrderSnapshot.objects.filter(name__icontains=item_name, location=settings.CONFIG['CAFE_ID']))
-            self.stdout.write(self.style.SUCCESS(f'Current Orders in DB: {both_stats_dict['daily_home_stats']['orders']}'))
+            self.stdout.write(self.style.SUCCESS(f'Current Orders in DB after calculations: {both_stats_dict['daily_home_stats']['orders']}'))
             
             # Upload the stats to the OrderStats model
             OrderStats.objects.update_or_create(
