@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+from django.core.cache import cache
 from sales.models import DailyOrderSnapshot, OrderStats, OrderLine
 from sales.services.fetch_orders_today import fetch_orders_today
 from datetime import datetime, UTC
@@ -20,6 +21,7 @@ class Command(BaseCommand):
         today_orders = fetch_orders_today(today)
         if len(today_orders) > 2:
             # Reset the DailyOrderSnapshot model
+            cache.clear()
             DailyOrderSnapshot.objects.filter(date=today.date()).delete()
             
             # Fetch stats from models
