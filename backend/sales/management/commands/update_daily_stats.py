@@ -31,6 +31,7 @@ class Command(BaseCommand):
             both_items_dict = convert_from_serializable(OrderStats.objects.get(location=f'Both_items_{item_name}').stats_json)
             bakery_items_dict = convert_from_serializable(OrderStats.objects.get(location=f'Bakery_items_{item_name}').stats_json)
             cafe_items_dict = convert_from_serializable(OrderStats.objects.get(location=f'Cafe_items_{item_name}').stats_json)
+            OrderStats.objects.all().delete()  # Clear all stats before updating
             self.stdout.write(self.style.SUCCESS(f'Current Orders in DB when fetching: {both_stats_dict['daily_home_stats']['orders']}'))
             
             # Set daily stats to zero
@@ -73,27 +74,27 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS(f'Current Orders in DB after calculations: {both_stats_dict['daily_home_stats']['orders']}'))
             
             # Upload the stats to the OrderStats model
-            OrderStats.objects.create(
+            OrderStats.objects.update_or_create(
                 location=f'Both',
                 defaults={'stats_json': convert_to_serializable(both_stats_dict)}
             )
-            OrderStats.objects.create(
+            OrderStats.objects.update_or_create(
                 location=f'Bakery',
                 defaults={'stats_json': convert_to_serializable(bakery_stats_dict)}
             )
-            OrderStats.objects.create(
+            OrderStats.objects.update_or_create(
                 location=f'Cafe',
                 defaults={'stats_json': convert_to_serializable(cafe_stats_dict)}
             )
-            OrderStats.objects.create(
+            OrderStats.objects.update_or_create(
                 location=f'Both_items_{item_name}',
                 defaults={'stats_json': convert_to_serializable(both_items_dict)}
             )
-            OrderStats.objects.create(
+            OrderStats.objects.update_or_create(
                 location=f'Bakery_items_{item_name}',
                 defaults={'stats_json': convert_to_serializable(bakery_items_dict)}
             )
-            OrderStats.objects.create(
+            OrderStats.objects.update_or_create(
                 location=f'Cafe_items_{item_name}',
                 defaults={'stats_json': convert_to_serializable(cafe_items_dict)}
             )
