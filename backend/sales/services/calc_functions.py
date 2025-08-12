@@ -42,12 +42,12 @@ def convert_from_serializable(obj):
     return obj
 
 
-def calc_home_stats(dictionary, querylist):
+def calc_home_stats(dictionary, querylist, date):
     """ Take premade dictionary and calculates required values """
     
-    today = datetime.now(UTC).date()
-    current_month = today.month
-    last_year_end = today - relativedelta(years=1, days=1)
+    
+    current_month = date.month
+    last_year_end = date - relativedelta(years=1, days=1)
     best_sellers_list_size = 5
     
     # Initialize helper dictionary
@@ -103,11 +103,11 @@ def calc_home_stats(dictionary, querylist):
     
     # Big for loop to add data incrementally
     for order in querylist:
-        days_ago = (today - order.date).days
-        same_period_last_year = days_ago - (today-last_year_end).days
+        days_ago = (date - order.date).days
+        same_period_last_year = days_ago - (date-last_year_end).days
         
         # CURRENT YEARS ORDERS
-        if order.date.year == today.year:
+        if order.date.year == date.year:
             dictionary['year_sales_graph']['total_sales_year'] += order.total_sale
             # CURRENT MONTH ORDERS
             if order.date.month == current_month:
@@ -168,14 +168,14 @@ def calc_home_stats(dictionary, querylist):
         
     # Label Creation
     for i in range(1, current_month + 1):
-        dictionary['year_sales_graph']['labels'].append(f"{calendar.month_abbr[i]} '{today.strftime('%y')}")
+        dictionary['year_sales_graph']['labels'].append(f"{calendar.month_abbr[i]} '{date.strftime('%y')}")
     for i in range(30):
-        temp_day = today - timedelta(days=i+1)
+        temp_day = date - timedelta(days=i+1)
         dictionary['monthly_sales_graph']['labels'].append(f"{temp_day.strftime('%b %d')}")
     
     
     for i in range(7):
-        day = today - timedelta(days=i+1)
+        day = date - timedelta(days=i+1)
         dictionary['average_growth_graph']['labels'].append(calendar.day_abbr[day.weekday()])
         dictionary['average_growth_graph']['graph'][i] = percent_increase(helper['average_growth_graph']['previous_7_days'][i], helper['average_growth_graph']['previous_14_days'][i])
         helper['average_growth_graph']['comparisons']['previous_14_days'][i] = percent_increase(helper['average_growth_graph']['previous_14_days'][i], helper['average_growth_graph']['previous_21_days'][i])
@@ -219,13 +219,12 @@ def calc_home_stats(dictionary, querylist):
     dictionary['monthly_sales_graph']['labels'].reverse()
 
 
-def calc_items_stats(dictionary, querylist):
+def calc_items_stats(dictionary, querylist, date):
     """ 
     Calculates the items stats for a given dictionary and querylist. 
     Assuming the querylist is filted to be the last 90 days and by item name
     """
     
-    today = datetime.now(UTC).date()
     start_time = time(hour=7, minute=0, second=0) 
     
     # Initialize the helper dictionary
@@ -248,7 +247,7 @@ def calc_items_stats(dictionary, querylist):
 
     # Big for loop to iterate through all the items in the querylist
     for order in querylist:
-        days_ago = (today - order.date).days
+        days_ago = (date - order.date).days
         time_block_index = ((datetime.strptime(order.time, '%H:%M:%S').time().hour - start_time.hour) * 60 + datetime.strptime(order.time, '%H:%M:%S').time().minute) // 30
     
         if 1 <= days_ago <= 90:
@@ -290,7 +289,7 @@ def calc_items_stats(dictionary, querylist):
     
     # Label Creation
     for i in range(90):
-        temp_day = today - timedelta(days=i+1)
+        temp_day = date - timedelta(days=i+1)
         dictionary['period_graphs']['last_3_months']['daily']['labels'].append(f"{temp_day.strftime('%b %d')}")
         if i <= 29:
             dictionary['period_graphs']['last_month']['daily']['labels'].append(f"{temp_day.strftime('%b %d')}")
@@ -317,12 +316,10 @@ def calc_items_stats(dictionary, querylist):
     dictionary['period_graphs']['last_3_months']['daily']['labels'].reverse()
     
 
-def calc_daily_stats_home(dictionary, querylist):
+def calc_daily_stats_home(dictionary, querylist, date):
     """
     Calculates the stats for home page from the current days orders and yesterdays for the frontend
     """
-    
-    today = datetime.now(UTC).date()
     
     # Sets all stats to zero in case the dictionary hasn't been reset
     daily_home_stats = dictionary['daily_home_stats']
@@ -339,7 +336,7 @@ def calc_daily_stats_home(dictionary, querylist):
     }
     
     for order in querylist:
-        if order.date == today:
+        if order.date == date:
             daily_home_stats['total_sales'] += order.total_sale
             helper['tax'] += order.tax
             daily_home_stats['orders'] += order.quantity
@@ -351,12 +348,11 @@ def calc_daily_stats_home(dictionary, querylist):
     daily_home_stats['average_sale'] = round(daily_home_stats['total_sales'] / daily_home_stats['orders'], 2) if daily_home_stats['orders'] else Decimal('0.00')
         
         
-def calc_daily_stats_items(dictionary, querylist):
+def calc_daily_stats_items(dictionary, querylist, date):
     """
     Calculates the stats for items page from the current days orders and the same day previous week for the frontend
     """
     
-    today = datetime.now(UTC).date()
     time_now = datetime.now(UTC).time()
     
     # Sets all stats to zero in case the dictionary hasn't been reset
@@ -372,11 +368,11 @@ def calc_daily_stats_items(dictionary, querylist):
     }
     
     for order in querylist:
-        if order.date == today:
+        if order.date == date:
             daily_items_stats['daily_sales']['sales'] += order.total_sale
-        if order.date == today - timedelta(days=1):
+        if order.date == date - timedelta(days=1):
             daily_items_stats['recent_time'] = datetime.strptime(order.time, '%H:%M:%S').time() if datetime.strptime(order.time, '%H:%M:%S').time() > time.fromisoformat(str(daily_items_stats['recent_time'])) else daily_items_stats['recent_time']
-        if order.date == today - timedelta(days=7) and datetime.strptime(order.time, '%H:%M:%S').time() <= time_now:
+        if order.date == date - timedelta(days=7) and datetime.strptime(order.time, '%H:%M:%S').time() <= time_now:
             helper['previous_week']['sales'] += order.total_sale
         
     
