@@ -113,7 +113,7 @@ def calc_home_stats(dictionary, querylist):
             if order.date.month == current_month:
                 dictionary['monthly_stats_tiles']['total_sales_month'] += order.total_sale
                 dictionary['monthly_stats_tiles']['items_sold'] += int(order.quantity)
-                helper['monthly_stats_tiles']['total_lost'] += (order.tax + order.discount + order.service_charge)
+                helper['monthly_stats_tiles']['total_lost'] += (order.tax + order.service_charge)
             
             # ORDER TAKEN FROM EVERY MONTH CURRENT YEAR
             dictionary['year_sales_graph']['graph'][f'month{order.date.month}'] += order.total_sale
@@ -347,7 +347,7 @@ def calc_daily_stats_home(dictionary, querylist):
             daily_home_stats['service_charge'] += order.service_charge
     
     # Post loop calculations
-    daily_home_stats['net_sale'] = daily_home_stats['total_sales'] - (daily_home_stats['discounts'] + daily_home_stats['service_charge'] + helper['tax'])
+    daily_home_stats['net_sale'] = daily_home_stats['total_sales'] - (daily_home_stats['service_charge'] + helper['tax'])
     daily_home_stats['average_sale'] = round(daily_home_stats['total_sales'] / daily_home_stats['orders'], 2) if daily_home_stats['orders'] else Decimal('0.00')
         
         
