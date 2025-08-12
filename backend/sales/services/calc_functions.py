@@ -320,6 +320,9 @@ def calc_daily_stats_home(dictionary, querylist):
     """
     Calculates the stats for home page from the current days orders and yesterdays for the frontend
     """
+    
+    today = datetime.now(UTC).date()
+    
     # Sets all stats to zero in case the dictionary hasn't been reset
     daily_home_stats = dictionary['daily_home_stats']
     daily_home_stats['orders'] = 0
@@ -351,6 +354,9 @@ def calc_daily_stats_items(dictionary, querylist):
     """
     Calculates the stats for items page from the current days orders and the same day previous week for the frontend
     """
+    
+    today = datetime.now(UTC).date()
+    
     # Sets all stats to zero in case the dictionary hasn't been reset
     daily_items_stats = dictionary['daily_items_stats']
     daily_items_stats['daily_sales']['sales'] = Decimal('0.00')
