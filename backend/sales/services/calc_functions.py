@@ -6,14 +6,6 @@ from sales.static.stats_schema_home import home_stats
 from sales.static.stats_schema_items import items_stats
 import copy
 
-# VARIABLES AND CONSTANTS
-today = datetime.now(UTC).date()
-current_month = today.month
-last_year_end = today - relativedelta(years=1, days=1)
-start_time = time(hour=7, minute=0, second=0)
-time_now = datetime.now(UTC).time()
-best_sellers_list_size = 5
-
 # FUNCTIONS
 
 def percent_increase(a, b):
@@ -52,6 +44,11 @@ def convert_from_serializable(obj):
 
 def calc_home_stats(dictionary, querylist):
     """ Take premade dictionary and calculates required values """
+    
+    today = datetime.now(UTC).date()
+    current_month = today.month
+    last_year_end = today - relativedelta(years=1, days=1)
+    best_sellers_list_size = 5
     
     # Initialize helper dictionary
     helper = {
@@ -227,6 +224,10 @@ def calc_items_stats(dictionary, querylist):
     Calculates the items stats for a given dictionary and querylist. 
     Assuming the querylist is filted to be the last 90 days and by item name
     """
+    
+    today = datetime.now(UTC).date()
+    start_time = time(hour=7, minute=0, second=0) 
+    
     # Initialize the helper dictionary
     helper = {
         'weekly_sales': {
@@ -356,6 +357,7 @@ def calc_daily_stats_items(dictionary, querylist):
     """
     
     today = datetime.now(UTC).date()
+    time_now = datetime.now(UTC).time()
     
     # Sets all stats to zero in case the dictionary hasn't been reset
     daily_items_stats = dictionary['daily_items_stats']
