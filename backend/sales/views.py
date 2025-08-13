@@ -67,6 +67,7 @@ class TriggerCalculationsView(APIView):
         location = request.data.get('location')
         item_name = request.data.get('item_name')
         poss_locations = ['Both', 'Cafe', 'Bakery']
+        today = datetime.now(UTC).date()
 
         if not location or not item_name:
             return Response({'error': 'Location and item name are required'}, 
@@ -90,14 +91,14 @@ class TriggerCalculationsView(APIView):
             if item_name == 'All':
                 bakery_order_lines = OrderLine.objects.filter( 
                     location=settings.CONFIG['BAKERY_ID'], 
-                    date__gte=datetime.now(UTC).date() - relativedelta(days=90)
+                    date__gte=today - relativedelta(days=90)
                 )
                 cafe_order_lines = OrderLine.objects.filter(
                     location=settings.CONFIG['CAFE_ID'], 
-                    date__gte=datetime.now(UTC).date() - relativedelta(days=90)
+                    date__gte=today - relativedelta(days=90)
                 )
                 both_order_lines = OrderLine.objects.filter(
-                    date__gte=datetime.now(UTC).date() - relativedelta(days=90)
+                    date__gte=today - relativedelta(days=90)
                 )
                 bakery_daily_orders = DailyOrderSnapshot.objects.filter(location=settings.CONFIG['BAKERY_ID'])
                 cafe_daily_orders = DailyOrderSnapshot.objects.filter(location=settings.CONFIG['CAFE_ID'])
@@ -106,32 +107,31 @@ class TriggerCalculationsView(APIView):
                 bakery_order_lines = OrderLine.objects.filter( 
                     name=item_name,
                     location=settings.CONFIG['BAKERY_ID'], 
-                    date__gte=datetime.now(UTC).date() - relativedelta(days=90)
+                    date__gte=today - relativedelta(days=90)
                 )
                 cafe_order_lines = OrderLine.objects.filter(
                     name=item_name,
                     location=settings.CONFIG['CAFE_ID'], 
-                    date__gte=datetime.now(UTC).date() - relativedelta(days=90)
+                    date__gte=today - relativedelta(days=90)
                 )
                 both_order_lines = OrderLine.objects.filter(
                     name=item_name,
-                    date__gte=datetime.now(UTC).date() - relativedelta(days=90)
+                    date__gte=today - relativedelta(days=90)
                 )
                 bakery_daily_orders = DailyOrderSnapshot.objects.filter(name=item_name, location=settings.CONFIG['BAKERY_ID'])
                 cafe_daily_orders = DailyOrderSnapshot.objects.filter(name=item_name, location=settings.CONFIG['CAFE_ID'])
                 both_daily_orders = DailyOrderSnapshot.objects.filter(name=item_name)
             
             if both_order_lines.exists() and both_daily_orders.exists():
-                calc_items_stats(both_stats, both_order_lines)
-                calc_daily_stats_items(both_stats, both_daily_orders)
+                calc_items_stats(both_stats, both_order_lines, today)
+                calc_daily_stats_items(both_stats, both_daily_orders, today)
                 if bakery_order_lines.exists() and bakery_daily_orders.exists():
-                    calc_items_stats(bakery_stats, bakery_order_lines)
-                    calc_daily_stats_items(bakery_stats, bakery_daily_orders)
+                    calc_items_stats(bakery_stats, bakery_order_lines, today)
+                    calc_daily_stats_items(bakery_stats, bakery_daily_orders, today)
                 if cafe_daily_orders.exists() and cafe_order_lines.exists():
-                    calc_items_stats(cafe_stats, cafe_order_lines)
-                    calc_daily_stats_items(cafe_stats, cafe_daily_orders)
-                    
-                    
+                    calc_items_stats(cafe_stats, cafe_order_lines, today)
+                    calc_daily_stats_items(cafe_stats, cafe_daily_orders, today)
+
             # Update calculated stats in the model
             OrderStats.objects.update_or_create(
                 location=f'Bakery_items_{item_name}',
