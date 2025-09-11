@@ -9,16 +9,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         cutoff_date_OrderLine = (datetime.now(UTC).date() - relativedelta(years=1, months=1)).replace(day=1)
-        missing_start_date_OrderLine = datetime(2025, 8, 25).date()
-        
         old_entries_OrderLine = OrderLine.objects.filter(date__lt=cutoff_date_OrderLine)
         count_deleted = old_entries_OrderLine.count()
         old_entries_OrderLine.delete()
         OrderLine.objects.filter(date=datetime.now(UTC).date()).delete()  # Delete today's entries to avoid duplicates
         self.stdout.write(self.style.SUCCESS(f'Deleted {count_deleted} old order lines.'))
-
-        missing_entries_OrderLine = OrderLine.objects.filter(date__gte=missing_start_date_OrderLine)
-        missing_entries_OrderLine.delete()
         
         orders = fetch_orders_update()
         counter = 0
