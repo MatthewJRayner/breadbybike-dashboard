@@ -16,7 +16,7 @@ def fetch_orders_update():
     if latest_order:
         start_at = str(f"{latest_order.date}T{latest_order.time}.000Z")
     else:
-        start_at = (datetime.now(UTC) - timedelta(days=2)).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+        start_at = (datetime.now(UTC) - timedelta(days=17)).strftime("%Y-%m-%dT%H:%M:%S.000Z")
     end_at = datetime.now(UTC).isoformat(timespec='milliseconds').replace('+00:00', 'Z')
     
     order_entries = []
